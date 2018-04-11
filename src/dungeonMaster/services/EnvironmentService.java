@@ -7,7 +7,7 @@ public interface EnvironmentService extends /* includes */ MapService {
      * @param y
      * @return
      */
-    public Option cellContent(int x, int y);
+    public OptionService<MobService> cellContent(int x, int y);
     
     /** Opérateur :
      * 
@@ -16,5 +16,5 @@ public interface EnvironmentService extends /* includes */ MapService {
      * @param y
      * @return
      */
-    public EnvironmentService closeDoor(int x, int y);
+    public void closeDoor(int x, int y);
 }

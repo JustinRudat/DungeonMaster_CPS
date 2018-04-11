@@ -61,7 +61,7 @@ public interface MapService {
      * @param y
      * @return
      */
-    public MapService openDoor(int x, int y);
+    public void openDoor(int x, int y);
     
     /** Opérateur : 
      * 
@@ -83,7 +83,7 @@ public interface MapService {
      * @return MapService
      * @return
      */
-    public MapService closeDoor(int x, int y);
+    public void closeDoor(int x, int y);
     
     
 }

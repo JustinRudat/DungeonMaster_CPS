@@ -4,41 +4,58 @@ import dungeonMaster.services.Cell;
 import dungeonMaster.services.MapService;
 
 public class MapImplem implements MapService{
-
+	private Cell[][] plateau;
+	private int height;
+	private int width;
 	@Override
 	public int getHeight() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.height;
 	}
 
 	@Override
 	public int getWidth() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.width;
 	}
 
 	@Override
 	public Cell cellNature(int i, int j) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.plateau[i][j];
 	}
 
 	@Override
 	public void init(int largeur, int hauteur) {
-		// TODO Auto-generated method stub
+		this.height = hauteur;
+		this.width = largeur;
+		this.plateau = new Cell[hauteur][largeur];
 		
 	}
 
 	@Override
-	public MapService openDoor(int x, int y) {
-		// TODO Auto-generated method stub
-		return null;
+	public void openDoor(int x, int y) {
+		switch(this.plateau[x][y]) {
+			case DWC:
+				this.plateau[x][y] = Cell.DWO;
+				break;
+			case DNC:
+				this.plateau[x][y] = Cell.DNO;
+				break;
+			default:
+				break;
+		}
 	}
 
 	@Override
-	public MapService closeDoor(int x, int y) {
-		// TODO Auto-generated method stub
-		return null;
+	public void closeDoor(int x, int y) {
+		switch(plateau[x][y]) {
+		case DWO:
+			this.plateau[x][y] = Cell.DWC;
+			break;
+		case DNO:
+			this.plateau[x][y] = Cell.DNC;
+			break;
+		default:
+			break;
+	}
 	}
 
 }

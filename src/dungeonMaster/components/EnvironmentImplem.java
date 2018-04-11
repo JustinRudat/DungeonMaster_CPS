@@ -1,52 +1,16 @@
 package dungeonMaster.components;
 
-import dungeonMaster.services.Cell;
 import dungeonMaster.services.EnvironmentService;
-import dungeonMaster.services.MapService;
-import dungeonMaster.services.Option;
+import dungeonMaster.services.MobService;
+import dungeonMaster.services.OptionService;
 
-public class EnvironmentImplem implements EnvironmentService{
-
-	@Override
-	public int getHeight() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+public class EnvironmentImplem extends MapImplem implements EnvironmentService{
 
 	@Override
-	public int getWidth() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public Cell cellNature(int i, int j) {
+	public OptionService<MobService> cellContent(int x, int y) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
-	public void init(int largeur, int hauteur) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public MapService openDoor(int x, int y) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Option cellContent(int x, int y) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public EnvironmentService closeDoor(int x, int y) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 }

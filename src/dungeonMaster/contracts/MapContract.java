@@ -4,7 +4,11 @@ import dungeonMaster.decorators.MapDecorator;
 import dungeonMaster.services.Cell;
 import dungeonMaster.services.MapService;
 
-public class MapContract implements MapDecorator {
+public class MapContract extends MapDecorator {
+
+	public MapContract(MapService delegate) {
+		super(delegate);
+	}
 
 	@Override
 	public int getHeight() {

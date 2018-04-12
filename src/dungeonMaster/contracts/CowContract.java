@@ -1,10 +1,15 @@
 package dungeonMaster.contracts;
 
 import dungeonMaster.decorators.CowDecorator;
+import dungeonMaster.services.CowService;
 import dungeonMaster.services.Dir;
 import dungeonMaster.services.EnvironmentService;
 
-public class CowContract implements CowDecorator {
+public class CowContract extends CowDecorator {
+
+	public CowContract(CowService delegate) {
+		super(delegate);
+	}
 
 	@Override
 	public void init(EnvironmentService env, int x, int y, Dir dir, int hp) {

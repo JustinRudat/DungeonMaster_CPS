@@ -3,10 +3,15 @@ package dungeonMaster.contracts;
 import java.util.ArrayList;
 
 import dungeonMaster.decorators.EngineDecorator;
+import dungeonMaster.services.EngineService;
 import dungeonMaster.services.EntityService;
 import dungeonMaster.services.EnvironmentService;
 
-public class EngineContract implements EngineDecorator {
+public class EngineContract extends EngineDecorator {
+
+	public EngineContract(EngineService delegate) {
+		super(delegate);
+	}
 
 	@Override
 	public EnvironmentService getEnv() {

@@ -5,7 +5,11 @@ import dungeonMaster.services.Cell;
 import dungeonMaster.services.EditMapService;
 import dungeonMaster.services.MapService;
 
-public class EditMapContract implements EditMapDecorator {
+public class EditMapContract extends EditMapDecorator {
+
+	public EditMapContract(EditMapService delegate) {
+		super(delegate);
+	}
 
 	@Override
 	public boolean isReachable(int x1, int y1, int x2, int y2) {

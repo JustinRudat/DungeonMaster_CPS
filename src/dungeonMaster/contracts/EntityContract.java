@@ -2,9 +2,14 @@ package dungeonMaster.contracts;
 
 import dungeonMaster.decorators.EntityDecorator;
 import dungeonMaster.services.Dir;
+import dungeonMaster.services.EntityService;
 import dungeonMaster.services.EnvironmentService;
 
-public class EntityContract implements EntityDecorator {
+public class EntityContract extends EntityDecorator {
+
+	public EntityContract(EntityService delegate) {
+		super(delegate);
+	}
 
 	@Override
 	public int getHealthPoints() {

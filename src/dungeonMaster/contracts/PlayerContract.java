@@ -7,8 +7,13 @@ import dungeonMaster.services.Dir;
 import dungeonMaster.services.EnvironmentService;
 import dungeonMaster.services.MobService;
 import dungeonMaster.services.OptionService;
+import dungeonMaster.services.PlayerService;
 
-public class PlayerContract implements PlayerDecorator {
+public class PlayerContract extends PlayerDecorator {
+
+	public PlayerContract(PlayerService delegate) {
+		super(delegate);
+	}
 
 	@Override
 	public OptionService<Command> getLastCommand() {

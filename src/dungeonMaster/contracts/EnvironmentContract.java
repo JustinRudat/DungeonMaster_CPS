@@ -8,7 +8,11 @@ import dungeonMaster.services.MobService;
 import dungeonMaster.services.Option;
 import dungeonMaster.services.OptionService;
 
-public class EnvironmentContract implements EnvironmentDecorator {
+public class EnvironmentContract extends EnvironmentDecorator {
+
+	public EnvironmentContract(EnvironmentService delegate) {
+		super(delegate);
+	}
 
 	@Override
 	public OptionService<MobService> cellContent(int x, int y) {

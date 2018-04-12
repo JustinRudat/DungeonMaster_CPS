@@ -20,9 +20,8 @@ public class EditMapContract implements EditMapDecorator {
 	}
 
 	@Override
-	public EditMapService setNature(int x, int y, Cell c) {
-		// TODO Auto-generated method stub
-		return null;
+	public void setNature(int x, int y, Cell c) {
+		
 	}
 
 	@Override
@@ -50,13 +49,17 @@ public class EditMapContract implements EditMapDecorator {
 	}
 
 	@Override
-	public MapService openDoor(int x, int y) {
-		// TODO Auto-generated method stub
-		return null;
+	public void openDoor(int x, int y) {
+		
 	}
 
 	@Override
-	public MapService closeDoor(int x, int y) {
+	public void closeDoor(int x, int y) {
+		
+	}
+
+	@Override
+	public Cell[][] getPlateau() {
 		// TODO Auto-generated method stub
 		return null;
 	}

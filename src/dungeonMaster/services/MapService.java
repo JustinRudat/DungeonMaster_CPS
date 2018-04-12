@@ -13,6 +13,12 @@ public interface MapService {
      */
     public int getWidth();
     
+    /** Observateur : plateau de jeu
+     * 
+     * @return
+     */
+    public Cell[][] getPlateau();
+    
     
     /** Observateur : Nature de la case désignée par les coordonnées i et j
      * 

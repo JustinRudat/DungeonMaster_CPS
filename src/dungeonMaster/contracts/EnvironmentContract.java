@@ -4,20 +4,21 @@ import dungeonMaster.decorators.EnvironmentDecorator;
 import dungeonMaster.services.Cell;
 import dungeonMaster.services.EnvironmentService;
 import dungeonMaster.services.MapService;
+import dungeonMaster.services.MobService;
 import dungeonMaster.services.Option;
+import dungeonMaster.services.OptionService;
 
 public class EnvironmentContract implements EnvironmentDecorator {
 
 	@Override
-	public Option cellContent(int x, int y) {
-		// TODO Auto-generated method stub
+	public OptionService<MobService> cellContent(int x, int y) {
 		return null;
+		
 	}
 
 	@Override
-	public EnvironmentService closeDoor(int x, int y) {
-		// TODO Auto-generated method stub
-		return null;
+	public void closeDoor(int x, int y) {
+		
 	}
 
 	@Override
@@ -45,7 +46,12 @@ public class EnvironmentContract implements EnvironmentDecorator {
 	}
 
 	@Override
-	public MapService openDoor(int x, int y) {
+	public void openDoor(int x, int y) {
+		
+	}
+
+	@Override
+	public Cell[][] getPlateau() {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -16,6 +16,10 @@ public class MapImplem implements MapService{
 	public int getWidth() {
 		return this.width;
 	}
+	
+	public Cell[][] getPlateau(){
+		return this.plateau;
+	}
 
 	@Override
 	public Cell cellNature(int i, int j) {

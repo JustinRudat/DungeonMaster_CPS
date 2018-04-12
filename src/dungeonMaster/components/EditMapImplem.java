@@ -19,9 +19,8 @@ public class EditMapImplem extends MapImplem implements EditMapService{
 	}
 
 	@Override
-	public EditMapService setNature(int x, int y, Cell c) {
-		// TODO Auto-generated method stub
-		return null;
+	public void setNature(int x, int y, Cell c) {
+		this.getPlateau()[x][y] = c;
 	}
 
 	

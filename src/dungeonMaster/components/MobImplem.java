@@ -51,7 +51,7 @@ public class MobImplem implements MobService{
 						if(this.getRow()+1<this.getEnv().getWidth()) {	
 							nature = this.getEnv().cellNature(this.getCol(),this.getRow()+1);
 							if(nature==Cell.EMP || nature==Cell.DWO) {
-								if(this.getEnv().cellContent(this.getCol(),this.getRow()+1)==Option.No) {
+								if(this.getEnv().cellContent(this.getCol(),this.getRow()+1).getOption()==Option.No) {
 									this.row++;
 								}
 							}
@@ -65,7 +65,7 @@ public class MobImplem implements MobService{
 						if(this.getCol()+1< this.getEnv().getHeight()) {
 							nature = this.getEnv().cellNature(this.getCol()+1,this.getRow());
 							if(nature==Cell.EMP || nature==Cell.DWO) {
-								if(this.getEnv().cellContent(this.getCol()+1,this.getRow())==Option.No) {
+								if(this.getEnv().cellContent(this.getCol()+1,this.getRow()).getOption()==Option.No) {
 									this.col++;
 								}
 							}
@@ -78,7 +78,7 @@ public class MobImplem implements MobService{
 						if(this.getRow()-1>=0) {	
 							nature = this.getEnv().cellNature(this.getCol(),this.getRow()-1);
 							if(nature==Cell.EMP || nature==Cell.DWO) {
-								if(this.getEnv().cellContent(this.getCol(),this.getRow()-1)==Option.No) {
+								if(this.getEnv().cellContent(this.getCol(),this.getRow()-1).getOption()==Option.No) {
 									this.row--;
 								}
 							}
@@ -91,7 +91,7 @@ public class MobImplem implements MobService{
 						if(this.getCol()-1>=0) {
 							nature = this.getEnv().cellNature(this.getCol()-1,this.getRow());
 							if(nature==Cell.EMP || nature==Cell.DWO) {
-								if(this.getEnv().cellContent(this.getCol()-1,this.getRow())==Option.No) {
+								if(this.getEnv().cellContent(this.getCol()-1,this.getRow()).getOption()==Option.No) {
 									this.col--;
 								}
 							}
@@ -114,7 +114,7 @@ public class MobImplem implements MobService{
 						if(this.getRow()+1<this.getEnv().getWidth()) {	
 							nature = this.getEnv().cellNature(this.getCol(),this.getRow()+1);
 							if(nature==Cell.EMP || nature==Cell.DWO) {
-								if(this.getEnv().cellContent(this.getCol(),this.getRow()+1)==Option.No) {
+								if(this.getEnv().cellContent(this.getCol(),this.getRow()+1).getOption()==Option.No) {
 									this.row++;
 								}
 							}
@@ -128,7 +128,7 @@ public class MobImplem implements MobService{
 						if(this.getCol()+1< this.getEnv().getHeight()) {
 							nature = this.getEnv().cellNature(this.getCol()+1,this.getRow());
 							if(nature==Cell.EMP || nature==Cell.DWO) {
-								if(this.getEnv().cellContent(this.getCol()+1,this.getRow())==Option.No) {
+								if(this.getEnv().cellContent(this.getCol()+1,this.getRow()).getOption()==Option.No) {
 									this.col++;
 								}
 							}
@@ -141,7 +141,7 @@ public class MobImplem implements MobService{
 						if(this.getRow()-1>=0) {	
 							nature = this.getEnv().cellNature(this.getCol(),this.getRow()-1);
 							if(nature==Cell.EMP || nature==Cell.DWO) {
-								if(this.getEnv().cellContent(this.getCol(),this.getRow()-1)==Option.No) {
+								if(this.getEnv().cellContent(this.getCol(),this.getRow()-1).getOption()==Option.No) {
 									this.row--;
 								}
 							}
@@ -154,7 +154,7 @@ public class MobImplem implements MobService{
 						if(this.getCol()-1>=0) {
 							nature = this.getEnv().cellNature(this.getCol()-1,this.getRow());
 							if(nature==Cell.EMP || nature==Cell.DWO) {
-								if(this.getEnv().cellContent(this.getCol()-1,this.getRow())==Option.No) {
+								if(this.getEnv().cellContent(this.getCol()-1,this.getRow()).getOption()==Option.No) {
 									this.col--;
 								}
 							}
@@ -220,7 +220,7 @@ public class MobImplem implements MobService{
 						if(this.getRow()+1<this.getEnv().getWidth()) {	
 							nature = this.getEnv().cellNature(this.getCol(),this.getRow()+1);
 							if(nature==Cell.EMP || nature==Cell.DWO) {
-								if(this.getEnv().cellContent(this.getCol(),this.getRow()+1)==Option.No) {
+								if(this.getEnv().cellContent(this.getCol(),this.getRow()+1).getOption()==Option.No) {
 									this.row++;
 								}
 							}
@@ -234,7 +234,7 @@ public class MobImplem implements MobService{
 						if(this.getCol()+1< this.getEnv().getHeight()) {
 							nature = this.getEnv().cellNature(this.getCol()+1,this.getRow());
 							if(nature==Cell.EMP || nature==Cell.DWO) {
-								if(this.getEnv().cellContent(this.getCol()+1,this.getRow())==Option.No) {
+								if(this.getEnv().cellContent(this.getCol()+1,this.getRow()).getOption()==Option.No) {
 									this.col++;
 								}
 							}
@@ -247,7 +247,7 @@ public class MobImplem implements MobService{
 						if(this.getRow()-1>=0) {	
 							nature = this.getEnv().cellNature(this.getCol(),this.getRow()-1);
 							if(nature==Cell.EMP || nature==Cell.DWO) {
-								if(this.getEnv().cellContent(this.getCol(),this.getRow()-1)==Option.No) {
+								if(this.getEnv().cellContent(this.getCol(),this.getRow()-1).getOption()==Option.No) {
 									this.row--;
 								}
 							}
@@ -260,7 +260,7 @@ public class MobImplem implements MobService{
 						if(this.getCol()-1>=0) {
 							nature = this.getEnv().cellNature(this.getCol()-1,this.getRow());
 							if(nature==Cell.EMP || nature==Cell.DWO) {
-								if(this.getEnv().cellContent(this.getCol()-1,this.getRow())==Option.No) {
+								if(this.getEnv().cellContent(this.getCol()-1,this.getRow()).getOption()==Option.No) {
 									this.col--;
 								}
 							}
@@ -284,7 +284,7 @@ public class MobImplem implements MobService{
 						if(this.getRow()+1<this.getEnv().getWidth()) {	
 							nature = this.getEnv().cellNature(this.getCol(),this.getRow()+1);
 							if(nature==Cell.EMP || nature==Cell.DWO) {
-								if(this.getEnv().cellContent(this.getCol(),this.getRow()+1)==Option.No) {
+								if(this.getEnv().cellContent(this.getCol(),this.getRow()+1).getOption()==Option.No) {
 									this.row++;
 								}
 							}
@@ -298,7 +298,7 @@ public class MobImplem implements MobService{
 						if(this.getCol()+1< this.getEnv().getHeight()) {
 							nature = this.getEnv().cellNature(this.getCol()+1,this.getRow());
 							if(nature==Cell.EMP || nature==Cell.DWO) {
-								if(this.getEnv().cellContent(this.getCol()+1,this.getRow())==Option.No) {
+								if(this.getEnv().cellContent(this.getCol()+1,this.getRow()).getOption()==Option.No) {
 									this.col++;
 								}
 							}
@@ -311,7 +311,7 @@ public class MobImplem implements MobService{
 						if(this.getRow()-1>=0) {	
 							nature = this.getEnv().cellNature(this.getCol(),this.getRow()-1);
 							if(nature==Cell.EMP || nature==Cell.DWO) {
-								if(this.getEnv().cellContent(this.getCol(),this.getRow()-1)==Option.No) {
+								if(this.getEnv().cellContent(this.getCol(),this.getRow()-1).getOption()==Option.No) {
 									this.row--;
 								}
 							}
@@ -324,7 +324,7 @@ public class MobImplem implements MobService{
 						if(this.getCol()-1>=0) {
 							nature = this.getEnv().cellNature(this.getCol()-1,this.getRow());
 							if(nature==Cell.EMP || nature==Cell.DWO) {
-								if(this.getEnv().cellContent(this.getCol()-1,this.getRow())==Option.No) {
+								if(this.getEnv().cellContent(this.getCol()-1,this.getRow()).getOption()==Option.No) {
 									this.col--;
 								}
 							}

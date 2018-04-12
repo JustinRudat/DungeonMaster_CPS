@@ -43,7 +43,9 @@ public class EngineImplem implements EngineService {
 
 	@Override
 	public void step() {
-		// TODO Auto-generated method stub
+		for(EntityService entity : this.getEntities()){
+			entity.step();
+		}
 		
 	}
 

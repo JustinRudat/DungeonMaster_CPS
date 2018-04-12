@@ -16,5 +16,10 @@ public class OptionImplem<T> implements OptionService<T> {
 	public T getElem() {
 		return this.element;
 	}
+	
+	public void init(T elemt, Option opt){
+		this.option = opt;
+		this.element = elemt;
+	}
 
 }

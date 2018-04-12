@@ -82,7 +82,7 @@ public interface MapService {
      * post : \forall u in [ 0 ; this.getWidth() - 1 ] 
      *         \forall v in [ 0 ; this.getHeight() - 1 ]
      *         if ( u != x || v != y ) then
-     *               this.openDoor(x,y).cellNature(u,v) == this.cellNature(u,v)@pre
+     *               this.closeDoor(x,y).cellNature(u,v) == this.cellNature(u,v)@pre
      *          
      * @param x
      * @param y

@@ -12,6 +12,10 @@ public class EngineDecorator implements EngineService{
 	public EngineDecorator(EngineService delegate) {
 		this.delegate = delegate;
 	}
+	
+	public EngineService getDelegate() {
+		return this.delegate;
+	}
 	@Override
 	public EnvironmentService getEnv() {
 		return this.delegate.getEnv();

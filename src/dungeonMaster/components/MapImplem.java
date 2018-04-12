@@ -19,6 +19,7 @@ public class MapImplem implements MapService{
 	
 	public Cell[][] getPlateau(){
 		return this.plateau;
+		
 	}
 
 	@Override
@@ -31,6 +32,11 @@ public class MapImplem implements MapService{
 		this.height = hauteur;
 		this.width = largeur;
 		this.plateau = new Cell[hauteur][largeur];
+		for(int i =0; i< hauteur; i++) {
+			for(int j=0;j<largeur;j++) {
+				this.plateau[i][j] = Cell.EMP;
+			}
+		}
 		
 	}
 

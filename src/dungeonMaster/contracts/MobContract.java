@@ -55,7 +55,7 @@ public class MobContract extends MobDecorator {
 		}
 		checkInvariants();
 		
-		this.getDelegate().init(env,x,y,dir);
+		super.init(env,x,y,dir);
 		
 		checkInvariants();
 		
@@ -89,7 +89,7 @@ public class MobContract extends MobDecorator {
 		
 		checkInvariants();
 		
-		this.getDelegate().forward();
+		super.forward();
 		
 		checkInvariants();
 		
@@ -229,7 +229,7 @@ public class MobContract extends MobDecorator {
 		
 		checkInvariants();
 		
-		this.getDelegate().backward();
+		super.backward();
 		
 		checkInvariants();
 		
@@ -362,7 +362,7 @@ public class MobContract extends MobDecorator {
 	public void turnL() {
 		checkInvariants();
 		
-		this.getDelegate().turnL();
+		super.turnL();
 		
 		checkInvariants();
 
@@ -372,7 +372,7 @@ public class MobContract extends MobDecorator {
 	public void turnR() {
 		checkInvariants();
 		
-		this.getDelegate().turnR();
+		super.turnR();
 		
 		checkInvariants();
 
@@ -389,7 +389,7 @@ public class MobContract extends MobDecorator {
 		
 		checkInvariants();
 		
-		this.getDelegate().strafeL();
+		super.strafeL();
 		
 		checkInvariants();
 		try {
@@ -528,7 +528,7 @@ public class MobContract extends MobDecorator {
 		
 		checkInvariants();
 		
-		this.getDelegate().strafeR();
+		super.strafeR();
 		
 		checkInvariants();
 		try {

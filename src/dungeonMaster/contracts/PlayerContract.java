@@ -127,7 +127,7 @@ public class PlayerContract extends PlayerDecorator {
 	@Override
 	public OptionService<Command> getLastCommand() {
 		// TODO Auto-generated method stub
-		return ((PlayerService)this.getDelegate()).getLastCommand();
+		return super.getLastCommand();
 	}
 
 	@Override
@@ -142,7 +142,7 @@ public class PlayerContract extends PlayerDecorator {
 		}catch(ConditionException e) {
 			e.printStackTrace();
 		}
-		return ((PlayerService)this.getDelegate()).getContent(x, y);
+		return super.getContent(x, y);
 	}
 
 	@Override
@@ -157,7 +157,7 @@ public class PlayerContract extends PlayerDecorator {
 		}catch(ConditionException e) {
 			e.printStackTrace();
 		}
-		return ((PlayerService)this.getDelegate()).getNature(x, y);
+		return super.getNature(x, y);
 	}
 
 	@Override
@@ -172,91 +172,91 @@ public class PlayerContract extends PlayerDecorator {
 		}catch(ConditionException e) {
 			e.printStackTrace();
 		}
-		return ((PlayerService)this.getDelegate()).getViewable(x, y);
+		return super.getViewable(x, y);
 	}
 
 	@Override
 	public void step() {
-		((PlayerService)this.getDelegate()).step();
+		super.step();
 
 	}
 
 	@Override
 	public int getHealthPoints() {
-		return ((PlayerService)this.getDelegate()).getHealthPoints();
+		return super.getHealthPoints();
 	}
 
 	@Override
 	public void init(EnvironmentService env, int x, int y, Dir dir, int hp,int degat) {
-		((PlayerService)this.getDelegate()).init(env, x, y, dir, hp,degat);
+		super.init(env, x, y, dir, hp,degat);
 	}
 
 	@Override
 	public EnvironmentService getEnv() {
-		return ((PlayerService)this.getDelegate()).getEnv();
+		return super.getEnv();
 	}
 
 	@Override
 	public int getCol() {
-		return ((PlayerService)this.getDelegate()).getCol();
+		return super.getCol();
 	}
 
 	@Override
 	public int getRow() {
-		return ((PlayerService)this.getDelegate()).getRow();
+		return super.getRow();
 	}
 
 	@Override
 	public Dir getFace() {
 		// TODO Auto-generated method stub
-		return ((PlayerService)this.getDelegate()).getFace();
+		return super.getFace();
 	}
 
 	@Override
 	public void init(EnvironmentService env, int x, int y, Dir dir) {
-		((PlayerService)this.getDelegate()).init(env, x, y, dir);
+		super.init(env, x, y, dir);
 
 	}
 
 	@Override
 	public void forward() {
 		checkInvariants();
-		((PlayerService)this.getDelegate()).forward();
+		super.forward();
 		checkInvariants();
 	}
 
 	@Override
 	public void backward() {
 		checkInvariants();
-		((PlayerService)this.getDelegate()).backward();
+		super.backward();
 		checkInvariants();
 	}
 
 	@Override
 	public void turnL() {
 		checkInvariants();
-		((PlayerService)this.getDelegate()).turnL();
+		super.turnL();
 		checkInvariants();
 	}
 
 	@Override
 	public void turnR() {
 		checkInvariants();
-		((PlayerService)this.getDelegate()).turnR();
+		super.turnR();
 		checkInvariants();
 	}
 
 	@Override
 	public void strafeL() {
 		checkInvariants();
-		((PlayerService)this.getDelegate()).strafeL();
+		super.strafeL();
 		checkInvariants();
 	}
 
 	@Override
 	public void strafeR() {
 		checkInvariants();
-		((PlayerService)this.getDelegate()).strafeR();
+		super.strafeR();
 		checkInvariants();
 	}
 

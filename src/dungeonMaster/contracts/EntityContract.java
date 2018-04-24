@@ -14,7 +14,7 @@ public class EntityContract extends EntityDecorator {
 
 	@Override
 	public int getHealthPoints() {
-		return ((EntityService)this.getDelegate()).getHealthPoints();
+		return super.getHealthPoints();
 	}
 
 	@Override
@@ -27,74 +27,74 @@ public class EntityContract extends EntityDecorator {
 			e.printStackTrace();
 		}
 		
-		((EntityService)this.getDelegate()).init(env, x, y, dir, hp, degat);
+		super.init(env, x, y, dir, hp, degat);
 	}
 
 	@Override
 	public void step() {
-		((EntityService)this.getDelegate()).step();
+		super.step();
 
 	}
 
 	@Override
 	public EnvironmentService getEnv() {
-		return ((EntityService)this.getDelegate()).getEnv();
+		return super.getEnv();
 	}
 
 	@Override
 	public int getCol() {
-		return ((EntityService)this.getDelegate()).getCol();
+		return super.getCol();
 	}
 
 	@Override
 	public int getRow() {
-		return ((EntityService)this.getDelegate()).getRow();
+		return super.getRow();
 	}
 
 	@Override
 	public Dir getFace() {
-		return ((EntityService)this.getDelegate()).getFace();
+		return super.getFace();
 	}
 
 	@Override
 	public void init(EnvironmentService env, int x, int y, Dir dir) {
-		((EntityService)this.getDelegate()).init(env, x, y, dir);
+		super.init(env, x, y, dir);
 
 	}
 
 	@Override
 	public void forward() {
-		((EntityService)this.getDelegate()).forward();
+		super.forward();
 
 	}
 
 	@Override
 	public void backward() {
-		((EntityService)this.getDelegate()).backward();
+		super.backward();
 
 	}
 
 	@Override
 	public void turnL() {
-		((EntityService)this.getDelegate()).turnL();
+		super.turnL();
 
 	}
 
 	@Override
 	public void turnR() {
-		((EntityService)this.getDelegate()).turnR();
+		super.turnR();
 
 	}
 
 	@Override
 	public void strafeL() {
-		((EntityService)this.getDelegate()).strafeL();
+		super.strafeL();
 
 	}
 
 	@Override
 	public void strafeR() {
-		((EntityService)this.getDelegate()).strafeR();
+		super.strafeR();
 
 	}
 

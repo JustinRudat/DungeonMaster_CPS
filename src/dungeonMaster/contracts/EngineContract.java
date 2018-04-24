@@ -38,17 +38,17 @@ public class EngineContract extends EngineDecorator {
 
 	@Override
 	public EnvironmentService getEnv() {
-		return this.getDelegate().getEnv();
+		return super.getEnv();
 	}
 
 	@Override
 	public ArrayList<EntityService> getEntities() {
-		return this.getDelegate().getEntities();
+		return super.getEntities();
 	}
 
 	@Override
 	public EntityService getEntity(int index) {
-		return this.getDelegate().getEntity(index);
+		return super.getEntity(index);
 	}
 
 	@Override
@@ -56,7 +56,7 @@ public class EngineContract extends EngineDecorator {
 		
 		checkInvariants();
 		
-		this.getDelegate().init(env);
+		super.init(env);
 		
 		checkInvariants();
 	}
@@ -69,7 +69,7 @@ public class EngineContract extends EngineDecorator {
 			
 			checkInvariants();
 			
-			this.getDelegate().removeEntity(x);
+			super.removeEntity(x);
 			
 			checkInvariants();
 			
@@ -99,7 +99,7 @@ public class EngineContract extends EngineDecorator {
 			ArrayList<EntityService> entities_at_pre = (ArrayList<EntityService>) this.getEntities().clone();
 			checkInvariants();
 			
-			this.getDelegate().addEntity(entity);
+			super.addEntity(entity);
 			
 			checkInvariants();
 			
@@ -137,7 +137,7 @@ public class EngineContract extends EngineDecorator {
 		}
 		checkInvariants();
 		
-		this.getDelegate().step();
+		super.step();
 		
 		checkInvariants();
 	}

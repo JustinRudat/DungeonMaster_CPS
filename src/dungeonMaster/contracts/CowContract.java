@@ -22,7 +22,7 @@ public class CowContract extends CowDecorator {
 		}catch(ConditionException e){
 			e.printStackTrace();
 		}
-		((CowService)this.getDelegate()).init(env, x, y, dir,hp);
+		super.init(env, x, y, dir,hp,0);
 
 	}
 

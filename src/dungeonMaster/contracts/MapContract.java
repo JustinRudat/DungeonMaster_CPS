@@ -21,17 +21,17 @@ public class MapContract extends MapDecorator {
 
 	@Override
 	public int getHeight() {
-		return this.getDelegate().getHeight();
+		return super.getHeight();
 	}
 
 	@Override
 	public int getWidth() {
-		return this.getDelegate().getWidth();
+		return super.getWidth();
 	}
 	
 	@Override
 	public Cell[][] getPlateau() {
-		return this.getDelegate().getPlateau();
+		return super.getPlateau();
 	}
 
 	@Override
@@ -46,7 +46,7 @@ public class MapContract extends MapDecorator {
 		}catch (PreConditionException e) {
 			e.printStackTrace();
 		}
-		return this.getDelegate().cellNature(i, j);
+		return super.cellNature(i, j);
 	}
 
 	@Override
@@ -64,7 +64,7 @@ public class MapContract extends MapDecorator {
 		
 //		checkInvariants();
 		
-		this.getDelegate().init(largeur, hauteur);
+		super.init(largeur, hauteur);
 		
 //		checkInvariants();
 		
@@ -112,7 +112,7 @@ public class MapContract extends MapDecorator {
 		
 //		checkInvariants();
 		
-		this.getDelegate().openDoor(x, y);
+		super.openDoor(x, y);
 		
 //		checkInvariants();
 		
@@ -176,7 +176,7 @@ public class MapContract extends MapDecorator {
 		}
 //		checkInvariants();
 		
-		this.getDelegate().closeDoor(x, y);
+		super.closeDoor(x, y);
 		
 //		checkInvariants();
 		

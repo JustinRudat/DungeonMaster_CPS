@@ -14,58 +14,58 @@ public class EditMapContract extends EditMapDecorator {
 	@Override
 	public boolean isReachable(int x1, int y1, int x2, int y2) {
 		// TODO Auto-generated method stub
-		return false;
+		return super.isReachable(x1, y1, x2, y2);
 	}
 
 	@Override
 	public boolean isReady() {
 		// TODO Auto-generated method stub
-		return false;
+		return super.isReady();
 	}
 
 	@Override
 	public void setNature(int x, int y, Cell c) {
-		
+		super.setNature(x, y, c);
 	}
 
 	@Override
 	public int getHeight() {
 		// TODO Auto-generated method stub
-		return 0;
+		return super.getHeight();
 	}
 
 	@Override
 	public int getWidth() {
 		// TODO Auto-generated method stub
-		return 0;
+		return super.getWidth();
 	}
 
 	@Override
 	public Cell cellNature(int i, int j) {
 		// TODO Auto-generated method stub
-		return null;
+		return super.cellNature(i, j);
 	}
 
 	@Override
 	public void init(int largeur, int hauteur) {
 		// TODO Auto-generated method stub
-
+		super.init(largeur, hauteur);
 	}
 
 	@Override
 	public void openDoor(int x, int y) {
-		
+		super.openDoor(x, y);
 	}
 
 	@Override
 	public void closeDoor(int x, int y) {
-		
+		super.closeDoor(x, y);
 	}
 
 	@Override
 	public Cell[][] getPlateau() {
 		// TODO Auto-generated method stub
-		return null;
+		return super.getPlateau();
 	}
 
 }

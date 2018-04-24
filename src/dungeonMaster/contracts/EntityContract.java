@@ -27,8 +27,7 @@ public class EntityContract extends EntityDecorator {
 			e.printStackTrace();
 		}
 		
-		((EntityService)this.getDelegate()).init(env, x, y, dir,hp,degat);
-
+		((EntityService)this.getDelegate()).init(env, x, y, dir, hp, degat);
 	}
 
 	@Override

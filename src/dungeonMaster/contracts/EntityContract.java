@@ -1,6 +1,7 @@
 package dungeonMaster.contracts;
 
 import dungeonMaster.decorators.EntityDecorator;
+import dungeonMaster.exceptions.PreConditionException;
 import dungeonMaster.services.Dir;
 import dungeonMaster.services.EntityService;
 import dungeonMaster.services.EnvironmentService;
@@ -13,85 +14,88 @@ public class EntityContract extends EntityDecorator {
 
 	@Override
 	public int getHealthPoints() {
-		// TODO Auto-generated method stub
-		return 0;
+		return ((EntityService)this.getDelegate()).getHealthPoints();
 	}
 
 	@Override
-	public void init(EnvironmentService env, int x, int y, Dir dir, int hp) {
-		// TODO Auto-generated method stub
+	public void init(EnvironmentService env, int x, int y, Dir dir, int hp,int degat) {
+		try {
+			if(hp<=0) {
+				throw new PreConditionException("hp initialized to 0 or less");
+			}
+		}catch(PreConditionException e) {
+			e.printStackTrace();
+		}
+		
+		((EntityService)this.getDelegate()).init(env, x, y, dir,hp,degat);
 
 	}
 
 	@Override
 	public void step() {
-		// TODO Auto-generated method stub
+		((EntityService)this.getDelegate()).step();
 
 	}
 
 	@Override
 	public EnvironmentService getEnv() {
-		// TODO Auto-generated method stub
-		return null;
+		return ((EntityService)this.getDelegate()).getEnv();
 	}
 
 	@Override
 	public int getCol() {
-		// TODO Auto-generated method stub
-		return 0;
+		return ((EntityService)this.getDelegate()).getCol();
 	}
 
 	@Override
 	public int getRow() {
-		// TODO Auto-generated method stub
-		return 0;
+		return ((EntityService)this.getDelegate()).getRow();
 	}
 
 	@Override
 	public Dir getFace() {
-		// TODO Auto-generated method stub
-		return null;
+		return ((EntityService)this.getDelegate()).getFace();
 	}
 
 	@Override
 	public void init(EnvironmentService env, int x, int y, Dir dir) {
-		// TODO Auto-generated method stub
+		((EntityService)this.getDelegate()).init(env, x, y, dir);
 
 	}
 
 	@Override
 	public void forward() {
-		// TODO Auto-generated method stub
+		((EntityService)this.getDelegate()).forward();
 
 	}
 
 	@Override
 	public void backward() {
-		// TODO Auto-generated method stub
+		((EntityService)this.getDelegate()).backward();
 
 	}
 
 	@Override
 	public void turnL() {
-		// TODO Auto-generated method stub
+		((EntityService)this.getDelegate()).turnL();
 
 	}
 
 	@Override
 	public void turnR() {
-		// TODO Auto-generated method stub
+		((EntityService)this.getDelegate()).turnR();
 
 	}
 
 	@Override
 	public void strafeL() {
-		// TODO Auto-generated method stub
+		((EntityService)this.getDelegate()).strafeL();
 
 	}
 
 	@Override
 	public void strafeR() {
-		// TODO Auto-generated method stub
+		((EntityService)this.getDelegate()).strafeR();
 
 	}
 

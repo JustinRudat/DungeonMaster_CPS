@@ -7,6 +7,12 @@ public interface EntityService extends /*includes */ MobService  {
 	 */
 	public int getHealthPoints();
 	
+	public int getDegats();
+	
+	public void setHealthPoints(int hp);
+	
+	public void setDegats(int dmg);
+	
 	/**
 	 * pre: this.init(env,x,y,dir,hp) requires hp > 0 
 	 * 
@@ -18,11 +24,14 @@ public interface EntityService extends /*includes */ MobService  {
 	 * @param dir
 	 * @param hp
 	 */
-	public void init(EnvironmentService env, int x, int y, Dir dir, int hp);
+	public void init(EnvironmentService env, int x, int y, Dir dir, int hp,int dmg);
 	
 	/**
 	 * 
 	 */
 	public void step();
+	
+	public void attack();
+
 	
 }

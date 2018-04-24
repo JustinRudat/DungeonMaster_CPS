@@ -7,15 +7,15 @@ import dungeonMaster.services.Cell;
 import dungeonMaster.services.EditMapService;
 import dungeonMaster.services.MapService;
 
-public class EditMapImplem extends MapImplem implements EditMapService{
+public class EditMapImplemBug extends MapImplem implements EditMapService{
 
 	@Override
 	public boolean isReachable(int x1, int y1, int x2, int y2) {
 		ArrayList<Noeud> test = plusCourtChemin(this.getPlateau(),new Noeud(x1,y1,0,0), new Noeud(x2,y2,0,0));
 		if(test.size()!=0) {
-			return true;
+			return false;
 		}
-		return false;
+		return true;
 	}
 	
 	public ArrayList<Noeud> plusCourtChemin(Cell[][] graphe, Noeud depart, Noeud fin){
@@ -104,7 +104,7 @@ public class EditMapImplem extends MapImplem implements EditMapService{
 
 	@Override
 	public void setNature(int x, int y, Cell c) {
-		this.getPlateau()[x][y] = c;
+		this.getPlateau()[y][x] = c;
 	}
 
 	

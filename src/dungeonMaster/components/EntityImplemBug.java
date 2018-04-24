@@ -7,7 +7,7 @@ import dungeonMaster.services.MobService;
 import dungeonMaster.services.Option;
 import dungeonMaster.services.OptionService;
 
-public class EntityImplem extends MobImplem implements EntityService{
+public class EntityImplemBug extends MobImplem implements EntityService{
 	private int healthPoints;
 	private int degats;
 	
@@ -44,7 +44,7 @@ public class EntityImplem extends MobImplem implements EntityService{
 	public void attack() {
 		OptionService<MobService> opt = null;
 		switch(this.getFace()) {
-			case N:
+			case S:
 				opt = this.getEnv().cellContent(this.getCol(), this.getRow()+1);
 				if(opt.getOption()==Option.So) {
 					if(opt.getElem() instanceof EntityService) {
@@ -53,7 +53,7 @@ public class EntityImplem extends MobImplem implements EntityService{
 					}
 				}
 				break;
-			case S:
+			case N:
 				opt = this.getEnv().cellContent(this.getCol(), this.getRow()-1);
 				if(opt.getOption()==Option.So) {
 					if(opt.getElem() instanceof EntityService) {
@@ -62,7 +62,7 @@ public class EntityImplem extends MobImplem implements EntityService{
 					}
 				}
 				break;
-			case W:
+			case E:
 				opt = this.getEnv().cellContent(this.getCol()-1, this.getRow());
 				if(opt.getOption()==Option.So) {
 					if(opt.getElem() instanceof EntityService) {
@@ -71,7 +71,7 @@ public class EntityImplem extends MobImplem implements EntityService{
 					}
 				}
 				break;
-			case E:
+			case W:
 				opt = this.getEnv().cellContent(this.getCol()+1, this.getRow());
 				if(opt.getOption()==Option.So) {
 					if(opt.getElem() instanceof EntityService) {

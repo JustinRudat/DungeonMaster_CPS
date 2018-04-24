@@ -7,6 +7,7 @@ public class OptionImplem<T> implements OptionService<T> {
 	
 	private Option option;
 	private T element;
+
 	@Override
 	public Option getOption() {
 		return this.option;
@@ -20,6 +21,18 @@ public class OptionImplem<T> implements OptionService<T> {
 	public void init(T elemt, Option opt){
 		this.option = opt;
 		this.element = elemt;
+	
+		
+	}
+
+	@Override
+	public void setOption(Option opt) {
+		this.option=opt;
+	}
+
+	@Override
+	public void setElem(T elem) {
+		this.element=elem;
 	}
 
 }

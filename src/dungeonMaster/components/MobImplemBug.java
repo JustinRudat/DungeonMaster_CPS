@@ -7,7 +7,7 @@ import dungeonMaster.services.MobService;
 import dungeonMaster.services.Option;
 import dungeonMaster.services.OptionService;
 
-public class MobImplem implements MobService{
+public class MobImplemBug implements MobService{
 	private EnvironmentService env;
 	private int col;
 	private int row;

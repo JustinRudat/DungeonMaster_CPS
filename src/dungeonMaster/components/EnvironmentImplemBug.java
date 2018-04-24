@@ -8,7 +8,7 @@ import dungeonMaster.services.MobService;
 import dungeonMaster.services.Option;
 import dungeonMaster.services.OptionService;
 
-public class EnvironmentImplem extends MapImplem implements EnvironmentService{
+public class EnvironmentImplemBug extends MapImplem implements EnvironmentService{
 	private ArrayList<OptionService<MobService>> content;
 	
 	public ArrayList<OptionService<MobService>> getContent(){

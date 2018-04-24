@@ -10,7 +10,7 @@ import dungeonMaster.services.MobService;
 import dungeonMaster.services.Option;
 import dungeonMaster.services.OptionService;
 
-public class CowImplem extends EntityImplem implements CowService {
+public class CowImplemBug extends EntityImplem implements CowService {
 	
 	@Override
 	public void step() {
@@ -38,7 +38,7 @@ public class CowImplem extends EntityImplem implements CowService {
 
 	@Override
 	public void init(EnvironmentService env, int x, int y, Dir dir, int hp) {
-		super.init(env, x, y, dir, hp, 0);
+		super.init(env, x, y, dir, hp, 9999);
 		
 	}
 }

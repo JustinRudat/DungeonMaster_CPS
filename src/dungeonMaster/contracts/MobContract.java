@@ -50,7 +50,7 @@ public class MobContract extends MobDecorator {
 			if(y<0 ||y>=env.getHeight()) {
 				throw new PreConditionException("pre: 0 <= y < env.getHeight() ");
 			}
-		} catch (ConditionException e) {
+		} catch (PreConditionException e) {
 			e.printStackTrace();
 		}
 		checkInvariants();

@@ -10,7 +10,7 @@ import dungeonMaster.services.Option;
 import dungeonMaster.services.OptionService;
 import dungeonMaster.services.PlayerService;
 
-public class PlayerImplem extends EntityImplem implements PlayerService {
+public class PlayerImplemBug extends EntityImplem implements PlayerService {
 	OptionService<Command> lastcommand;
 
 	@Override

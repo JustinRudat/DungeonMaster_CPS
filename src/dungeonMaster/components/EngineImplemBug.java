@@ -9,7 +9,7 @@ import dungeonMaster.services.MobService;
 import dungeonMaster.services.Option;
 import dungeonMaster.services.OptionService;
 
-public class EngineImplem implements EngineService {
+public class EngineImplemBug implements EngineService {
 	private boolean isgameover;
 	private EnvironmentService env;
 	private ArrayList<EntityService> entities;
@@ -53,9 +53,9 @@ public class EngineImplem implements EngineService {
 			entity.step();
 			for(int i=0;i<entities.size();i++) {
 				EntityService entity_tmp = this.getEntities().get(i);
-				if(entity.getHealthPoints()<=0) {
+				if(entity.getHealthPoints()<0) {
 					OptionService<MobService> opt = new OptionImplem<>();
-					opt.init(null, Option.No);
+					opt.init(null, Option.So);
 					this.getEnv().getContent().set(entity_tmp.getRow()*this.getEnv().getWidth()+entity_tmp.getCol(),opt);
 					entities.remove(entity_tmp);
 					i--;

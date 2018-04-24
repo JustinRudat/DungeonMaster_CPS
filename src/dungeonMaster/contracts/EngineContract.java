@@ -3,9 +3,11 @@ package dungeonMaster.contracts;
 import java.util.ArrayList;
 
 import dungeonMaster.decorators.EngineDecorator;
+import dungeonMaster.exceptions.ConditionException;
 import dungeonMaster.exceptions.EntityInvariantException;
 import dungeonMaster.exceptions.EnvironmentInvariantException;
 import dungeonMaster.exceptions.InvariantException;
+import dungeonMaster.exceptions.PostConditionException;
 import dungeonMaster.exceptions.PreConditionException;
 import dungeonMaster.services.EngineService;
 import dungeonMaster.services.EntityService;
@@ -61,22 +63,60 @@ public class EngineContract extends EngineDecorator {
 
 	@Override
 	public void removeEntity(int x) {
+		try {
+			int size_at_pre = this.getEntities().size();
+			ArrayList<EntityService> entities_at_pre = (ArrayList<EntityService>) this.getEntities().clone(); 
+			
+			checkInvariants();
+			
+			this.getDelegate().removeEntity(x);
+			
+			checkInvariants();
+			
+			if(this.getEntities().size()!=size_at_pre -1) {
+				throw new PostConditionException("entities tab size doesnt match");
+			}
+			for(int k =0; k<x ; k++) {
+				if(!this.getEntities().get(k).equals(entities_at_pre.get(k))) {
+					throw new PostConditionException("removeEntity : index before, an entity have been changed ");
+				}
+			}
+			for(int k =x; k<this.getEntities().size() ; k++) {
+				if(!this.getEntities().get(k).equals(entities_at_pre.get(k+1))) {
+					throw new PostConditionException("removeEntity : index after, an entity have been changed ");
+				}
+			}
+		}catch(ConditionException e) {
+			e.printStackTrace();
+		}
 		
-		checkInvariants();
-		
-		this.getDelegate().removeEntity(x);
-		
-		checkInvariants();
 	}
 
 	@Override
 	public void addEntity(EntityService entity) {
-		
-		checkInvariants();
-		
-		this.getDelegate().addEntity(entity);
-		
-		checkInvariants();
+		try {
+			int size_at_pre = this.getEntities().size();
+			ArrayList<EntityService> entities_at_pre = (ArrayList<EntityService>) this.getEntities().clone();
+			checkInvariants();
+			
+			this.getDelegate().addEntity(entity);
+			
+			checkInvariants();
+			
+			if(this.getEntities().size()!= size_at_pre+1) {
+				throw new PostConditionException("addEntity : entity may not have been added or replaced an existing one");
+			}
+			for(int k = 0; k <size_at_pre;k++) {
+				if(!this.getEntities().get(k).equals(entities_at_pre.get(k))) {
+					throw new PostConditionException("addEntity : an entity already existing have been changed");
+				}
+			}
+			if(!this.getEntities().get(size_at_pre).equals(entity)) {
+				throw new PostConditionException("addEntity : the last list item is not the added entity");
+			}
+		}catch(ConditionException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override

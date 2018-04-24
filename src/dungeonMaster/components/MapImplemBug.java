@@ -3,7 +3,7 @@ package dungeonMaster.components;
 import dungeonMaster.services.Cell;
 import dungeonMaster.services.MapService;
 
-public class MapImplem implements MapService{
+public class MapImplemBug implements MapService{
 	private Cell[][] plateau;
 	private int height;
 	private int width;

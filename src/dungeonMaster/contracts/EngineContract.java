@@ -52,24 +52,27 @@ public class EngineContract extends EngineDecorator {
 	}
 
 	@Override
-	public void init(EnvironmentService env) {
+	public boolean init(EnvironmentService env) {
 		
 		checkInvariants();
 		
-		super.init(env);
+		boolean retour = super.init(env);
 		
 		checkInvariants();
+		
+		return retour;
 	}
 
 	@Override
-	public void removeEntity(int x) {
+	public boolean removeEntity(int x) {
+		boolean retour = false;
 		try {
 			int size_at_pre = this.getEntities().size();
 			ArrayList<EntityService> entities_at_pre = (ArrayList<EntityService>) this.getEntities().clone(); 
 			
 			checkInvariants();
 			
-			super.removeEntity(x);
+			retour = super.removeEntity(x);
 			
 			checkInvariants();
 			
@@ -89,17 +92,19 @@ public class EngineContract extends EngineDecorator {
 		}catch(ConditionException e) {
 			e.printStackTrace();
 		}
+		return retour;
 		
 	}
 
 	@Override
-	public void addEntity(EntityService entity) {
+	public boolean addEntity(EntityService entity) {
+		boolean retour = false;
 		try {
 			int size_at_pre = this.getEntities().size();
 			ArrayList<EntityService> entities_at_pre = (ArrayList<EntityService>) this.getEntities().clone();
 			checkInvariants();
 			
-			super.addEntity(entity);
+			retour = super.addEntity(entity);
 			
 			checkInvariants();
 			
@@ -117,10 +122,11 @@ public class EngineContract extends EngineDecorator {
 		}catch(ConditionException e) {
 			e.printStackTrace();
 		}
+		return retour;
 	}
 
 	@Override
-	public void step() {
+	public boolean step() {
 		try {
 			boolean test = false;
 			for(EntityService entity: this.getEntities()) {
@@ -137,9 +143,10 @@ public class EngineContract extends EngineDecorator {
 		}
 		checkInvariants();
 		
-		super.step();
+		boolean retour = super.step();
 		
 		checkInvariants();
+		return retour;
 	}
 
 }

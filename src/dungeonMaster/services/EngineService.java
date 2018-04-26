@@ -20,7 +20,7 @@ public interface EngineService {
 	 * 
 	 * @param env
 	 */
-	public void init(EnvironmentService env);
+	public boolean init(EnvironmentService env);
 	
 	/**
 	 * pre: removeEntity(x) requires 0 <= x < this.getEntities().size()
@@ -31,7 +31,7 @@ public interface EngineService {
 	 * 
 	 * @param x
 	 */
-	public void removeEntity(int x);
+	public boolean removeEntity(int x);
 	
 	/**
 	 * post: this.removeEntity(i).getEntities().size() == this.getEntities().size() +1
@@ -39,12 +39,12 @@ public interface EngineService {
 	 * post: this.addEntity(e).getEntity(this.getEntities.size()) == e
 	 * @param entity
 	 */
-	public void addEntity(EntityService entity);
+	public boolean addEntity(EntityService entity);
 	
 	/**
 	 * pre: this.step() requires \forall i in [0;this.getEntities().size() -1], this.getEntity(i).getHealthPoint() > 0
 	 * 
 	 */
-	public void step();
+	public boolean step();
 	
 }

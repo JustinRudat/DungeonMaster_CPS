@@ -18,7 +18,7 @@ public class EntityContract extends EntityDecorator {
 	}
 
 	@Override
-	public void init(EnvironmentService env, int x, int y, Dir dir, int hp,int degat) {
+	public boolean init(EnvironmentService env, int x, int y, Dir dir, int hp,int degat) {
 		try {
 			if(hp<=0) {
 				throw new PreConditionException("hp initialized to 0 or less");
@@ -27,12 +27,12 @@ public class EntityContract extends EntityDecorator {
 			e.printStackTrace();
 		}
 		
-		super.init(env, x, y, dir, hp, degat);
+		return super.init(env, x, y, dir, hp, degat);
 	}
 
 	@Override
-	public void step() {
-		super.step();
+	public boolean step() {
+		return super.step();
 
 	}
 
@@ -57,44 +57,44 @@ public class EntityContract extends EntityDecorator {
 	}
 
 	@Override
-	public void init(EnvironmentService env, int x, int y, Dir dir) {
-		super.init(env, x, y, dir);
+	public boolean init(EnvironmentService env, int x, int y, Dir dir) {
+		return super.init(env, x, y, dir);
 
 	}
 
 	@Override
-	public void forward() {
-		super.forward();
+	public boolean forward() {
+		return super.forward();
 
 	}
 
 	@Override
-	public void backward() {
-		super.backward();
+	public boolean backward() {
+		return super.backward();
 
 	}
 
 	@Override
-	public void turnL() {
-		super.turnL();
+	public boolean turnL() {
+		return super.turnL();
 
 	}
 
 	@Override
-	public void turnR() {
-		super.turnR();
+	public boolean turnR() {
+		return super.turnR();
 
 	}
 
 	@Override
-	public void strafeL() {
-		super.strafeL();
+	public boolean strafeL() {
+		return super.strafeL();
 
 	}
 
 	@Override
-	public void strafeR() {
-		super.strafeR();
+	public boolean strafeR() {
+		return super.strafeR();
 
 	}
 

@@ -3,6 +3,7 @@ package dungeonMaster.services;
 public interface PlayerService extends /* includes */ EntityService {
 
 	public OptionService<Command> getLastCommand();
+	public boolean setLastCommand(Command command);
 	public OptionService<MobService> getContent(int x, int y);
 	public Cell getNature(int x, int y);
 	public Cell getViewable(int x, int y);
@@ -37,6 +38,8 @@ public interface PlayerService extends /* includes */ EntityService {
 	 * post: this.getLastCommand() == TL \implies this.step() = this.turnL()
 	 * post: this.getLastCommand() == TR \implies this.step() = this.turnR() 
 	 */
-	public void step();
+	public boolean step();
+	
+	public boolean attack();
 	
 }

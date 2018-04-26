@@ -32,26 +32,26 @@ public class EngineDecorator implements EngineService{
 	}
 
 	@Override
-	public void init(EnvironmentService env) {
-		this.delegate.init(env);
+	public boolean init(EnvironmentService env) {
+		return this.delegate.init(env);
 		
 	}
 
 	@Override
-	public void removeEntity(int x) {
-		this.delegate.removeEntity(x);
+	public boolean removeEntity(int x) {
+		return this.delegate.removeEntity(x);
 		
 	}
 
 	@Override
-	public void addEntity(EntityService entity) {
-		this.delegate.addEntity(entity);
+	public boolean addEntity(EntityService entity) {
+		return this.delegate.addEntity(entity);
 		
 	}
 
 	@Override
-	public void step() {
-		this.delegate.step();
+	public boolean step() {
+		return this.delegate.step();
 		
 	}
 

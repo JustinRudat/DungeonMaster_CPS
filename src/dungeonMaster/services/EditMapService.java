@@ -61,7 +61,7 @@ public interface EditMapService extends /*refine*/ MapService{
      * @param c
      * @return
      */
-    public void setNature(int x, int y, Cell c);
+    public boolean setNature(int x, int y, Cell c);
     
     
     

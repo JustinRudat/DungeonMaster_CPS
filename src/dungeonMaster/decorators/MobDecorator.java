@@ -36,41 +36,61 @@ public class MobDecorator implements MobService {
 	}
 
 	@Override
-	public void init(EnvironmentService env, int x, int y, Dir dir) {
-		this.delegate.init(env,x,y,dir);	
+	public boolean init(EnvironmentService env, int x, int y, Dir dir) {
+		return this.delegate.init(env,x,y,dir);	
 	}
 
 	@Override
-	public void forward() {
-		this.delegate.forward();
+	public boolean forward() {
+		return this.delegate.forward();
 		
 	}
 
 	@Override
-	public void backward() {
-		this.delegate.backward();
+	public boolean backward() {
+		return this.delegate.backward();
 		
 	}
 
 	@Override
-	public void turnL() {
-		this.delegate.turnL();
+	public boolean turnL() {
+		return this.delegate.turnL();
 	}
 
 	@Override
-	public void turnR() {
-		this.delegate.turnR();
+	public boolean turnR() {
+		return this.delegate.turnR();
 	}
 
 	@Override
-	public void strafeL() {
-		this.delegate.strafeL();
+	public boolean strafeL() {
+		return this.delegate.strafeL();
 	}
 
 	@Override
-	public void strafeR() {
-		this.delegate.strafeR();
+	public boolean strafeR() {
+		return this.delegate.strafeR();
 		
+	}
+
+	@Override
+	public boolean setEnv(EnvironmentService env) {
+		return this.delegate.setEnv(env);
+	}
+
+	@Override
+	public boolean setFace(Dir dir) {
+		return this.delegate.setFace(dir);
+	}
+
+	@Override
+	public boolean setCol(int col) {
+		return this.delegate.setCol(col);
+	}
+
+	@Override
+	public boolean setRow(int row) {
+		return this.delegate.setRow(row);
 	}
 
 }

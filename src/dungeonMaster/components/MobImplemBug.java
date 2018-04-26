@@ -14,24 +14,26 @@ public class MobImplemBug implements MobService{
 	private Dir dir;
 
 	
-	public Dir getDir() {
-		return this.dir;
-	}
 
-	public void setDir(Dir dir) {
+
+	public boolean setFace(Dir dir) {
 		this.dir = dir;
+		return true;
 	}
 
-	public void setEnv(EnvironmentService env) {
+	public boolean setEnv(EnvironmentService env) {
 		this.env = env;
+		return true;
 	}
 
-	public void setCol(int col) {
+	public boolean setCol(int col) {
 		this.col = col;
+		return true;
 	}
 
-	public void setRow(int row) {
+	public boolean setRow(int row) {
 		this.row = row;
+		return true;
 	}
 
 	@Override
@@ -55,15 +57,16 @@ public class MobImplemBug implements MobService{
 	}
 
 	@Override
-	public void init(EnvironmentService env, int x, int y, Dir dir) {
+	public boolean init(EnvironmentService env, int x, int y, Dir dir) {
 		this.env = env;
 		this.col = x;
 		this.row = y;
 		this.dir = dir;
+		return true;
 	}
 
 	@Override
-	public void forward() {
+	public boolean forward() {
 		Cell nature;
 		if(this.getCol()>=0 && this.getRow()>=0) {
 			switch(this.getFace()) {
@@ -155,10 +158,11 @@ public class MobImplemBug implements MobService{
 					break;
 			}
 		}
+		return true;
 	}
 
 	@Override
-	public void backward() {
+	public boolean backward() {
 		Cell nature;
 		if(this.getCol()>=0 && this.getRow()>=0) {
 			switch(this.getFace()) {
@@ -250,11 +254,11 @@ public class MobImplemBug implements MobService{
 					break;
 			}
 		}
-		
+		return true;
 	}
 
 	@Override
-	public void turnL() {
+	public boolean turnL() {
 		switch(this.getFace()) {
 			case N:
 				this.dir = Dir.W;
@@ -271,11 +275,11 @@ public class MobImplemBug implements MobService{
 			default:
 				break;
 		}
-		
+		return true;
 	}
 
 	@Override
-	public void turnR() {
+	public boolean turnR() {
 		switch(this.getFace()) {
 			case S:
 				this.dir = Dir.W;
@@ -292,11 +296,11 @@ public class MobImplemBug implements MobService{
 			default:
 				break;
 		}
-		
+		return true;
 	}
 
 	@Override
-	public void strafeL() {
+	public boolean strafeL() {
 		Cell nature;
 		if(this.getCol()>=0 && this.getRow()>=0) {
 			switch(this.getFace()) {
@@ -388,11 +392,11 @@ public class MobImplemBug implements MobService{
 					break;
 			}
 		}
-		
+		return true;
 	}
 
 	@Override
-	public void strafeR() {
+	public boolean strafeR() {
 		Cell nature;
 		if(this.getCol()>=0 && this.getRow()>=0) {
 			switch(this.getFace()) {
@@ -484,7 +488,7 @@ public class MobImplemBug implements MobService{
 					break;
 			}
 		}
-		
+		return true;
 	}
 
 }

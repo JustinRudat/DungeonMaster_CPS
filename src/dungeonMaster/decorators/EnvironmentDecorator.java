@@ -24,14 +24,14 @@ public class EnvironmentDecorator extends MapDecorator implements EnvironmentSer
 	}
 
 	@Override
-	public void addMobOption(MobService mob) {
-		((EnvironmentService)this.getDelegate()).addMobOption(mob);
+	public boolean addMobOption(MobService mob) {
+		return ((EnvironmentService)this.getDelegate()).addMobOption(mob);
 		
 	}
 
 	@Override
-	public void removeMobOption(MobService mob) {
-		((EnvironmentService)this.getDelegate()).removeMobOption(mob);
+	public boolean removeMobOption(MobService mob) {
+		return ((EnvironmentService)this.getDelegate()).removeMobOption(mob);
 	}
 	
 

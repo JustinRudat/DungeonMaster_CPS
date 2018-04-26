@@ -42,7 +42,7 @@ public class MobContract extends MobDecorator {
 	}
 
 	@Override
-	public void init(EnvironmentService env, int x, int y, Dir dir) {
+	public boolean init(EnvironmentService env, int x, int y, Dir dir) {
 		try {
 			if(x<0 ||x>=env.getWidth()) {
 				throw new PreConditionException("pre: 0 <= x < env.getWidth() ");
@@ -55,7 +55,7 @@ public class MobContract extends MobDecorator {
 		}
 		checkInvariants();
 		
-		super.init(env,x,y,dir);
+		boolean retour = super.init(env,x,y,dir);
 		
 		checkInvariants();
 		
@@ -74,11 +74,13 @@ public class MobContract extends MobDecorator {
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
+			retour = false;
 		}
+		return retour;
 	}
 
 	@Override
-	public void forward() {
+	public boolean forward() {
 		
 		
 		Dir face_at_pre = this.getFace();
@@ -89,7 +91,7 @@ public class MobContract extends MobDecorator {
 		
 		checkInvariants();
 		
-		super.forward();
+		boolean retour = super.forward();
 		
 		checkInvariants();
 		
@@ -215,11 +217,13 @@ public class MobContract extends MobDecorator {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			retour = false;
 		}
+		return retour;
 	}
 
 	@Override
-	public void backward() {
+	public boolean backward() {
 		
 		
 		Dir face_at_pre = this.getFace();
@@ -229,7 +233,7 @@ public class MobContract extends MobDecorator {
 		
 		checkInvariants();
 		
-		super.backward();
+		boolean retour = super.backward();
 		
 		checkInvariants();
 		
@@ -355,31 +359,33 @@ public class MobContract extends MobDecorator {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			retour = false;
 		}
+		return retour;
 	}
 
 	@Override
-	public void turnL() {
+	public boolean turnL() {
 		checkInvariants();
 		
-		super.turnL();
+		boolean retour = super.turnL();
 		
 		checkInvariants();
-
+		return retour;
 	}
 
 	@Override
-	public void turnR() {
+	public boolean turnR() {
 		checkInvariants();
 		
-		super.turnR();
+		boolean retour = super.turnR();
 		
 		checkInvariants();
-
+		return retour;
 	}
 
 	@Override
-	public void strafeL() {
+	public boolean strafeL() {
 		
 
 		Dir face_at_pre = this.getFace();
@@ -389,7 +395,7 @@ public class MobContract extends MobDecorator {
 		
 		checkInvariants();
 		
-		super.strafeL();
+		boolean retour = super.strafeL();
 		
 		checkInvariants();
 		try {
@@ -514,11 +520,13 @@ public class MobContract extends MobDecorator {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			retour = false;
 		}
+		return retour;
 	}
 
 	@Override
-	public void strafeR() {
+	public boolean strafeR() {
 		
 
 		Dir face_at_pre = this.getFace();
@@ -528,7 +536,7 @@ public class MobContract extends MobDecorator {
 		
 		checkInvariants();
 		
-		super.strafeR();
+		boolean retour = super.strafeR();
 		
 		checkInvariants();
 		try {
@@ -653,7 +661,9 @@ public class MobContract extends MobDecorator {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			retour = false;
 		}
+		return retour;
 	}
 
 }

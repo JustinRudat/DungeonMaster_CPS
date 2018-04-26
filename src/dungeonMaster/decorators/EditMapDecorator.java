@@ -21,8 +21,8 @@ public class EditMapDecorator extends MapDecorator implements EditMapService{
 	}
 
 	@Override
-	public void setNature(int x, int y, Cell c) {
-		((EditMapService) this.getDelegate()).setNature(x, y, c);
+	public boolean setNature(int x, int y, Cell c) {
+		return ((EditMapService) this.getDelegate()).setNature(x, y, c);
 		
 	}
 	

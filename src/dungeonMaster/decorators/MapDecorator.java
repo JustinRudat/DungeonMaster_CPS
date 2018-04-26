@@ -36,20 +36,20 @@ public class MapDecorator implements MapService{
 	}
 
 	@Override
-	public void init(int largeur, int hauteur) {
-		this.delegate.init(largeur, hauteur);
+	public boolean init(int largeur, int hauteur) {
+		return this.delegate.init(largeur, hauteur);
 		
 	}
 
 	@Override
-	public void openDoor(int x, int y) {
-		this.delegate.openDoor(x, y);
+	public boolean openDoor(int x, int y) {
+		return this.delegate.openDoor(x, y);
 		
 	}
 
 	@Override
-	public void closeDoor(int x, int y) {
-		this.delegate.closeDoor(x, y);
+	public boolean closeDoor(int x, int y) {
+		return this.delegate.closeDoor(x, y);
 		
 	}
 

@@ -79,8 +79,8 @@ public class EditMapImplem extends MapImplem implements EditMapService{
 		int index_in_y =0;
 		int index_out_x =0;
 		int index_out_y =0;
-		for(int i=0;i<this.getWidth();i++) {
-			for(int j=0;j<this.getHeight();j++) {
+		for(int i=0;i<this.getHeight();i++) {
+			for(int j=0;j<this.getWidth();j++) {
 				
 				Cell current_cell = this.getPlateau()[i][j];
 				if(current_cell==Cell.IN) {
@@ -103,8 +103,9 @@ public class EditMapImplem extends MapImplem implements EditMapService{
 	}
 
 	@Override
-	public void setNature(int x, int y, Cell c) {
+	public boolean setNature(int x, int y, Cell c) {
 		this.getPlateau()[x][y] = c;
+		return true;
 	}
 
 	

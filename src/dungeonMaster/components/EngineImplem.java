@@ -30,24 +30,27 @@ public class EngineImplem implements EngineService {
 	}
 
 	@Override
-	public void init(EnvironmentService env) {
+	public boolean init(EnvironmentService env) {
 		this.env = env; 
 		this.entities = new ArrayList<>();
 		this.isgameover = false;
+		return true;
 	}
 
 	@Override
-	public void removeEntity(int x) {
+	public boolean removeEntity(int x) {
 		this.getEntities().remove(x);
+		return true;
 	}
 
 	@Override
-	public void addEntity(EntityService entity) {
+	public boolean addEntity(EntityService entity) {
 		this.getEntities().add(entity);
+		return true;
 	}
 
 	@Override
-	public void step() {
+	public boolean step() {
 		for(EntityService entity : this.getEntities()){
 			
 			entity.step();
@@ -62,7 +65,7 @@ public class EngineImplem implements EngineService {
 				}
 			}
 		}
-		
+		return true;
 		
 	}
 	

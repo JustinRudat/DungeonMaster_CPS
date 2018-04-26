@@ -103,8 +103,9 @@ public class EditMapImplemBug extends MapImplem implements EditMapService{
 	}
 
 	@Override
-	public void setNature(int x, int y, Cell c) {
+	public boolean setNature(int x, int y, Cell c) {
 		this.getPlateau()[y][x] = c;
+		return true;
 	}
 
 	

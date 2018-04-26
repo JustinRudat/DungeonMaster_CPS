@@ -34,6 +34,11 @@ public class PlayerDecorator extends EntityDecorator implements PlayerService{
 		return ((PlayerService) this.getDelegate()).getViewable(x, y);
 				
 	}
+
+	@Override
+	public boolean setLastCommand(Command command) {
+		return  ((PlayerService) this.getDelegate()).setLastCommand(command);
+	}
 	
 
 }

@@ -18,21 +18,23 @@ public class OptionImplem<T> implements OptionService<T> {
 		return this.element;
 	}
 	
-	public void init(T elemt, Option opt){
+	public boolean init(T elemt, Option opt){
 		this.option = opt;
 		this.element = elemt;
-	
+		return true;
 		
 	}
 
 	@Override
-	public void setOption(Option opt) {
+	public boolean setOption(Option opt) {
 		this.option=opt;
+		return true;
 	}
 
 	@Override
-	public void setElem(T elem) {
+	public boolean setElem(T elem) {
 		this.element=elem;
+		return true;
 	}
 
 }

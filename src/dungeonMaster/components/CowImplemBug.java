@@ -13,7 +13,7 @@ import dungeonMaster.services.OptionService;
 public class CowImplemBug extends EntityImplem implements CowService {
 	
 	@Override
-	public void step() {
+	public boolean step() {
 		Random rand = new Random();
 		int le_tirage = rand.nextInt(102);
 		if(le_tirage<17) {
@@ -34,11 +34,13 @@ public class CowImplemBug extends EntityImplem implements CowService {
 		else if(le_tirage<103) {
 			this.turnR();
 		}
+		return true;
 	}
 
 	@Override
-	public void init(EnvironmentService env, int x, int y, Dir dir, int hp) {
+	public boolean init(EnvironmentService env, int x, int y, Dir dir, int hp) {
 		super.init(env, x, y, dir, hp, 9999);
+		return true;
 		
 	}
 }

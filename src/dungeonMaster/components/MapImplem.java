@@ -28,7 +28,7 @@ public class MapImplem implements MapService{
 	}
 
 	@Override
-	public void init(int largeur, int hauteur) {
+	public boolean init(int largeur, int hauteur) {
 		this.height = hauteur;
 		this.width = largeur;
 		this.plateau = new Cell[hauteur][largeur];
@@ -37,11 +37,11 @@ public class MapImplem implements MapService{
 				this.plateau[i][j] = Cell.EMP;
 			}
 		}
-		
+		return true;
 	}
 
 	@Override
-	public void openDoor(int x, int y) {
+	public boolean openDoor(int x, int y) {
 		switch(this.plateau[x][y]) {
 			case DWC:
 				this.plateau[x][y] = Cell.DWO;
@@ -52,10 +52,11 @@ public class MapImplem implements MapService{
 			default:
 				break;
 		}
+		return true;
 	}
 
 	@Override
-	public void closeDoor(int x, int y) {
+	public boolean closeDoor(int x, int y) {
 		switch(plateau[x][y]) {
 			case DWO:
 				this.plateau[x][y] = Cell.DWC;
@@ -66,6 +67,7 @@ public class MapImplem implements MapService{
 			default:
 				break;
 		}
+		return true;
 	}
 
 }

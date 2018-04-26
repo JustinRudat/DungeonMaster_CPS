@@ -46,7 +46,7 @@ public interface MapService {
      * @param largeur
      * @return
      */
-    public void init(int largeur, int hauteur) ;
+    public boolean init(int largeur, int hauteur) ;
     
     /** Opérateur : 
      * 
@@ -67,7 +67,7 @@ public interface MapService {
      * @param y
      * @return
      */
-    public void openDoor(int x, int y);
+    public boolean openDoor(int x, int y);
     
     /** Opérateur : 
      * 
@@ -89,7 +89,7 @@ public interface MapService {
      * @return MapService
      * @return
      */
-    public void closeDoor(int x, int y);
+    public boolean closeDoor(int x, int y);
     
     
 }

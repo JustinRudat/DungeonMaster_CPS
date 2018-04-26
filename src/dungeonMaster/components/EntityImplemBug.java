@@ -15,12 +15,14 @@ public class EntityImplemBug extends MobImplem implements EntityService{
 		return degats;
 	}
 
-	public void setDegats(int degats) {
+	public boolean setDegats(int degats) {
 		this.degats = degats;
+		return true;
 	}
 
-	public void setHealthPoints(int healthPoints) {
+	public boolean setHealthPoints(int healthPoints) {
 		this.healthPoints = healthPoints;
+		return true;
 	}
 
 	public int getHealthPoints() {
@@ -28,20 +30,18 @@ public class EntityImplemBug extends MobImplem implements EntityService{
 	}
 
 	@Override
-	public void init(EnvironmentService env, int x, int y, Dir dir, int hp, int dmg) {
+	public boolean init(EnvironmentService env, int x, int y, Dir dir, int hp, int dmg) {
 		super.init(env,x,y,dir);
 		this.healthPoints = hp;
 		this.degats = dmg;
+		return true;
 		
 	}
 
-	public void step() {
-		// TODO Auto-generated method stub
-		// Will be override by the implementation opf a specific entity ( ex : Player)
-	}
+	
 	
 	@Override
-	public void attack() {
+	public boolean attack() {
 		OptionService<MobService> opt = null;
 		switch(this.getFace()) {
 			case S:
@@ -83,7 +83,13 @@ public class EntityImplemBug extends MobImplem implements EntityService{
 			default: 
 				break;
 		}
-		
+		return true;
+	}
+
+	@Override
+	public boolean step() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	

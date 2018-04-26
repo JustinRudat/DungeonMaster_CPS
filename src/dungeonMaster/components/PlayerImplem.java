@@ -75,7 +75,7 @@ public class PlayerImplem extends EntityImplem implements PlayerService {
 	}
 
 	@Override
-	public void step() {
+	public boolean step() {
 		OptionService<Command> commands = this.getLastCommand();
 		if(commands.getOption()!=Option.No) {
 			switch(commands.getElem()) {
@@ -107,7 +107,15 @@ public class PlayerImplem extends EntityImplem implements PlayerService {
 			commands.setOption(Option.No);
 			commands.setElem(null);
 		}
-		
+		return true;
+	}
+
+	@Override
+	public boolean setLastCommand(Command command) {
+		OptionImplem<Command> cmd = new OptionImplem<>();
+		cmd.setElem(command);
+		this.lastcommand = cmd;
+		return true;
 	}
 	
 }

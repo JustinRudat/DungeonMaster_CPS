@@ -176,8 +176,8 @@ public class PlayerContract extends PlayerDecorator {
 	}
 
 	@Override
-	public void step() {
-		super.step();
+	public boolean step() {
+		return super.step();
 
 	}
 
@@ -187,8 +187,8 @@ public class PlayerContract extends PlayerDecorator {
 	}
 
 	@Override
-	public void init(EnvironmentService env, int x, int y, Dir dir, int hp,int degat) {
-		super.init(env, x, y, dir, hp,degat);
+	public boolean init(EnvironmentService env, int x, int y, Dir dir, int hp,int degat) {
+		return super.init(env, x, y, dir, hp,degat);
 	}
 
 	@Override
@@ -208,56 +208,61 @@ public class PlayerContract extends PlayerDecorator {
 
 	@Override
 	public Dir getFace() {
-		// TODO Auto-generated method stub
 		return super.getFace();
 	}
 
 	@Override
-	public void init(EnvironmentService env, int x, int y, Dir dir) {
-		super.init(env, x, y, dir);
+	public boolean init(EnvironmentService env, int x, int y, Dir dir) {
+		return super.init(env, x, y, dir);
 
 	}
 
 	@Override
-	public void forward() {
+	public boolean forward() {
 		checkInvariants();
-		super.forward();
+		boolean retour = super.forward();
 		checkInvariants();
+		return retour;
 	}
 
 	@Override
-	public void backward() {
+	public boolean backward() {
 		checkInvariants();
-		super.backward();
+		boolean retour = super.backward();
 		checkInvariants();
+		return retour;
 	}
 
 	@Override
-	public void turnL() {
+	public boolean turnL() {
 		checkInvariants();
-		super.turnL();
+		boolean retour = super.turnL();
 		checkInvariants();
+		return retour;
 	}
 
 	@Override
-	public void turnR() {
+	public boolean turnR() {
 		checkInvariants();
-		super.turnR();
+		boolean retour = super.turnR();
 		checkInvariants();
+		return retour;
 	}
 
 	@Override
-	public void strafeL() {
+	public boolean strafeL() {
 		checkInvariants();
-		super.strafeL();
+		boolean retour = super.strafeL();
 		checkInvariants();
+		return retour;
 	}
 
 	@Override
-	public void strafeR() {
+	public boolean strafeR() {
 		checkInvariants();
-		super.strafeR();
+		boolean retour = super.strafeR();
 		checkInvariants();
+		return retour;
 	}
 
 }

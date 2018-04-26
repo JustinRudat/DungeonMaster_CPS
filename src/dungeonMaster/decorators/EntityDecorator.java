@@ -18,8 +18,8 @@ public  class EntityDecorator extends MobDecorator implements EntityService {
 	
 
 	@Override
-	public void step() {
-		((EntityService) this.getDelegate()).step();
+	public boolean step() {
+		return ((EntityService) this.getDelegate()).step();
 		
 	}
 
@@ -29,23 +29,23 @@ public  class EntityDecorator extends MobDecorator implements EntityService {
 	}
 
 	@Override
-	public void setHealthPoints(int hp) {
-		((EntityService) this.getDelegate()).setHealthPoints(hp);
+	public boolean setHealthPoints(int hp) {
+		return ((EntityService) this.getDelegate()).setHealthPoints(hp);
 	}
 
 	@Override
-	public void setDegats(int dmg) {
-		((EntityService) this.getDelegate()).setDegats(dmg);
+	public boolean setDegats(int dmg) {
+		return ((EntityService) this.getDelegate()).setDegats(dmg);
 	}
 
 	@Override
-	public void init(EnvironmentService env, int x, int y, Dir dir, int hp, int dmg) {
-		((EntityService) this.getDelegate()).init(env, x, y, dir, hp, dmg);
+	public boolean init(EnvironmentService env, int x, int y, Dir dir, int hp, int dmg) {
+		return ((EntityService) this.getDelegate()).init(env, x, y, dir, hp, dmg);
 	}
 
 	@Override
-	public void attack() {
-		((EntityService) this.getDelegate()).attack();
+	public boolean attack() {
+		return ((EntityService) this.getDelegate()).attack();
 	}
 	
 

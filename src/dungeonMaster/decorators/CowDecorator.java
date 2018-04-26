@@ -13,8 +13,8 @@ public class CowDecorator extends EntityDecorator implements CowService {
 	}
 
 	@Override
-	public void init(EnvironmentService env, int x, int y, Dir dir, int hp) {
-		((EntityService)this.getDelegate()).init(env, x, y, dir, hp, 0);
+	public boolean init(EnvironmentService env, int x, int y, Dir dir, int hp) {
+		return ((EntityService)this.getDelegate()).init(env, x, y, dir, hp, 0);
 		
 	}
 	

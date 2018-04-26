@@ -50,7 +50,7 @@ public class MapContract extends MapDecorator {
 	}
 
 	@Override
-	public void init(int largeur, int hauteur) {
+	public boolean init(int largeur, int hauteur) {
 		try {
 			if(hauteur<0) {
 				throw new PreConditionException("init : hauteur negative");
@@ -64,7 +64,7 @@ public class MapContract extends MapDecorator {
 		
 //		checkInvariants();
 		
-		super.init(largeur, hauteur);
+		boolean retour = super.init(largeur, hauteur);
 		
 //		checkInvariants();
 		
@@ -78,10 +78,11 @@ public class MapContract extends MapDecorator {
 		} catch (PostConditionException e) {
 			e.printStackTrace();
 		}
+		return retour;
 	}
 
 	@Override
-	public void openDoor(int x, int y) {
+	public boolean openDoor(int x, int y) {
 		try {
 			if(this.cellNature(x,y)!=Cell.DNC&&this.cellNature(x,y)!=Cell.DWC) {
 				throw new PreConditionException("opendoor : Ceci n'est pas une porte fermée");
@@ -112,7 +113,7 @@ public class MapContract extends MapDecorator {
 		
 //		checkInvariants();
 		
-		super.openDoor(x, y);
+		boolean retour = super.openDoor(x, y);
 		
 //		checkInvariants();
 		
@@ -144,10 +145,11 @@ public class MapContract extends MapDecorator {
 		}catch (PostConditionException e) {
 			e.printStackTrace();
 		}
+		return retour;
 	}
 
 	@Override
-	public void closeDoor(int x, int y) {
+	public boolean closeDoor(int x, int y) {
 		try {
 			if(this.cellNature(x,y)!=Cell.DNO&&this.cellNature(x,y)!=Cell.DWO) {
 				throw new PreConditionException("opendoor : Ceci n'est pas une porte ouverte");
@@ -176,7 +178,7 @@ public class MapContract extends MapDecorator {
 		}
 //		checkInvariants();
 		
-		super.closeDoor(x, y);
+		boolean retour = super.closeDoor(x, y);
 		
 //		checkInvariants();
 		
@@ -206,6 +208,7 @@ public class MapContract extends MapDecorator {
 		}catch (PostConditionException e) {
 			e.printStackTrace();
 		}
+		return retour;
 	}
 
 	

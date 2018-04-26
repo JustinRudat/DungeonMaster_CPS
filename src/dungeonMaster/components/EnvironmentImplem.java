@@ -15,7 +15,7 @@ public class EnvironmentImplem extends MapImplem implements EnvironmentService{
 		return this.content;
 	}
 	
-	public void init(int largeur, int hauteur) {
+	public boolean init(int largeur, int hauteur) {
 		super.init(largeur,hauteur);
 		content = new ArrayList<>();
 		for (int i=0; i < this.getWidth();i++) {
@@ -27,6 +27,7 @@ public class EnvironmentImplem extends MapImplem implements EnvironmentService{
 				// indice option d'une case x , y : width * y + x
 			}
 		}
+		return true;
 	}
 	@Override
 	public OptionService<MobService> cellContent(int x, int y) {
@@ -36,22 +37,24 @@ public class EnvironmentImplem extends MapImplem implements EnvironmentService{
 	}
 	
 	@Override
-	public void addMobOption(MobService mob) {
+	public boolean addMobOption(MobService mob) {
 		// TODO Auto-generated method stub
 		int x= mob.getCol();
 		int y = mob.getRow();
 		OptionService<MobService> option = new OptionImplem<>();
 		option.init(mob,Option.So);
 		content.set(y*this.getWidth()+x,option);
+		return true;
 	}
 	@Override
-	public void removeMobOption(MobService mob) {
+	public boolean removeMobOption(MobService mob) {
 		// TODO Auto-generated method stub
 		int x= mob.getCol();
 		int y = mob.getRow();
 		OptionService<MobService> option = new OptionImplem<>();
 		option.init(null,Option.No);
 		content.set(y*this.getWidth()+x,option);
+		return true;
 	}
 
 	

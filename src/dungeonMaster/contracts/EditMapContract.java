@@ -24,8 +24,8 @@ public class EditMapContract extends EditMapDecorator {
 	}
 
 	@Override
-	public void setNature(int x, int y, Cell c) {
-		super.setNature(x, y, c);
+	public boolean setNature(int x, int y, Cell c) {
+		return super.setNature(x, y, c);
 	}
 
 	@Override
@@ -47,19 +47,19 @@ public class EditMapContract extends EditMapDecorator {
 	}
 
 	@Override
-	public void init(int largeur, int hauteur) {
+	public boolean init(int largeur, int hauteur) {
 		// TODO Auto-generated method stub
-		super.init(largeur, hauteur);
+		return super.init(largeur, hauteur);
 	}
 
 	@Override
-	public void openDoor(int x, int y) {
-		super.openDoor(x, y);
+	public boolean openDoor(int x, int y) {
+		return super.openDoor(x, y);
 	}
 
 	@Override
-	public void closeDoor(int x, int y) {
-		super.closeDoor(x, y);
+	public boolean closeDoor(int x, int y) {
+		return super.closeDoor(x, y);
 	}
 
 	@Override

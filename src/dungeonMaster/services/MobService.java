@@ -17,11 +17,19 @@ public interface MobService {
 	 */
     public EnvironmentService getEnv();
     
+    
+    public boolean setEnv(EnvironmentService env);
+    
+    public boolean setFace(Dir dir);
     /**
      * 
      * @return this.col
      */
     public int getCol();
+    
+    public boolean setCol(int col);
+    
+    public boolean setRow(int row);
     
     /**
      * 
@@ -47,7 +55,7 @@ public interface MobService {
      * @param y
      * @param dir
      */
-    public void init(EnvironmentService env, int x, int y, Dir dir);
+    public boolean init(EnvironmentService env, int x, int y, Dir dir);
     
     /**
      * post: mob.forward().getFace == mob.getFace()
@@ -107,7 +115,7 @@ public interface MobService {
      * 						\implies this.forward().getRow() == this.getRow()
      * 						AND this.forward().getCol() == this.getCol()
      */
-    public void forward();
+    public boolean forward();
     
     /**
      * post: mob.backward().getFace() == mob.getFace()
@@ -167,7 +175,7 @@ public interface MobService {
      * 						\implies this.forward().getRow() == this.getRow()
      * 						AND this.forward().getCol() == this.getCol()
      */
-    public void backward();
+    public boolean backward();
     
     /**
      * 
@@ -176,7 +184,7 @@ public interface MobService {
      * post: this.getFace() == S \implies this.turnLeft().getFace() == E
      * post: this.getFace() == E \implies this.turnLeft().getFace() == N
      */
-    public void turnL();
+    public boolean turnL();
     
     /**
      * 
@@ -185,7 +193,7 @@ public interface MobService {
      * post: this.getFace() == N \implies this.turnLeft().getFace() == E
      * post: this.getFace() == W \implies this.turnLeft().getFace() == N
      */
-    public void turnR();
+    public boolean turnR();
     
     /**
      * post: mob.strafeL().getFace == mob.getFace()
@@ -245,7 +253,7 @@ public interface MobService {
      * 						\implies this.forward().getRow() == this.getRow()
      * 						AND this.forward().getCol() == this.getCol()
      */
-    public void strafeL();
+    public boolean strafeL();
     
     /**
      * post: mob.strifeR().getFace == mob.getFace()
@@ -305,6 +313,6 @@ public interface MobService {
      * 						\implies this.forward().getRow() == this.getRow()
      * 						AND this.forward().getCol() == this.getCol()
      */
-    public void strafeR();
+    public boolean strafeR();
     
 }

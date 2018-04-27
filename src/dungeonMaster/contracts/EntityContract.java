@@ -25,6 +25,7 @@ public class EntityContract extends EntityDecorator {
 			}
 		}catch(PreConditionException e) {
 			e.printStackTrace();
+			return false;
 		}
 		
 		return super.init(env, x, y, dir, hp, degat);

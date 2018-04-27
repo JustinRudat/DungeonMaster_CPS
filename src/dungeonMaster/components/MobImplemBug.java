@@ -70,7 +70,7 @@ public class MobImplemBug implements MobService{
 		Cell nature;
 		if(this.getCol()>=0 && this.getRow()>=0) {
 			switch(this.getFace()) {
-				case N: 
+				case S: 
 					if(this.getCol()<this.getEnv().getHeight()) {
 						if(this.getRow()+1<this.getEnv().getWidth()) {	
 							nature = this.getEnv().cellNature(this.getCol(),this.getRow()+1);
@@ -92,7 +92,7 @@ public class MobImplemBug implements MobService{
 					
 				
 					break;
-				case E:
+				case W:
 					if(this.getRow()<this.getEnv().getWidth()) {	
 						if(this.getCol()+1< this.getEnv().getHeight()) {
 							nature = this.getEnv().cellNature(this.getCol()+1,this.getRow());
@@ -113,7 +113,7 @@ public class MobImplemBug implements MobService{
 					}
 					
 					break;
-				case S: 
+				case N: 
 					if(this.getCol()<this.getEnv().getHeight()) {
 						if(this.getRow()-1>=0) {	
 							nature = this.getEnv().cellNature(this.getCol(),this.getRow()-1);
@@ -134,7 +134,7 @@ public class MobImplemBug implements MobService{
 					}
 					
 					break;
-				case W:
+				case E:
 					if(this.getRow()<this.getEnv().getWidth()) {	
 						if(this.getCol()-1>=0) {
 							nature = this.getEnv().cellNature(this.getCol()-1,this.getRow());
@@ -166,7 +166,7 @@ public class MobImplemBug implements MobService{
 		Cell nature;
 		if(this.getCol()>=0 && this.getRow()>=0) {
 			switch(this.getFace()) {
-				case S: 
+				case N: 
 					if(this.getCol()<this.getEnv().getHeight()) {
 						if(this.getRow()+1<this.getEnv().getWidth()) {	
 							nature = this.getEnv().cellNature(this.getCol(),this.getRow()+1);
@@ -188,7 +188,7 @@ public class MobImplemBug implements MobService{
 					
 				
 					break;
-				case W:
+				case E:
 					if(this.getRow()<this.getEnv().getWidth()) {	
 						if(this.getCol()+1< this.getEnv().getHeight()) {
 							nature = this.getEnv().cellNature(this.getCol()+1,this.getRow());
@@ -209,7 +209,7 @@ public class MobImplemBug implements MobService{
 					}
 					
 					break;
-				case N: 
+				case S: 
 					if(this.getCol()<this.getEnv().getHeight()) {
 						if(this.getRow()-1>=0) {	
 							nature = this.getEnv().cellNature(this.getCol(),this.getRow()-1);
@@ -230,7 +230,7 @@ public class MobImplemBug implements MobService{
 					}
 					
 					break;
-				case E:
+				case W:
 					if(this.getRow()<this.getEnv().getWidth()) {	
 						if(this.getCol()-1>=0) {
 							nature = this.getEnv().cellNature(this.getCol()-1,this.getRow());
@@ -260,16 +260,16 @@ public class MobImplemBug implements MobService{
 	@Override
 	public boolean turnL() {
 		switch(this.getFace()) {
-			case N:
+			case S:
 				this.dir = Dir.W;
 				break;
-			case W:
+			case E:
 				this.dir = Dir.S;
 				break;
-			case S:
+			case N:
 				this.dir = Dir.E;
 				break;
-			case E:
+			case W:
 				this.dir = Dir.N;
 				break;
 			default:
@@ -281,16 +281,16 @@ public class MobImplemBug implements MobService{
 	@Override
 	public boolean turnR() {
 		switch(this.getFace()) {
-			case S:
+			case N:
 				this.dir = Dir.W;
 				break;
-			case E:
+			case W:
 				this.dir = Dir.S;
 				break;
-			case N:
+			case S:
 				this.dir = Dir.E;
 				break;
-			case W:
+			case E:
 				this.dir = Dir.N;
 				break;
 			default:
@@ -304,7 +304,7 @@ public class MobImplemBug implements MobService{
 		Cell nature;
 		if(this.getCol()>=0 && this.getRow()>=0) {
 			switch(this.getFace()) {
-				case E: 
+				case W: 
 					if(this.getCol()<this.getEnv().getHeight()) {
 						if(this.getRow()+1<this.getEnv().getWidth()) {	
 							nature = this.getEnv().cellNature(this.getCol(),this.getRow()+1);
@@ -326,7 +326,7 @@ public class MobImplemBug implements MobService{
 					
 				
 					break;
-				case S:
+				case N:
 					if(this.getRow()<this.getEnv().getWidth()) {	
 						if(this.getCol()+1< this.getEnv().getHeight()) {
 							nature = this.getEnv().cellNature(this.getCol()+1,this.getRow());
@@ -347,7 +347,7 @@ public class MobImplemBug implements MobService{
 					}
 					
 					break;
-				case W: 
+				case E: 
 					if(this.getCol()<this.getEnv().getHeight()) {
 						if(this.getRow()-1>=0) {	
 							nature = this.getEnv().cellNature(this.getCol(),this.getRow()-1);
@@ -368,7 +368,7 @@ public class MobImplemBug implements MobService{
 					}
 					
 					break;
-				case N:
+				case S:
 					if(this.getRow()<this.getEnv().getWidth()) {	
 						if(this.getCol()-1>=0) {
 							nature = this.getEnv().cellNature(this.getCol()-1,this.getRow());
@@ -400,7 +400,7 @@ public class MobImplemBug implements MobService{
 		Cell nature;
 		if(this.getCol()>=0 && this.getRow()>=0) {
 			switch(this.getFace()) {
-				case W: 
+				case E: 
 					if(this.getCol()<this.getEnv().getHeight()) {
 						if(this.getRow()+1<this.getEnv().getWidth()) {	
 							nature = this.getEnv().cellNature(this.getCol(),this.getRow()+1);
@@ -422,7 +422,7 @@ public class MobImplemBug implements MobService{
 					
 				
 					break;
-				case N:
+				case S:
 					if(this.getRow()<this.getEnv().getWidth()) {	
 						if(this.getCol()+1< this.getEnv().getHeight()) {
 							nature = this.getEnv().cellNature(this.getCol()+1,this.getRow());
@@ -443,7 +443,7 @@ public class MobImplemBug implements MobService{
 					}
 					
 					break;
-				case E: 
+				case W: 
 					if(this.getCol()<this.getEnv().getHeight()) {
 						if(this.getRow()-1>=0) {	
 							nature = this.getEnv().cellNature(this.getCol(),this.getRow()-1);
@@ -464,7 +464,7 @@ public class MobImplemBug implements MobService{
 					}
 					
 					break;
-				case S:
+				case N:
 					if(this.getRow()<this.getEnv().getWidth()) {	
 						if(this.getCol()-1>=0) {
 							nature = this.getEnv().cellNature(this.getCol()-1,this.getRow());

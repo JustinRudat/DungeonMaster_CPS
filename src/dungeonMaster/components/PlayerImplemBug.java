@@ -80,25 +80,25 @@ public class PlayerImplemBug extends EntityImplem implements PlayerService {
 		if(commands.getOption()!=Option.No) {
 			switch(commands.getElem()) {
 				case FF:
-					this.forward();
-					break;
-				case BB : 
 					this.backward();
 					break;
-				case LL:
-					this.strafeL();
+				case BB : 
+					this.forward();
 					break;
-				case RR:
+				case LL:
 					this.strafeR();
 					break;
-				case TL:
-					this.turnL();
+				case RR:
+					this.strafeL();
 					break;
-				case TR:
+				case TL:
 					this.turnR();
 					break;
+				case TR:
+					this.turnL();
+					break;
 				case AA:
-					this.attack();
+					
 					break;
 				
 				default:

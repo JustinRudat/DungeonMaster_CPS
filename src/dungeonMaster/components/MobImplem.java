@@ -62,6 +62,7 @@ public class MobImplem implements MobService{
 		this.col = x;
 		this.row = y;
 		this.dir = dir;
+		this.env.addMobOption(this);
 		return true;
 	}
 
@@ -223,7 +224,7 @@ public class MobImplem implements MobService{
 									vode_mvt.init(null,Option.No);
 									this.getEnv().getContent().set((y-1)*this.getEnv().getWidth()+x,vode);
 									this.getEnv().getContent().set(y*this.getEnv().getWidth()+x,vode_mvt);
-									this.row--;
+									this.setRow(this.getRow()-1);
 								}
 							}
 						}

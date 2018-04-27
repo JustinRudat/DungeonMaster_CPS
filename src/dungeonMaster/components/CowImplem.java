@@ -39,7 +39,7 @@ public class CowImplem extends EntityImplem implements CowService {
 
 	@Override
 	public boolean init(EnvironmentService env, int x, int y, Dir dir, int hp,int dmg) {
-		return super.init(env, x, y, dir, hp, dmg);
+		return super.init(env, x, y, dir, hp, 1);
 	}
 
 	@Override

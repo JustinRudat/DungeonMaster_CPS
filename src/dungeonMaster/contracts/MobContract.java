@@ -53,7 +53,7 @@ public class MobContract extends MobDecorator {
 		} catch (PreConditionException e) {
 			e.printStackTrace();
 		}
-		checkInvariants();
+//		checkInvariants();
 		
 		boolean retour = super.init(env,x,y,dir);
 		
@@ -366,21 +366,81 @@ public class MobContract extends MobDecorator {
 
 	@Override
 	public boolean turnL() {
+		Dir dir_at_pre = this.getFace();
 		checkInvariants();
 		
 		boolean retour = super.turnL();
 		
 		checkInvariants();
+		try {
+		switch(dir_at_pre) {
+			case N :
+				if(this.getFace()!=Dir.W) {
+					throw new PostConditionException("turnL : N->W not respected");
+				}
+				break;
+			case S:
+				if(this.getFace()!=Dir.E) {
+					throw new PostConditionException("turnL : S->E not respected");
+				}
+				break;
+			case E:
+				if(this.getFace()!=Dir.N) {
+					throw new PostConditionException("turnL : E->N not respected");
+				}
+				break;
+			case W:
+				if(this.getFace()!=Dir.S) {
+					throw new PostConditionException("turnL : W->S not respected");
+				}
+				break;
+			default:
+				break;
+		}
+		}catch(ConditionException e) {
+			e.printStackTrace();
+			return false;
+		}
 		return retour;
 	}
 
 	@Override
 	public boolean turnR() {
+		Dir dir_at_pre = this.getFace();
 		checkInvariants();
 		
 		boolean retour = super.turnR();
 		
 		checkInvariants();
+		try {
+			switch(dir_at_pre) {
+				case S :
+					if(this.getFace()!=Dir.W) {
+						throw new PostConditionException("turnL : S->W not respected");
+					}
+					break;
+				case N:
+					if(this.getFace()!=Dir.E) {
+						throw new PostConditionException("turnL : N->E not respected");
+					}
+					break;
+				case W:
+					if(this.getFace()!=Dir.N) {
+						throw new PostConditionException("turnL : W->N not respected");
+					}
+					break;
+				case E:
+					if(this.getFace()!=Dir.S) {
+						throw new PostConditionException("turnL : E->S not respected");
+					}
+					break;
+				default:
+					break;
+			}
+			}catch(ConditionException e) {
+				e.printStackTrace();
+				return false;
+			}
 		return retour;
 	}
 

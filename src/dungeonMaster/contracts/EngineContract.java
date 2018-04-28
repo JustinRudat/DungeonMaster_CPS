@@ -54,11 +54,20 @@ public class EngineContract extends EngineDecorator {
 	@Override
 	public boolean init(EnvironmentService env) {
 		
-		checkInvariants();
+		//checkInvariants();
 		
 		boolean retour = super.init(env);
 		
 		checkInvariants();
+		
+		try {
+			if(this.getEnv()!=env) {
+				throw new PostConditionException("error while setting the environment");
+			}
+		}catch(PostConditionException e ) {
+			e.printStackTrace();
+			retour =false;
+		}
 		
 		return retour;
 	}
@@ -91,6 +100,7 @@ public class EngineContract extends EngineDecorator {
 			}
 		}catch(ConditionException e) {
 			e.printStackTrace();
+			retour = false;
 		}
 		return retour;
 		
@@ -121,6 +131,7 @@ public class EngineContract extends EngineDecorator {
 			}
 		}catch(ConditionException e) {
 			e.printStackTrace();
+			retour=false;
 		}
 		return retour;
 	}
@@ -140,6 +151,7 @@ public class EngineContract extends EngineDecorator {
 			}
 		}catch (PreConditionException e) {
 			e.printStackTrace();
+			return false;
 		}
 		checkInvariants();
 		

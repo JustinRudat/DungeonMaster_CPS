@@ -256,7 +256,7 @@ public class PlayerContract extends PlayerDecorator {
 				}
 				break;
 			case AA:
-				this.attack();
+				//this.attack();
 				break;
 			
 			default:

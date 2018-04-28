@@ -26,10 +26,21 @@ public class MapTest extends TestCase{
 		
 		map.init(largeur, hauteur);
 		
-		map.cellNature(10, 10);
+		assertTrue(map.cellNature(10, 10)==Cell.EMP);
 	}
 	
-	public void testEditMapImplem() {
+	
+	public void testOpenDoor() {
+		EditMapContract map = new EditMapContract(new EditMapImplem());
+		map.init(largeur, hauteur);
+		int x = largeur /2 ;
+		int y = hauteur /2;
+		map.setNature(x-1, y, Cell.WLL);
+		map.setNature(x+1, y, Cell.WLL);
+		map.setNature(x, y, Cell.DNC);
+		assertTrue(map.openDoor(x, y));
+	}
+	public void testCloseDoor() {
 		EditMapContract map = new EditMapContract(new EditMapImplem());
 		map.init(largeur, hauteur);
 		int x = largeur /2 ;
@@ -38,7 +49,14 @@ public class MapTest extends TestCase{
 		map.setNature(x+1, y, Cell.WLL);
 		map.setNature(x, y, Cell.DNC);
 		map.openDoor(x, y);
-		map.closeDoor(x, y);
+		assertTrue(map.closeDoor(x, y));
+	}
+	
+	public void testIsReady() {
+		EditMapContract map = new EditMapContract(new EditMapImplem());
+		map.init(largeur, hauteur);
+		int x = largeur /2 ;
+		int y = hauteur /2;
 		map.setNature(0, 0, Cell.IN);
 		map.setNature(hauteur -2, largeur-2, Cell.OUT);
 		assertTrue(map.isReady());

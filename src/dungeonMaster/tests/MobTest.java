@@ -230,9 +230,7 @@ public class MobTest extends TestCase{
 		
 		assertTrue(cow.init(env, x, y, dir, 4,dmg));
 		
-		assertTrue(cow.step());
 		
-		assertTrue(cow.attack());
 		
 	}
 	
@@ -245,7 +243,8 @@ public class MobTest extends TestCase{
 		
 	}
 	
-	public void testPlayerImplem() {
+	
+	public void testStepBB() {
 		PlayerContract player = new PlayerContract(new PlayerImplem());
 		
 		player.init(env, x, y, dir, hp, dmg);
@@ -253,36 +252,59 @@ public class MobTest extends TestCase{
 		player.setLastCommand(Command.BB);
 		
 		assertTrue(player.step());
+	}
+	
+	public void testStepFF() {
+		PlayerContract player = new PlayerContract(new PlayerImplem());
 		
-//		player.setLastCommand(Command.AA);
-//		
-//		assertTrue(player.step());
+		player.init(env, x, y, dir, hp, dmg);
 		
 		player.setLastCommand(Command.FF);
 		
 		assertTrue(player.step());
+	}
+	
+	public void testStepLL() {
+		PlayerContract player = new PlayerContract(new PlayerImplem());
+		
+		player.init(env, x, y, dir, hp, dmg);
 		
 		player.setLastCommand(Command.LL);
 		
 		assertTrue(player.step());
+	}
+	
+	public void testStepRR() {
+		PlayerContract player = new PlayerContract(new PlayerImplem());
+		
+		player.init(env, x, y, dir, hp, dmg);
 		
 		player.setLastCommand(Command.RR);
 		
 		assertTrue(player.step());
+	}
+	
+	public void testStepTL() {
+		PlayerContract player = new PlayerContract(new PlayerImplem());
+		
+		player.init(env, x, y, dir, hp, dmg);
 		
 		player.setLastCommand(Command.TL);
 		
 		assertTrue(player.step());
+	}
+	
+	public void testStepTR() {
+		PlayerContract player = new PlayerContract(new PlayerImplem());
+		
+		player.init(env, x, y, dir, hp, dmg);
 		
 		player.setLastCommand(Command.TR);
 		
 		assertTrue(player.step());
-		
-		
-		
 	}
 	
-	public void testPlayerImplemBug() {
+	public void testStepBBBug() {
 		PlayerContract player = new PlayerContract(new PlayerImplemBug());
 		
 		player.init(env, x, y, dir, hp, dmg);
@@ -290,35 +312,73 @@ public class MobTest extends TestCase{
 		player.setLastCommand(Command.BB);
 		
 		assertFalse(player.step());
+	}
+	
+	public void testStepFFBug() {
+		PlayerContract player = new PlayerContract(new PlayerImplemBug());
 		
-		
+		player.init(env, x, y, dir, hp, dmg);
 		
 		player.setLastCommand(Command.FF);
 		
 		assertFalse(player.step());
+	}
+	
+	public void testStepLLBug() {
+		PlayerContract player = new PlayerContract(new PlayerImplemBug());
+		
+		player.init(env, x, y, dir, hp, dmg);
 		
 		player.setLastCommand(Command.LL);
 		
 		assertFalse(player.step());
+	}
+	
+	public void testStepRRBug() {
+		PlayerContract player = new PlayerContract(new PlayerImplemBug());
+		
+		player.init(env, x, y, dir, hp, dmg);
 		
 		player.setLastCommand(Command.RR);
 		
 		assertFalse(player.step());
+	}
+	
+	public void testStepTLBug() {
+		PlayerContract player = new PlayerContract(new PlayerImplemBug());
+		
+		player.init(env, x, y, dir, hp, dmg);
 		
 		player.setLastCommand(Command.TL);
 		
 		assertFalse(player.step());
+	}
+	
+	public void testStepTRBug() {
+		PlayerContract player = new PlayerContract(new PlayerImplemBug());
+		
+		player.init(env, x, y, dir, hp, dmg);
 		
 		player.setLastCommand(Command.TR);
 		
 		assertFalse(player.step());
+	}
+	
+	public void testStepAA() {
+		PlayerContract player = new PlayerContract(new PlayerImplem());
+		CowContract cow = new CowContract(new CowImplem());
+		cow.init(env, x, y+1, dir,4,1);
+		player.init(env, x, y, dir, hp, dmg);
 		
-//		player.setLastCommand(Command.AA);
-//		
-//		assertFalse(player.step());
 		
+		player.setLastCommand(Command.AA);		
+		assertTrue(player.step());
+		
+		assertTrue(cow.getHealthPoints()==3);
 		
 		
 	}
+	
+	
 	
 }

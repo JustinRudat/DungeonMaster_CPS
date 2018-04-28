@@ -51,12 +51,14 @@ public class EngineImplem implements EngineService {
 
 	@Override
 	public boolean step() {
-		for(EntityService entity : this.getEntities()){
+		for(int j=0; j<entities.size();j++) {
+			EntityService entity = this.getEntity(j);
+		
 			
 			entity.step();
 			for(int i=0;i<entities.size();i++) {
 				EntityService entity_tmp = this.getEntities().get(i);
-				if(entity.getHealthPoints()<=0) {
+				if(entity_tmp.getHealthPoints()<=0) {
 					OptionService<MobService> opt = new OptionImplem<>();
 					opt.init(null, Option.No);
 					this.getEnv().getContent().set(entity_tmp.getRow()*this.getEnv().getWidth()+entity_tmp.getCol(),opt);

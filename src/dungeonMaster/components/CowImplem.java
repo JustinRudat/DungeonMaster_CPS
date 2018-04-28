@@ -15,23 +15,14 @@ public class CowImplem extends EntityImplem implements CowService {
 	@Override
 	public boolean step() {
 		Random rand = new Random();
-		int le_tirage = rand.nextInt(102);
-		if(le_tirage<17) {
+		int le_tirage = rand.nextInt(90);
+		if(le_tirage<30) {
 			this.forward();
 		}
-		else if(le_tirage<34) {
-			this.backward();
-		}
-		else if(le_tirage<51) {
-			this.strafeL();	
-		}
-		else if(le_tirage<68) {
-			this.strafeR();
-		}
-		else if(le_tirage<85) {
+		else if(le_tirage<60) {
 			this.turnL();
 		}
-		else if(le_tirage<103) {
+		else if(le_tirage<=90) {
 			this.turnR();
 		}
 		return true;

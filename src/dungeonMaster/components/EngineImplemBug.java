@@ -31,7 +31,7 @@ public class EngineImplemBug implements EngineService {
 
 	@Override
 	public boolean init(EnvironmentService env) {
-		this.env = env; 
+		this.env = new EnvironmentImplem(); 
 		this.entities = new ArrayList<>();
 		this.isgameover = false;
 		return true;
@@ -39,13 +39,11 @@ public class EngineImplemBug implements EngineService {
 
 	@Override
 	public boolean removeEntity(int x) {
-		this.getEntities().remove(x);
 		return true;
 	}
 
 	@Override
 	public boolean addEntity(EntityService entity) {
-		this.getEntities().add(entity);
 		return true;
 	}
 

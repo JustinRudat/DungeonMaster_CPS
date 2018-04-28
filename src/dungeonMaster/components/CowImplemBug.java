@@ -14,26 +14,7 @@ public class CowImplemBug extends EntityImplem implements CowService {
 	
 	@Override
 	public boolean step() {
-		Random rand = new Random();
-		int le_tirage = rand.nextInt(102);
-		if(le_tirage<17) {
-			this.forward();
-		}
-		else if(le_tirage<34) {
-			this.backward();
-		}
-		else if(le_tirage<51) {
-			this.strafeL();	
-		}
-		else if(le_tirage<68) {
-			this.strafeR();
-		}
-		else if(le_tirage<85) {
-			this.turnL();
-		}
-		else if(le_tirage<103) {
-			this.turnR();
-		}
+		
 		return true;
 	}
 

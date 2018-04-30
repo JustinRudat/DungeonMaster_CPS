@@ -65,6 +65,11 @@ public class EngineDecorator implements EngineService{
 		return this.delegate.isWin();
 	}
 
+	@Override
+	public EngineService generateRandomGame() {
+		return this.delegate.generateRandomGame();
+	}
+
 	
 
 }

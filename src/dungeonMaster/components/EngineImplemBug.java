@@ -79,6 +79,12 @@ public class EngineImplemBug implements EngineService {
 		return !this.iswin;
 	}
 
+	@Override
+	public EngineService generateRandomGame() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 	
 	

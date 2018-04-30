@@ -11,7 +11,9 @@ public interface EngineService {
 	 */
 	
 	
-	
+	public boolean isGameOver();
+	public boolean isWin();
+
 	public EnvironmentService getEnv();
 	public ArrayList<EntityService> getEntities();
 	public EntityService getEntity(int index);

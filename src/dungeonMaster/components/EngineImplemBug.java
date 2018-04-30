@@ -13,6 +13,7 @@ public class EngineImplemBug implements EngineService {
 	private boolean isgameover;
 	private EnvironmentService env;
 	private ArrayList<EntityService> entities;
+	private boolean iswin;
 	
 	@Override
 	public EnvironmentService getEnv() {
@@ -34,6 +35,7 @@ public class EngineImplemBug implements EngineService {
 		this.env = new EnvironmentImplem(); 
 		this.entities = new ArrayList<>();
 		this.isgameover = false;
+		this.iswin =false;
 		return true;
 	}
 
@@ -66,6 +68,18 @@ public class EngineImplemBug implements EngineService {
 		return true;
 		
 	}
+
+	@Override
+	public boolean isGameOver() {
+		return !this.isgameover;
+	}
+
+	@Override
+	public boolean isWin() {
+		return !this.iswin;
+	}
+
+	
 	
 	
 

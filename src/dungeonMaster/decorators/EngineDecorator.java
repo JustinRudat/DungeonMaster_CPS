@@ -55,4 +55,16 @@ public class EngineDecorator implements EngineService{
 		
 	}
 
+	@Override
+	public boolean isGameOver() {
+		return this.delegate.isGameOver();
+	}
+
+	@Override
+	public boolean isWin() {
+		return this.delegate.isWin();
+	}
+
+	
+
 }

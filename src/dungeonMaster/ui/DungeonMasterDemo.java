@@ -48,10 +48,11 @@ public class DungeonMasterDemo {
       c.gridy = 3;
       c.insets = new Insets(10,0,0,0);
       panel_button.add(new JButton("AA"),c);
+      
       c.gridx = 4;
       c.gridy = 3;
       c.insets = new Insets(10,0,0,0);
-      panel_button.add(new JButton("DD"),c);
+      panel_button.add(new JButton("TK"),c);
       
       frame.getContentPane().add(panel_button, BorderLayout.CENTER);
       frame.pack();

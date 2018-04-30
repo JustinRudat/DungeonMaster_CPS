@@ -191,77 +191,79 @@ public class PlayerContract extends PlayerDecorator {
 		PlayerService player_pre = new PlayerImplem();
 		EnvironmentService env = new EnvironmentImplem();
 		env.init(this.getEnv().getWidth(), this.getEnv().getHeight());
-		player_pre.init(env, this.getCol(), this.getRow(), this.getFace(),this.getHealthPoints(),this.getDegats());
+		player_pre.init(env, this.getCol(), this.getRow(), this.getFace(),this.getHealthPoints(),this.getDegats(),this.getArmor());
 		Command c = this.getLastCommand().getElem();
 		
 		boolean retour=  super.step();
 		
 		try {
-			switch(c) {
-			case FF:
-				player_pre.forward();
-				if(this.getRow()!=player_pre.getRow()) {
-					throw new PostConditionException("erreur forward row : "+this.getRow()+" "+player_pre.getRow());
-				}
-				if(this.getCol()!=player_pre.getCol()) {
-					throw new PostConditionException("erreur forward col : "+this.getCol()+" "+player_pre.getCol()); 
-				}
-				break;
-			case BB :
-				System.out.println(player_pre.getRow());
-				player_pre.backward();
-				System.out.println(player_pre.getRow());
-				if(this.getRow()!=player_pre.getRow()) {
-					throw new PostConditionException("erreur backward row : "+this.getRow()+" "+player_pre.getRow());
-				}
-				if(this.getCol()!=player_pre.getCol()) {
-					throw new PostConditionException("erreur backward col : "+this.getCol()+" "+player_pre.getCol()); 
-				}
-				break;
-			case LL:
-				player_pre.strafeL();
-				if(this.getRow()!=player_pre.getRow()) {
-					throw new PostConditionException("erreur strafeL  row : "+this.getRow()+" "+player_pre.getRow());
-				}
-				if(this.getCol()!=player_pre.getCol()) {
-					throw new PostConditionException("erreur strafeL col : "+this.getCol()+" "+player_pre.getCol()); 
-				}
-				if(this.getFace()!=player_pre.getFace()) {
-					throw new PostConditionException("erreur strafeL face : "+this.getFace()+" "+player_pre.getFace()); 
-				}
-				break;
-			case RR:
-				player_pre.strafeR();
-				if(this.getRow()!=player_pre.getRow()) {
-					throw new PostConditionException("erreur strafeR  row : "+this.getRow()+" "+player_pre.getRow());
-				}
-				if(this.getCol()!=player_pre.getCol()) {
-					throw new PostConditionException("erreur strafeR col : "+this.getCol()+" "+player_pre.getCol()); 
-				}
-				if(this.getFace()!=player_pre.getFace()) {
-					throw new PostConditionException("erreur strafeR face : "+this.getFace()+" "+player_pre.getFace()); 
-				}
-				break;
-			case TL:
+			if(null!=c) {
+				switch(c) {
+				case FF:
+					player_pre.forward();
+					if(this.getRow()!=player_pre.getRow()) {
+						throw new PostConditionException("erreur forward row : "+this.getRow()+" "+player_pre.getRow());
+					}
+					if(this.getCol()!=player_pre.getCol()) {
+						throw new PostConditionException("erreur forward col : "+this.getCol()+" "+player_pre.getCol()); 
+					}
+					break;
+				case BB :
+					System.out.println(player_pre.getRow());
+					player_pre.backward();
+					System.out.println(player_pre.getRow());
+					if(this.getRow()!=player_pre.getRow()) {
+						throw new PostConditionException("erreur backward row : "+this.getRow()+" "+player_pre.getRow());
+					}
+					if(this.getCol()!=player_pre.getCol()) {
+						throw new PostConditionException("erreur backward col : "+this.getCol()+" "+player_pre.getCol()); 
+					}
+					break;
+				case LL:
+					player_pre.strafeL();
+					if(this.getRow()!=player_pre.getRow()) {
+						throw new PostConditionException("erreur strafeL  row : "+this.getRow()+" "+player_pre.getRow());
+					}
+					if(this.getCol()!=player_pre.getCol()) {
+						throw new PostConditionException("erreur strafeL col : "+this.getCol()+" "+player_pre.getCol()); 
+					}
+					if(this.getFace()!=player_pre.getFace()) {
+						throw new PostConditionException("erreur strafeL face : "+this.getFace()+" "+player_pre.getFace()); 
+					}
+					break;
+				case RR:
+					player_pre.strafeR();
+					if(this.getRow()!=player_pre.getRow()) {
+						throw new PostConditionException("erreur strafeR  row : "+this.getRow()+" "+player_pre.getRow());
+					}
+					if(this.getCol()!=player_pre.getCol()) {
+						throw new PostConditionException("erreur strafeR col : "+this.getCol()+" "+player_pre.getCol()); 
+					}
+					if(this.getFace()!=player_pre.getFace()) {
+						throw new PostConditionException("erreur strafeR face : "+this.getFace()+" "+player_pre.getFace()); 
+					}
+					break;
+				case TL:
+					
+					player_pre.turnL();
+					if(this.getFace()!=player_pre.getFace()) {
+						throw new PostConditionException("erreur turnL");
+					}
+					break;
+				case TR:
+					player_pre.turnR();
+					if(this.getFace()!=player_pre.getFace()) {
+						throw new PostConditionException("erreur turnR");
+					}
+					break;
+				case AA:
+					//this.attack();
+					break;
 				
-				player_pre.turnL();
-				if(this.getFace()!=player_pre.getFace()) {
-					throw new PostConditionException("erreur turnL");
+				default:
+					break;
 				}
-				break;
-			case TR:
-				player_pre.turnR();
-				if(this.getFace()!=player_pre.getFace()) {
-					throw new PostConditionException("erreur turnR");
-				}
-				break;
-			case AA:
-				//this.attack();
-				break;
-			
-			default:
-				break;
-		}
+			}
 		}catch(PostConditionException e) {
 			e.printStackTrace();
 			return false;
@@ -275,8 +277,8 @@ public class PlayerContract extends PlayerDecorator {
 	}
 
 	@Override
-	public boolean init(EnvironmentService env, int x, int y, Dir dir, int hp,int degat) {
-		return super.init(env, x, y, dir, hp,degat);
+	public boolean init(EnvironmentService env, int x, int y, Dir dir, int hp,int degat,int armor) {
+		return super.init(env, x, y, dir, hp,degat,armor);
 	}
 
 	@Override

@@ -1,9 +1,12 @@
 package dungeonMaster.decorators;
 
+import java.util.ArrayList;
+
 import dungeonMaster.services.Cell;
 import dungeonMaster.services.Command;
 import dungeonMaster.services.Dir;
 import dungeonMaster.services.EnvironmentService;
+import dungeonMaster.services.LootService;
 import dungeonMaster.services.MobService;
 import dungeonMaster.services.OptionService;
 import dungeonMaster.services.PlayerService;
@@ -38,6 +41,26 @@ public class PlayerDecorator extends EntityDecorator implements PlayerService{
 	@Override
 	public boolean setLastCommand(Command command) {
 		return  ((PlayerService) this.getDelegate()).setLastCommand(command);
+	}
+
+	@Override
+	public ArrayList<LootService> getBag() {
+		return ((PlayerService) this.getDelegate()).getBag();
+	}
+
+	@Override
+	public LootService getBagAt(int index) {
+		return ((PlayerService) this.getDelegate()).getBagAt(index);
+	}
+
+	@Override
+	public boolean addLoot(LootService lt) {
+		return ((PlayerService) this.getDelegate()).addLoot(lt);
+	}
+
+	@Override
+	public boolean take() {
+		return ((PlayerService) this.getDelegate()).take();
 	}
 	
 

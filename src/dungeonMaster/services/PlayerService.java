@@ -1,5 +1,7 @@
 package dungeonMaster.services;
 
+import java.util.ArrayList;
+
 public interface PlayerService extends /* includes */ EntityService {
 
 	public OptionService<Command> getLastCommand();
@@ -7,6 +9,9 @@ public interface PlayerService extends /* includes */ EntityService {
 	public OptionService<MobService> getContent(int x, int y);
 	public Cell getNature(int x, int y);
 	public Cell getViewable(int x, int y);
+	public ArrayList<LootService> getBag();
+	public LootService getBagAt(int index);
+	public boolean addLoot(LootService lt);
 	
 	/** Invariants :
 	 *  inv: this.getFace() == N \implies this.getContent(u,v) = this.getEnv().cellNature(this.getCol()+u, this.getRow()+v)
@@ -41,5 +46,7 @@ public interface PlayerService extends /* includes */ EntityService {
 	public boolean step();
 	
 	public boolean attack();
+	
+	public boolean take();
 	
 }

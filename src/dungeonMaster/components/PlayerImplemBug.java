@@ -1,18 +1,22 @@
 package dungeonMaster.components;
 
+import java.util.ArrayList;
+
 import dungeonMaster.services.Cell;
 import dungeonMaster.services.Command;
 import dungeonMaster.services.Dir;
 import dungeonMaster.services.EntityService;
 import dungeonMaster.services.EnvironmentService;
+import dungeonMaster.services.LootService;
 import dungeonMaster.services.MobService;
 import dungeonMaster.services.Option;
 import dungeonMaster.services.OptionService;
 import dungeonMaster.services.PlayerService;
 
 public class PlayerImplemBug extends EntityImplem implements PlayerService {
-	OptionService<Command> lastcommand;
-
+	private OptionService<Command> lastcommand;
+	private ArrayList<LootService> bag;
+	
 	@Override
 	public OptionService<Command> getLastCommand() {
 		return this.lastcommand;
@@ -100,6 +104,9 @@ public class PlayerImplemBug extends EntityImplem implements PlayerService {
 				case AA:
 					
 					break;
+				case TK:
+					this.take();
+					break;
 				
 				default:
 					break;
@@ -115,6 +122,91 @@ public class PlayerImplemBug extends EntityImplem implements PlayerService {
 		OptionImplem<Command> cmd = new OptionImplem<>();
 		cmd.setElem(command);
 		this.lastcommand = cmd;
+		return true;
+	}
+
+	@Override
+	public ArrayList<LootService> getBag() {
+		return this.bag;
+	}
+
+	@Override
+	public LootService getBagAt(int index) {
+		return this.bag.get(index);
+	}
+
+	@Override
+	public boolean addLoot(LootService lt) {
+		switch(lt.getLootType()) {
+		case Treasure:
+			this.bag.add(0,lt);
+			break;
+			
+		case Armor:
+			this.setArmor(this.getArmor()+lt.getPuis());
+			break;
+			
+		case Weapon:
+			this.setDegats(this.getDegats()+lt.getPuis());
+			break;
+			
+		default:
+			break;
+		}
+		this.bag.add(lt);
+		
+		return true;
+	}
+
+	
+	@Override
+	public boolean take() {
+		OptionService<MobService> opt=null;
+		switch(this.getFace()) {
+			case N:
+				opt = this.getEnv().cellContent(this.getCol(), this.getRow()+1);
+				if(opt.getOption()!=Option.No) {
+					if(opt.getElem() instanceof LootService) {
+						this.addLoot((LootService) opt.getElem());
+						opt.setOption(Option.No);
+						opt.setElem(null);
+					}
+				}
+				break;
+			case S:
+				opt = this.getEnv().cellContent(this.getCol(), this.getRow()-1);
+				if(opt.getOption()!=Option.No) {
+					if(opt.getElem() instanceof LootService) {
+						this.addLoot((LootService) opt.getElem());
+						opt.setOption(Option.No);
+						opt.setElem(null);
+					}
+				}
+				break;
+			case E:
+				opt = this.getEnv().cellContent(this.getCol()+1, this.getRow());
+				if(opt.getOption()!=Option.No) {
+					if(opt.getElem() instanceof LootService) {
+						this.addLoot((LootService) opt.getElem());
+						opt.setOption(Option.No);
+						opt.setElem(null);
+					}
+				}
+				break;
+			case W:
+				opt = this.getEnv().cellContent(this.getCol()-1, this.getRow());
+				if(opt.getOption()!=Option.No) {
+					if(opt.getElem() instanceof LootService) {
+						this.addLoot((LootService) opt.getElem());
+						opt.setOption(Option.No);
+						opt.setElem(null);
+					}
+				}
+				break;
+			default:
+				break;
+		}
+		
 		return true;
 	}
 	

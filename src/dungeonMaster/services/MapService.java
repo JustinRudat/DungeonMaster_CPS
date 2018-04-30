@@ -19,6 +19,7 @@ public interface MapService {
      */
     public Cell[][] getPlateau();
     
+    public boolean setPlateau(Cell[][] plateau);
     
     /** Observateur : Nature de la case désignée par les coordonnées i et j
      * 

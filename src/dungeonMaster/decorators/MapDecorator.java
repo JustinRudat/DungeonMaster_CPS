@@ -53,4 +53,9 @@ public class MapDecorator implements MapService{
 		
 	}
 
+	@Override
+	public boolean setPlateau(Cell[][] plateau) {
+		return this.delegate.setPlateau(plateau);
+	}
+
 }

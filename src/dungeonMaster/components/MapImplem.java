@@ -31,9 +31,9 @@ public class MapImplem implements MapService{
 	public boolean init(int largeur, int hauteur) {
 		this.height = hauteur;
 		this.width = largeur;
-		this.plateau = new Cell[hauteur][largeur];
-		for(int i =0; i< hauteur; i++) {
-			for(int j=0;j<largeur;j++) {
+		this.plateau = new Cell[largeur][hauteur];
+		for(int i =0; i< largeur; i++) {
+			for(int j=0;j<hauteur;j++) {
 				this.plateau[i][j] = Cell.EMP;
 			}
 		}
@@ -67,6 +67,12 @@ public class MapImplem implements MapService{
 			default:
 				break;
 		}
+		return true;
+	}
+
+	@Override
+	public boolean setPlateau(Cell[][] plateau) {
+		this.plateau=plateau;
 		return true;
 	}
 

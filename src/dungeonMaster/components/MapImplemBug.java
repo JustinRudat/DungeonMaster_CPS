@@ -70,4 +70,10 @@ public class MapImplemBug implements MapService{
 		return true;
 	}
 
+	@Override
+	public boolean setPlateau(Cell[][] plateau) {
+		this.plateau = plateau;
+		return true;
+	}
+
 }

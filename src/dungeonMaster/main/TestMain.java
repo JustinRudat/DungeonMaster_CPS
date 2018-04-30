@@ -1,4 +1,4 @@
-package dungeonMaster.ui;
+package dungeonMaster.main;
 
 import dungeonMaster.tests.EngineTest;
 import dungeonMaster.tests.MapTest;

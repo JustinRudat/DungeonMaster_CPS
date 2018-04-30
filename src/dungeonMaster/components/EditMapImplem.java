@@ -2,13 +2,16 @@ package dungeonMaster.components;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 import dungeonMaster.services.Cell;
 import dungeonMaster.services.EditMapService;
 import dungeonMaster.services.MapService;
 
 public class EditMapImplem extends MapImplem implements EditMapService{
-
+	private final int default_hauteur = 60;
+	private final int default_largeur = 90;
+	
 	@Override
 	public boolean isReachable(int x1, int y1, int x2, int y2) {
 		ArrayList<Noeud> test = plusCourtChemin(this.getPlateau(),new Noeud(x1,y1,0,0), new Noeud(x2,y2,0,0));
@@ -108,7 +111,64 @@ public class EditMapImplem extends MapImplem implements EditMapService{
 		return true;
 	}
 
-	
+	public void randomEdit() {
+		Random rand = new Random();
+		int rand_prem_mur = 38+rand.nextInt(6);
+		int rand_sec_mur = rand_prem_mur+3+rand.nextInt(4);
+		int nb_salle_g = 2+rand.nextInt(3);
+		int nb_salle_d = 2+rand.nextInt(3);
+		for(int i =0; i <this.getWidth();i++) {
+			for(int j = 0;j<this.getHeight();j++) {
+				if(i==0 || i==this.getWidth()-1 ||j==0||j==this.getHeight()-1) {
+					setNature(i, j, Cell.WLL);
+				}
+				if(i==rand_prem_mur||i==rand_sec_mur) {
+					setNature(i, j, Cell.WLL);
+				}
+			}
+		}
+		switch(nb_salle_g){
+				case 2:
+					int h_prem = 10+rand.nextInt(30);
+					int test = rand.nextInt(3);
+					if(test == 0) {
+						for(int k = 1; k<rand_prem_mur;k++) {
+							setNature(k, h_prem, Cell.WLL);
+						}
+						int rand_door = 1+rand.nextInt(rand_prem_mur);
+						setNature(rand_door, h_prem, Cell.DNC);
+						
+						rand_door = 1+rand.nextInt(h_prem);
+						setNature(rand_prem_mur, rand_door, Cell.DWC);
+					}
+					else if(test == 1) {
+						for(int k = 1; k<rand_prem_mur;k++) {
+							setNature(k, h_prem, Cell.WLL);
+						}
+						int rand_door = 1+rand.nextInt(rand_prem_mur);
+						setNature(rand_door, h_prem, Cell.DNC);
+						
+						rand_door = h_prem+rand.nextInt(this.getHeight()-h_prem);
+						setNature(rand_prem_mur, rand_door, Cell.DWC);
+					}else {
+						for(int k = 1; k<rand_prem_mur;k++) {
+							setNature(k, h_prem, Cell.WLL);
+						}
+						int rand_door = 1+rand.nextInt(rand_prem_mur);
+						setNature(rand_prem_mur, rand_door, Cell.DWC);
+						
+						rand_door = h_prem+rand.nextInt(this.getHeight()-h_prem);
+						setNature(rand_prem_mur, rand_door, Cell.DWC);
+					}
+					break;
+				case 3:
+					break;
+				case 4:
+					break;
+				default:
+					break;
+		}
+	}
 	
 
 }

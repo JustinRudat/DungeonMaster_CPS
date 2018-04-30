@@ -18,6 +18,9 @@ public class EngineImplem implements EngineService {
 	private EnvironmentService env;
 	private ArrayList<EntityService> entities;
 	
+	private final int default_hauteur = 60;
+	private final int default_largeur = 90;
+	
 	@Override
 	public EnvironmentService getEnv() {
 		return this.env;
@@ -109,6 +112,20 @@ public class EngineImplem implements EngineService {
 	@Override
 	public boolean isWin() {
 		return this.iswin;
+	}
+	
+	public EngineService generateRandomGame() {
+		EditMapImplem editmap = new EditMapImplem();
+		editmap.init(default_largeur,default_hauteur);
+		editmap.randomEdit();
+		EnvironmentService env = new EnvironmentImplem();
+		env.init(default_largeur,default_hauteur);
+		
+		this.entities = new ArrayList<>();
+		this.isgameover = false;
+		this.iswin=false;
+		
+		return this;
 	}
 
 	

@@ -17,11 +17,13 @@ import dungeonMaster.services.Command;
 import dungeonMaster.services.Dir;
 import dungeonMaster.services.EnvironmentService;
 import dungeonMaster.services.MobService;
+import junit.framework.Test;
 import junit.framework.TestCase;
+import junit.framework.TestSuite;
 
 public class MobTest extends TestCase{
 	
-	protected int x,y,hp,dmg;
+	protected int x,y,hp,dmg,armor;
 	protected Dir dir;
 	protected EnvironmentService env;
 	
@@ -31,6 +33,7 @@ public class MobTest extends TestCase{
 	     this.hp = 5;
 	     this.dmg = 1;
 	     this.dir = Dir.N;
+	     this.armor = 1;
 	     this.env = new EnvironmentImplem();
 	     this.env.init(70,50);
 	}
@@ -212,7 +215,7 @@ public class MobTest extends TestCase{
 	public void testEntityInit() {
 		EntityContract entity = new EntityContract(new EntityImplem());
 		
-		assertTrue(entity.init(env, x, y, dir, hp , dmg));
+		assertTrue(entity.init(env, x, y, dir, hp , dmg,armor));
 		
 		
 	}
@@ -220,7 +223,7 @@ public class MobTest extends TestCase{
 	public void testEntityInitBug() {
 		EntityContract entity = new EntityContract(new EntityImplemBug());
 		
-		assertFalse(entity.init(env, x, y, dir, -3 , -1));
+		assertFalse(entity.init(env, x, y, dir, -3 , -1,-1));
 		
 		
 	}
@@ -228,7 +231,7 @@ public class MobTest extends TestCase{
 	public void testCowImplem() {
 		CowContract cow  = new CowContract(new CowImplem());
 		
-		assertTrue(cow.init(env, x, y, dir, 4,dmg));
+		assertTrue(cow.init(env, x, y, dir, 4,dmg,armor));
 		
 		
 		
@@ -237,7 +240,7 @@ public class MobTest extends TestCase{
 	public void testCowImplemBug() {
 		CowContract cow  = new CowContract(new CowImplemBug());
 		
-		assertFalse(cow.init(env, x, y, dir, hp,dmg));
+		assertFalse(cow.init(env, x, y, dir, hp,dmg,armor));
 		
 		
 		
@@ -247,7 +250,7 @@ public class MobTest extends TestCase{
 	public void testStepBB() {
 		PlayerContract player = new PlayerContract(new PlayerImplem());
 		
-		player.init(env, x, y, dir, hp, dmg);
+		player.init(env, x, y, dir, hp, dmg,armor);
 		
 		player.setLastCommand(Command.BB);
 		
@@ -257,7 +260,7 @@ public class MobTest extends TestCase{
 	public void testStepFF() {
 		PlayerContract player = new PlayerContract(new PlayerImplem());
 		
-		player.init(env, x, y, dir, hp, dmg);
+		player.init(env, x, y, dir, hp, dmg,armor);
 		
 		player.setLastCommand(Command.FF);
 		
@@ -267,7 +270,7 @@ public class MobTest extends TestCase{
 	public void testStepLL() {
 		PlayerContract player = new PlayerContract(new PlayerImplem());
 		
-		player.init(env, x, y, dir, hp, dmg);
+		player.init(env, x, y, dir, hp, dmg,armor);
 		
 		player.setLastCommand(Command.LL);
 		
@@ -277,7 +280,7 @@ public class MobTest extends TestCase{
 	public void testStepRR() {
 		PlayerContract player = new PlayerContract(new PlayerImplem());
 		
-		player.init(env, x, y, dir, hp, dmg);
+		player.init(env, x, y, dir, hp, dmg,armor);
 		
 		player.setLastCommand(Command.RR);
 		
@@ -287,7 +290,7 @@ public class MobTest extends TestCase{
 	public void testStepTL() {
 		PlayerContract player = new PlayerContract(new PlayerImplem());
 		
-		player.init(env, x, y, dir, hp, dmg);
+		player.init(env, x, y, dir, hp, dmg,armor);
 		
 		player.setLastCommand(Command.TL);
 		
@@ -297,7 +300,7 @@ public class MobTest extends TestCase{
 	public void testStepTR() {
 		PlayerContract player = new PlayerContract(new PlayerImplem());
 		
-		player.init(env, x, y, dir, hp, dmg);
+		player.init(env, x, y, dir, hp, dmg,armor);
 		
 		player.setLastCommand(Command.TR);
 		
@@ -307,7 +310,7 @@ public class MobTest extends TestCase{
 	public void testStepBBBug() {
 		PlayerContract player = new PlayerContract(new PlayerImplemBug());
 		
-		player.init(env, x, y, dir, hp, dmg);
+		player.init(env, x, y, dir, hp, dmg,armor);
 		
 		player.setLastCommand(Command.BB);
 		
@@ -317,7 +320,7 @@ public class MobTest extends TestCase{
 	public void testStepFFBug() {
 		PlayerContract player = new PlayerContract(new PlayerImplemBug());
 		
-		player.init(env, x, y, dir, hp, dmg);
+		player.init(env, x, y, dir, hp, dmg,armor);
 		
 		player.setLastCommand(Command.FF);
 		
@@ -327,7 +330,7 @@ public class MobTest extends TestCase{
 	public void testStepLLBug() {
 		PlayerContract player = new PlayerContract(new PlayerImplemBug());
 		
-		player.init(env, x, y, dir, hp, dmg);
+		player.init(env, x, y, dir, hp, dmg,armor);
 		
 		player.setLastCommand(Command.LL);
 		
@@ -337,7 +340,7 @@ public class MobTest extends TestCase{
 	public void testStepRRBug() {
 		PlayerContract player = new PlayerContract(new PlayerImplemBug());
 		
-		player.init(env, x, y, dir, hp, dmg);
+		player.init(env, x, y, dir, hp, dmg,armor);
 		
 		player.setLastCommand(Command.RR);
 		
@@ -347,7 +350,7 @@ public class MobTest extends TestCase{
 	public void testStepTLBug() {
 		PlayerContract player = new PlayerContract(new PlayerImplemBug());
 		
-		player.init(env, x, y, dir, hp, dmg);
+		player.init(env, x, y, dir, hp, dmg,armor);
 		
 		player.setLastCommand(Command.TL);
 		
@@ -357,7 +360,7 @@ public class MobTest extends TestCase{
 	public void testStepTRBug() {
 		PlayerContract player = new PlayerContract(new PlayerImplemBug());
 		
-		player.init(env, x, y, dir, hp, dmg);
+		player.init(env, x, y, dir, hp, dmg,armor);
 		
 		player.setLastCommand(Command.TR);
 		
@@ -367,8 +370,8 @@ public class MobTest extends TestCase{
 	public void testStepAA() {
 		PlayerContract player = new PlayerContract(new PlayerImplem());
 		CowContract cow = new CowContract(new CowImplem());
-		cow.init(env, x, y+1, dir,4,1);
-		player.init(env, x, y, dir, hp, dmg);
+		cow.init(env, x, y+1, dir,4,1,0);
+		player.init(env, x, y, dir, hp, dmg,armor);
 		
 		
 		player.setLastCommand(Command.AA);		
@@ -379,6 +382,9 @@ public class MobTest extends TestCase{
 		
 	}
 	
+	public static final Test suite(){
+	    return new TestSuite(MobTest.class); 
+	}
 	
 	
 }

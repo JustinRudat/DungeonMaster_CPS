@@ -7,8 +7,10 @@ import dungeonMaster.components.MapImplem;
 import dungeonMaster.contracts.EditMapContract;
 import dungeonMaster.contracts.MapContract;
 import dungeonMaster.services.Cell;
+import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestResult;
+import junit.framework.TestSuite;
 
 public class MapTest extends TestCase{
 	public MapTest() {
@@ -60,5 +62,9 @@ public class MapTest extends TestCase{
 		map.setNature(0, 0, Cell.IN);
 		map.setNature(hauteur -2, largeur-2, Cell.OUT);
 		assertTrue(map.isReady());
+	}
+	
+	public static final Test suite(){
+	    return new TestSuite(MapTest.class); 
 	}
 }

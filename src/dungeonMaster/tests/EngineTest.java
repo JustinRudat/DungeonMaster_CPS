@@ -12,10 +12,12 @@ import dungeonMaster.contracts.PlayerContract;
 import dungeonMaster.services.Command;
 import dungeonMaster.services.Dir;
 import dungeonMaster.services.EnvironmentService;
+import junit.framework.Test;
 import junit.framework.TestCase;
+import junit.framework.TestSuite;
 
 public class EngineTest extends TestCase {
-	protected int x,y,x_mob,y_mob,hp,dmg;
+	protected int x,y,x_mob,y_mob,hp,dmg,armor;
 	protected int largeur, hauteur;
 	protected Dir dir;
 	protected EnvironmentService env;
@@ -27,6 +29,7 @@ public class EngineTest extends TestCase {
 	     this.y_mob=2;
 	     this.hp = 5;
 	     this.dmg = 1;
+	     this.armor = 1;
 	     this.dir = Dir.N;
 	     this.env = new EnvironmentImplem();
 	     this.largeur=70;
@@ -37,8 +40,8 @@ public class EngineTest extends TestCase {
 	public void testEngine() {
 		PlayerContract player = new PlayerContract(new PlayerImplem());
 		CowContract cow = new CowContract(new CowImplem());
-		cow.init(env, x, y+1, dir,4,1);
-		player.init(env, x, y, dir, hp, dmg);
+		cow.init(env, x, y+1, dir,4,1,0);
+		player.init(env, x, y, dir, hp, dmg,armor);
 		EngineContract engine = new EngineContract(new EngineImplem());
 		
 		assertTrue(engine.init(env));
@@ -50,8 +53,8 @@ public class EngineTest extends TestCase {
 	public void testEngineBug() {
 		PlayerContract player = new PlayerContract(new PlayerImplem());
 		CowContract cow = new CowContract(new CowImplem());
-		cow.init(env, x, y+1, dir,4,1);
-		player.init(env, x, y, dir, hp, dmg);
+		cow.init(env, x, y+1, dir,4,1,0);
+		player.init(env, x, y, dir, hp, dmg,armor);
 		EngineContract engine = new EngineContract(new EngineImplemBug());
 		
 		assertFalse(engine.init(env));
@@ -63,8 +66,8 @@ public class EngineTest extends TestCase {
 	public void testEngineAddEntity() {
 		PlayerContract player = new PlayerContract(new PlayerImplem());
 		CowContract cow = new CowContract(new CowImplem());
-		cow.init(env, x, y+1, dir,4,1);
-		player.init(env, x, y, dir, hp, dmg);
+		cow.init(env, x, y+1, dir,4,1,0);
+		player.init(env, x, y, dir, hp, dmg,armor);
 		EngineContract engine = new EngineContract(new EngineImplem());
 		
 		engine.init(env);
@@ -76,8 +79,8 @@ public class EngineTest extends TestCase {
 	public void testEngineBugAddEntity() {
 		PlayerContract player = new PlayerContract(new PlayerImplem());
 		CowContract cow = new CowContract(new CowImplem());
-		cow.init(env, x, y+1, dir,4,1);
-		player.init(env, x, y, dir, hp, dmg);
+		cow.init(env, x, y+1, dir,4,1,0);
+		player.init(env, x, y, dir, hp, dmg,armor);
 		EngineContract engine = new EngineContract(new EngineImplemBug());
 		
 		engine.init(env);
@@ -90,8 +93,8 @@ public class EngineTest extends TestCase {
 	public void testEngineStep() {
 		PlayerContract player = new PlayerContract(new PlayerImplem());
 		CowContract cow = new CowContract(new CowImplemBug());
-		cow.init(env, x, y+1, dir,4,1);
-		player.init(env, x, y, dir, hp, dmg);
+		cow.init(env, x, y+1, dir,4,1,0);
+		player.init(env, x, y, dir, hp, dmg,armor);
 		EngineContract engine = new EngineContract(new EngineImplem());
 		
 		engine.init(env);
@@ -105,8 +108,8 @@ public class EngineTest extends TestCase {
 	public void testEngineStepKill() {
 		PlayerContract player = new PlayerContract(new PlayerImplem());
 		CowContract cow = new CowContract(new CowImplemBug());
-		cow.init(env, x, y+1, dir,4,1);
-		player.init(env, x, y, dir, hp, dmg);
+		cow.init(env, x, y+1, dir,4,1,0);
+		player.init(env, x, y, dir, hp, dmg,armor);
 		EngineContract engine = new EngineContract(new EngineImplem());
 		
 		engine.init(env);
@@ -122,8 +125,11 @@ public class EngineTest extends TestCase {
 		engine.step();
 		player.setLastCommand(Command.AA);	
 		engine.step();
-		System.out.println(engine.getEntities().size());
+		engine.step();
 		assertTrue(engine.getEntities().size()==1);
 	}
 	
+	public static final Test suite(){
+	    return new TestSuite(EngineTest.class); 
+	}
 }

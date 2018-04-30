@@ -41,6 +41,16 @@ public class PlayerImplem extends EntityImplem implements PlayerService {
 		
 		return null;
 	}
+	
+	@Override
+	public boolean init(EnvironmentService env, int x, int y, Dir dir, int hp, int dmg, int armor) {
+		boolean retour = super.init(env, x, y, dir, hp, dmg, armor);
+		OptionImplem<Command> opt = new OptionImplem();
+		opt.init(null,Option.No);
+		this.lastcommand = opt;
+		this.bag = new ArrayList<>();
+		return retour;
+	}
 
 	@Override
 	public Cell getNature(int x, int y) {
@@ -142,7 +152,7 @@ public class PlayerImplem extends EntityImplem implements PlayerService {
 		switch(lt.getLootType()) {
 			case Treasure:
 				this.bag.add(0,lt);
-				break;
+				return true;
 				
 			case Armor:
 				this.setArmor(this.getArmor()+lt.getPuis());
@@ -163,8 +173,16 @@ public class PlayerImplem extends EntityImplem implements PlayerService {
 	@Override
 	public boolean take() {
 		OptionService<MobService> opt=null;
+		Cell nat=null;
 		switch(this.getFace()) {
 			case N:
+				nat = this.getEnv().cellNature(this.getCol(), this.getRow()+1);
+				if(nat == Cell.DNC) {
+					this.getEnv().getPlateau()[this.getCol()][this.getRow()+1]=Cell.DNO;
+				}
+				if(nat == Cell.DNO) {
+					this.getEnv().getPlateau()[this.getCol()][this.getRow()+1]=Cell.DNC;
+				}
 				opt = this.getEnv().cellContent(this.getCol(), this.getRow()+1);
 				if(opt.getOption()!=Option.No) {
 					if(opt.getElem() instanceof LootService) {
@@ -175,6 +193,13 @@ public class PlayerImplem extends EntityImplem implements PlayerService {
 				}
 				break;
 			case S:
+				nat = this.getEnv().cellNature(this.getCol(), this.getRow()-1);
+				if(nat == Cell.DNC) {
+					this.getEnv().getPlateau()[this.getCol()][this.getRow()-1]=Cell.DNO;
+				}
+				if(nat == Cell.DNO) {
+					this.getEnv().getPlateau()[this.getCol()][this.getRow()-1]=Cell.DNC;
+				}
 				opt = this.getEnv().cellContent(this.getCol(), this.getRow()-1);
 				if(opt.getOption()!=Option.No) {
 					if(opt.getElem() instanceof LootService) {
@@ -185,6 +210,13 @@ public class PlayerImplem extends EntityImplem implements PlayerService {
 				}
 				break;
 			case E:
+				nat = this.getEnv().cellNature(this.getCol()+1, this.getRow());
+				if(nat == Cell.DWC) {
+					this.getEnv().getPlateau()[this.getCol()+1][this.getRow()]=Cell.DWO;
+				}
+				if(nat == Cell.DWO) {
+					this.getEnv().getPlateau()[this.getCol()+1][this.getRow()]=Cell.DWC;
+				}
 				opt = this.getEnv().cellContent(this.getCol()+1, this.getRow());
 				if(opt.getOption()!=Option.No) {
 					if(opt.getElem() instanceof LootService) {
@@ -195,6 +227,13 @@ public class PlayerImplem extends EntityImplem implements PlayerService {
 				}
 				break;
 			case W:
+				nat = this.getEnv().cellNature(this.getCol()-1, this.getRow());
+				if(nat == Cell.DWC) {
+					this.getEnv().getPlateau()[this.getCol()-1][this.getRow()]=Cell.DWO;
+				}
+				if(nat == Cell.DWO) {
+					this.getEnv().getPlateau()[this.getCol()-1][this.getRow()]=Cell.DWC;
+				}
 				opt = this.getEnv().cellContent(this.getCol()-1, this.getRow());
 				if(opt.getOption()!=Option.No) {
 					if(opt.getElem() instanceof LootService) {

@@ -362,17 +362,17 @@ public class DungeonMasterDemo {
 	
 	
 	
-				   str="|     "+handleCellNat(engine.getEnv().cellNature(player.getCol()-1, player.getRow()+index),engine.getEnv().cellContent(player.getCol()-1, player.getRow()+index))+"    ";
+				   str="|     "+handleCellNat(player,-1, index,engine.getEnv().cellContent(player.getCol()-1, player.getRow()+index))+"    ";
 			   }else {
 				   str="|          ";
 			   }
 			   if(index==0) {
 				   str+="|     P    |";
 			   }else {
-				   str+="|     "+handleCellNat(engine.getEnv().cellNature(player.getCol(), player.getRow()+index),engine.getEnv().cellContent(player.getCol(), player.getRow()+index))+"    |";
+				   str+="|     "+handleCellNat(player,0, index,engine.getEnv().cellContent(player.getCol(), player.getRow()+index))+"    |";
 			   }
 			   if(player.getCol()+1<engine.getEnv().getWidth()) {
-				   str+="     "+handleCellNat(engine.getEnv().cellNature(player.getCol()+1, player.getRow()+index),engine.getEnv().cellContent(player.getCol()+1, player.getRow()+index))+"    |\n";
+				   str+="     "+handleCellNat(player,1, index,engine.getEnv().cellContent(player.getCol()+1, player.getRow()+index))+"    |\n";
 			   }else {
 				   str+="          |\n";
 			   }
@@ -384,17 +384,17 @@ public class DungeonMasterDemo {
 
 
 
-			   str="|     "+handleCellNat(engine.getEnv().cellNature(player.getCol()+1, player.getRow()-index),engine.getEnv().cellContent(player.getCol()+1, player.getRow()-index))+"    ";
+			   str="|     "+handleCellNat(player,1, index,engine.getEnv().cellContent(player.getCol()+1, player.getRow()-index))+"    ";
 		   }else {
 			   str="|          ";
 		   }
 		   if(index==0) {
 			   str+="|     P    |";
 		   }else {
-			   str+="|     "+handleCellNat(engine.getEnv().cellNature(player.getCol(), player.getRow()-index),engine.getEnv().cellContent(player.getCol(), player.getRow()-index))+"    |";
+			   str+="|     "+handleCellNat(player,0, index,engine.getEnv().cellContent(player.getCol(), player.getRow()-index))+"    |";
 		   }
 		   if(player.getCol()-1>=0) {
-			   str+="     "+handleCellNat(engine.getEnv().cellNature(player.getCol()-1, player.getRow()-index),engine.getEnv().cellContent(player.getCol()-1, player.getRow()-index))+"    |\n";
+			   str+="     "+handleCellNat(player,-1, index,engine.getEnv().cellContent(player.getCol()-1, player.getRow()-index))+"    |\n";
 		   }else {
 			   str+="          |\n";
 		   }
@@ -406,17 +406,17 @@ public class DungeonMasterDemo {
 
 
 
-			   str="|     "+handleCellNat(engine.getEnv().cellNature(player.getCol()-index, player.getRow()-1),engine.getEnv().cellContent(player.getCol()-index, player.getRow()-1))+"    ";
+			   str="|     "+handleCellNat(player,-1,index,engine.getEnv().cellContent(player.getCol()-index, player.getRow()-1))+"    ";
 		   }else {
 			   str="|          ";
 		   }
 		   if(index==0) {
 			   str+="|     P    |";
 		   }else {
-			   str+="|     "+handleCellNat(engine.getEnv().cellNature(player.getCol()-index, player.getRow()),engine.getEnv().cellContent(player.getCol()-index, player.getRow()))+"    |";
+			   str+="|     "+handleCellNat(player,0, index,engine.getEnv().cellContent(player.getCol()-index, player.getRow()))+"    |";
 		   }
 		   if(player.getRow()+1<engine.getEnv().getHeight()) {
-			   str+="     "+handleCellNat(engine.getEnv().cellNature(player.getCol()-index, player.getRow()+1),engine.getEnv().cellContent(player.getCol()-index, player.getRow()+1))+"    |\n";
+			   str+="     "+handleCellNat(player,1,index,engine.getEnv().cellContent(player.getCol()-index, player.getRow()+1))+"    |\n";
 		   }else {
 			   str+="          |\n";
 		   }
@@ -428,29 +428,36 @@ public class DungeonMasterDemo {
 
 
 
-			   str="|     "+handleCellNat(engine.getEnv().cellNature(player.getCol()+index, player.getRow()+1),engine.getEnv().cellContent(player.getCol()+index, player.getRow()+1))+"    ";
+			   str="|     "+handleCellNat(player,1, index,engine.getEnv().cellContent(player.getCol()+index, player.getRow()+1))+"    ";
 		   }else {
 			   str="|          ";
 		   }
 		   if(index==0) {
 			   str+="|     P    |";
 		   }else {
-			   str+="|     "+handleCellNat(engine.getEnv().cellNature(player.getCol()+index, player.getRow()+0),engine.getEnv().cellContent(player.getCol()+index, player.getRow()+0))+"    |";
+			   str+="|     "+handleCellNat(player,0, index,engine.getEnv().cellContent(player.getCol()+index, player.getRow()+0))+"    |";
 		   }
 		   if(player.getRow()-1>=0) {
-			   str+="     "+handleCellNat(engine.getEnv().cellNature(player.getCol()+index, player.getRow()-1),engine.getEnv().cellContent(player.getCol()+index, player.getRow()-1))+"    |\n";
+			   str+="     "+handleCellNat(player,-1, index,engine.getEnv().cellContent(player.getCol()+index, player.getRow()-1))+"    |\n";
 		   }else {
 			   str+="          |\n";
 		   }
 	   }
 	   break;
 	   }
+	   if(index>=2) {
+		   str="|     *    "+str+"     *    |\n";
+	   }else {
+		   str="          "+str;
+	   }
 	   return str;
    }
-   private static String handleCellNat(Cell nat,OptionService<MobService> opt) {
+   private static String handleCellNat(PlayerService player ,int x,int y ,OptionService<MobService> opt) {
+	   Cell nat = player.getViewable(x, y);
+	   if(nat!=null) {
 	   switch(nat) {
 	   	case WLL:
-	   		return "*";
+	   		return "q";
 		  case EMP:
 			  switch(opt.getOption()) {
 			  case No:
@@ -480,6 +487,9 @@ public class DungeonMasterDemo {
 				  default:
 					  return " ";
 		  }
+	   }else {
+	   return "*";
+	   }
    }
    private static void drawAsciiPanelSquare(JPanel panel) {
 	   panel.removeAll();
@@ -491,13 +501,71 @@ public class DungeonMasterDemo {
 	    	  }
 	      }
 	      c_panel.fill=GridBagConstraints.HORIZONTAL;
-	      String str = "___________________________\n";
+	      String str = "_____________________________________________\n";
 	      JLabel label = new JLabel(str); 
 	      label.setForeground(Color.white);
 	      c_panel.gridx = 0;
 	      c_panel.gridy = 0;
 	      panel.add(label,c_panel);
-	      str = "|          |          |          |\n";
+	      str = "|          |          |          |          |          |\n";
+	      str = str.replace(" ","  ");
+	      label = new JLabel(str);
+	      label.setForeground(Color.white);
+	      c_panel.gridx = 0;
+	      c_panel.gridy = c_panel.gridy+1;
+	      panel.add(label,c_panel);
+	      
+	      str = gereLine(player, 4);
+	      str = str.replace(" ","  ");
+	      label = new JLabel(str);
+	      label.setForeground(Color.white);
+	      c_panel.gridx = 0;
+	      c_panel.gridy = c_panel.gridy+1;
+	      panel.add(label,c_panel);
+	      
+	      str = "|          |          |          |          |          |\n";
+	      str = str.replace(" ","  ");
+	      label = new JLabel(str);
+	      label.setForeground(Color.white);
+	      c_panel.gridx = 0;
+	      c_panel.gridy = c_panel.gridy+1;
+	      panel.add(label,c_panel);
+	      str = "_____________________________________________\n";
+	      label = new JLabel(str); 
+	      label.setForeground(Color.white);
+	      c_panel.gridx = 0;
+	      c_panel.gridy = c_panel.gridy+1;
+	      panel.add(label,c_panel);
+	      str = "|          |          |          |          |          |\n";
+	      str = str.replace(" ","  ");
+	      label = new JLabel(str);
+	      label.setForeground(Color.white);
+	      c_panel.gridx = 0;
+	      c_panel.gridy = c_panel.gridy+1;
+	      panel.add(label,c_panel);
+	      
+	      str = gereLine(player, 3);
+	      str = str.replace(" ","  ");
+	      label = new JLabel(str);
+	      label.setForeground(Color.white);
+	      c_panel.gridx = 0;
+	      c_panel.gridy = c_panel.gridy+1;
+	      panel.add(label,c_panel);
+	      
+	      str = "|          |          |          |          |          |\n";
+	      str = str.replace(" ","  ");
+	      label = new JLabel(str);
+	      label.setForeground(Color.white);
+	      c_panel.gridx = 0;
+	      c_panel.gridy = c_panel.gridy+1;
+	      panel.add(label,c_panel);
+	      str = "_____________________________________________\n";
+	      label = new JLabel(str); 
+	      label.setForeground(Color.white);
+	      c_panel.gridx = 0;
+	      c_panel.gridy = c_panel.gridy+1;
+	      panel.add(label,c_panel);
+	      str = "|          |          |          |          |          |\n";
 	      str = str.replace(" ","  ");
 	      label = new JLabel(str);
 	      label.setForeground(Color.white);
@@ -513,21 +581,21 @@ public class DungeonMasterDemo {
 	      c_panel.gridy = c_panel.gridy+1;
 	      panel.add(label,c_panel);
 	      
-	      str = "|          |          |          |\n";
+	      str = "|          |          |          |          |          |\n";
 	      str = str.replace(" ","  ");
 	      label = new JLabel(str);
 	      label.setForeground(Color.white);
 	      c_panel.gridx = 0;
 	      c_panel.gridy = c_panel.gridy+1;
 	      panel.add(label,c_panel);
-	      str = "___________________________\n";
+	      str = "_____________________________________________\n";
 	      str = str.replace(" ","  ");
 	      label = new JLabel(str); 
 	      label.setForeground(Color.white);
 	      c_panel.gridx = 0;
 	      c_panel.gridy = c_panel.gridy+1;
 	      panel.add(label,c_panel);
-	      str = "|          |          |          |\n";
+	      str = "          |          |          |          |\n";
 	      str = str.replace(" ","  ");
 	      label = new JLabel(str); 
 	      label.setForeground(Color.white);
@@ -543,28 +611,28 @@ public class DungeonMasterDemo {
 	      c_panel.gridy = c_panel.gridy+1;
 	      panel.add(label,c_panel);
 	      
-	      str = "|          |          |          |\n";
+	      str = "          |          |          |          |\n";
 	      str = str.replace(" ","  ");
 	      label = new JLabel(str); 
 	      label.setForeground(Color.white);
 	      c_panel.gridx = 0;
 	      c_panel.gridy = c_panel.gridy+1;
 	      panel.add(label,c_panel);
-	      str = "___________________________\n";
+	      str = "          ___________________________\n";
 	      str = str.replace(" ","  ");
 	      label = new JLabel(str);
 	      label.setForeground(Color.white);
 	      c_panel.gridx = 0;
 	      c_panel.gridy = c_panel.gridy+1;
 	      panel.add(label,c_panel);
-	      str = "|          |          |          |\n";
+	      str = "          |          |          |          |\n";
 	      str = str.replace(" ","  ");
 	      label = new JLabel(str); 
 	      label.setForeground(Color.white);
 	      c_panel.gridx = 0;
 	      c_panel.gridy = c_panel.gridy+1;
 	      panel.add(label,c_panel);
-	      str = "|          |          |          |\n";
+	      str = "          |          |          |          |\n";
 	      str = str.replace(" ","  ");
 	      label = new JLabel(str); 
 	      label.setForeground(Color.white);
@@ -581,28 +649,28 @@ public class DungeonMasterDemo {
 	      panel.add(label,c_panel);
 	      
 	     
-	      str = "|          |          |          |\n";
+	      str = "          |          |          |          |\n";
 	      str = str.replace(" ","  ");
 	      label = new JLabel(str ); 
 	      label.setForeground(Color.white);
 	      c_panel.gridx = 0;
 	      c_panel.gridy = c_panel.gridy+1;
 	      panel.add(label,c_panel);
-	      str = "___________________________\n";
+	      str = "          ___________________________\n";
 	      str = str.replace(" ","  ");
 	      label = new JLabel(str ); 
 	      label.setForeground(Color.white);
 	      c_panel.gridx = 0;
 	      c_panel.gridy = c_panel.gridy+1;
 	      panel.add(label,c_panel);
-	      str = "|          |          |          |\n";
+	      str = "          |          |          |          |\n";
 	      str = str.replace(" ","  ");
 	      label = new JLabel(str);
 	      label.setForeground(Color.white);
 	      c_panel.gridx = 0;
 	      c_panel.gridy = c_panel.gridy+1;
 	      panel.add(label,c_panel);
-	      str = "|          |          |          |\n";
+	      str = "          |          |          |          |\n";
 	      str = str.replace(" ","  ");
 	      label = new JLabel(str);
 	      label.setForeground(Color.white);
@@ -619,14 +687,14 @@ public class DungeonMasterDemo {
 	      c_panel.gridy = c_panel.gridy+1;
 	      panel.add(label,c_panel);
 	      
-	      str = "|          |          |          |\n";
+	      str = "          |          |          |          |\n";
 	      str = str.replace(" ","  ");
 	      label = new JLabel(str);
 	      label.setForeground(Color.white);
 	      c_panel.gridx = 0;
 	      c_panel.gridy = c_panel.gridy+1;
 	      panel.add(label,c_panel);
-	      str = "___________________________\n";
+	      str = "          ___________________________\n";
 	      str = str.replace(" ","  ");
 	      label = new JLabel(str);
 	      label.setForeground(Color.white);

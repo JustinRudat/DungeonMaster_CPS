@@ -143,7 +143,7 @@ public class EngineImplem implements EngineService {
 			cow.init(env_tmp, x, y, Dir.N,4);
 			addEntity(cow);
 		}
-		int nb_item = 50+rand.nextInt(4);
+		int nb_item = 4+rand.nextInt(4);
 		for(int i =0; i<nb_item;i++) {
 			LootService loot = new LootImplem();
 			int x = 1+rand.nextInt(default_largeur-1);

@@ -57,13 +57,13 @@ public class PlayerImplem extends EntityImplem implements PlayerService {
 		
 			switch(this.getFace()) {
 				case N:
-					return this.getEnv().cellNature(this.getCol()+x,this.getRow()+ y);
+					return this.getEnv().cellNature(this.getCol()+x,this.getRow() + y);
 				case S:
-					return this.getEnv().cellNature(this.getCol()-x,this.getRow()- y);
+					return this.getEnv().cellNature(this.getCol()+x,this.getRow() - y);
 				case E:
-					return this.getEnv().cellNature(this.getCol()+y,this.getRow()- x);
+					return this.getEnv().cellNature(this.getCol()+y,this.getRow() + x);
 				case W:
-					return this.getEnv().cellNature(this.getCol()-y,this.getRow()+ x);
+					return this.getEnv().cellNature(this.getCol()-y,this.getRow() + x);
 				default:
 					break;
 			}
@@ -74,9 +74,23 @@ public class PlayerImplem extends EntityImplem implements PlayerService {
 	@Override
 	public Cell getViewable(int x, int y) {
 		if(x<=1 && x>=-1) {
+			if(y==0||y==1||y==-1) {
+				return this.getNature(x, y);
+			}
 			if(y==2) {
-				if(this.getNature(x, y-1)!=Cell.WLL&&this.getNature(x, y-1)!=Cell.DNC&&this.getNature(x, y-1)!=Cell.DWC) {
+				if(this.getNature(0, y-1)!=Cell.WLL&&this.getNature(0, y-1)!=Cell.DNC&&this.getNature(0, y-1)!=Cell.DWC) {
 					return this.getNature(x, y);
+				}
+			}else
+			if(y==4) {
+				if(x==0) {
+					if(this.getNature(x, y-1)!=Cell.WLL&&this.getNature(x, y-1)!=Cell.DNC&&this.getNature(x, y-1)!=Cell.DWC) {
+						if(this.getNature(x, y-2)!=Cell.WLL&&this.getNature(x, y-2)!=Cell.DNC&&this.getNature(x, y-2)!=Cell.DWC) {
+							if(this.getNature(x, y-3)!=Cell.WLL&&this.getNature(x, y-3)!=Cell.DNC&&this.getNature(x, y-3)!=Cell.DWC) {
+								return this.getNature(x, y);
+							}
+						}
+					}
 				}
 			}else if(y==3) {
 				if(this.getViewable(x, y-1)!=null) {

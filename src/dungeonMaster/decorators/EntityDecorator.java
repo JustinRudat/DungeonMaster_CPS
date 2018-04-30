@@ -39,13 +39,23 @@ public  class EntityDecorator extends MobDecorator implements EntityService {
 	}
 
 	@Override
-	public boolean init(EnvironmentService env, int x, int y, Dir dir, int hp, int dmg) {
-		return ((EntityService) this.getDelegate()).init(env, x, y, dir, hp, dmg);
+	public boolean init(EnvironmentService env, int x, int y, Dir dir, int hp, int dmg,int armor) {
+		return ((EntityService) this.getDelegate()).init(env, x, y, dir, hp, dmg,armor);
 	}
 
 	@Override
 	public boolean attack() {
 		return ((EntityService) this.getDelegate()).attack();
+	}
+
+	@Override
+	public boolean setArmor(int armor) {
+		return ((EntityService) this.getDelegate()).setArmor(armor);
+	}
+
+	@Override
+	public int getArmor() {
+		return ((EntityService) this.getDelegate()).getArmor();
 	}
 	
 

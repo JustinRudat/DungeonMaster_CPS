@@ -15,7 +15,7 @@ public class CowContract extends CowDecorator {
 	}
 
 	@Override
-	public boolean init(EnvironmentService env, int x, int y, Dir dir, int hp,int dmg) {
+	public boolean init(EnvironmentService env, int x, int y, Dir dir, int hp,int dmg,int armor) {
 		try {
 			if(hp!=3&&hp!=4) {
 				throw new PreConditionException("hp for cow doesnt match 3 or 4");
@@ -24,7 +24,7 @@ public class CowContract extends CowDecorator {
 			e.printStackTrace();
 			return false;
 		}
-		boolean retour =  super.init(env, x, y, dir,hp,dmg);
+		boolean retour =  super.init(env, x, y, dir,hp,dmg,armor);
 		
 		try {
 			if(this.getDegats()!=1) {

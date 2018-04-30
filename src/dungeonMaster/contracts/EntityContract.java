@@ -18,7 +18,7 @@ public class EntityContract extends EntityDecorator {
 	}
 
 	@Override
-	public boolean init(EnvironmentService env, int x, int y, Dir dir, int hp,int degat) {
+	public boolean init(EnvironmentService env, int x, int y, Dir dir, int hp,int degat,int armor) {
 		try {
 			if(hp<=0) {
 				throw new PreConditionException("hp initialized to 0 or less");
@@ -28,7 +28,7 @@ public class EntityContract extends EntityDecorator {
 			return false;
 		}
 		
-		return super.init(env, x, y, dir, hp, degat);
+		return super.init(env, x, y, dir, hp, degat,armor);
 	}
 
 	@Override

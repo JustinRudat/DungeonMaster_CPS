@@ -10,6 +10,7 @@ import dungeonMaster.services.OptionService;
 public class EntityImplemBug extends MobImplem implements EntityService{
 	private int healthPoints;
 	private int degats;
+	private int armor;
 	
 	public int getDegats() {
 		return degats;
@@ -30,10 +31,11 @@ public class EntityImplemBug extends MobImplem implements EntityService{
 	}
 
 	@Override
-	public boolean init(EnvironmentService env, int x, int y, Dir dir, int hp, int dmg) {
+	public boolean init(EnvironmentService env, int x, int y, Dir dir, int hp, int dmg,int armor) {
 		super.init(env,x,y,dir);
 		this.healthPoints = hp;
 		this.degats = dmg;
+		this.armor = armor;
 		return true;
 		
 	}
@@ -90,6 +92,17 @@ public class EntityImplemBug extends MobImplem implements EntityService{
 	public boolean step() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public boolean setArmor(int armor) {
+		this.armor = armor;
+		return true;
+	}
+
+	@Override
+	public int getArmor() {
+		return this.armor;
 	}
 
 	

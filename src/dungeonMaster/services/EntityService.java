@@ -13,6 +13,10 @@ public interface EntityService extends /*includes */ MobService  {
 	
 	public boolean setDegats(int dmg);
 	
+	public boolean setArmor(int armor);
+	
+	public int getArmor();
+	
 	/**
 	 * pre: this.init(env,x,y,dir,hp) requires hp > 0 
 	 * 
@@ -24,7 +28,7 @@ public interface EntityService extends /*includes */ MobService  {
 	 * @param dir
 	 * @param hp
 	 */
-	public boolean init(EnvironmentService env, int x, int y, Dir dir, int hp,int dmg);
+	public boolean init(EnvironmentService env, int x, int y, Dir dir, int hp,int dmg,int armor);
 	
 	/**
 	 * @return 

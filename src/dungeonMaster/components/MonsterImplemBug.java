@@ -13,7 +13,7 @@ import dungeonMaster.services.Option;
 import dungeonMaster.services.OptionService;
 import dungeonMaster.services.PlayerService;
 
-public class MonsterImplem extends EntityImplem implements MonsterService {
+public class MonsterImplemBug extends EntityImplem implements MonsterService {
 	private int portee;
 	private int player_at_x;
 	private int player_at_y;

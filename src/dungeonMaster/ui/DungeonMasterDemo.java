@@ -22,7 +22,7 @@ import dungeonMaster.services.EntityService;
 import dungeonMaster.services.EnvironmentService;
 import dungeonMaster.services.LootService;
 import dungeonMaster.services.MobService;
-import dungeonMaster.services.MonstreService;
+import dungeonMaster.services.MonsterService;
 import dungeonMaster.services.OptionService;
 import dungeonMaster.services.PlayerService;
 
@@ -514,7 +514,7 @@ public class DungeonMasterDemo {
 				  if(opt.getElem() instanceof CowService) {
 					  return "C";
 				  }
-				  if(opt.getElem() instanceof MonstreService) {
+				  if(opt.getElem() instanceof MonsterService) {
 					  return "G";
 				  }
 				  default:

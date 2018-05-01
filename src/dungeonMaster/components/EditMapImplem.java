@@ -9,8 +9,8 @@ import dungeonMaster.services.EditMapService;
 import dungeonMaster.services.MapService;
 
 public class EditMapImplem extends MapImplem implements EditMapService{
-	private final int default_hauteur = 40;
-	private final int default_largeur = 50;
+	private final int default_hauteur = 20;
+	private final int default_largeur = 30;
 	
 	@Override
 	public boolean isReachable(int x1, int y1, int x2, int y2) {
@@ -113,7 +113,7 @@ public class EditMapImplem extends MapImplem implements EditMapService{
 
 	public void randomEdit() {
 		Random rand = new Random();
-		int rand_prem_mur = 10+rand.nextInt(6);
+		int rand_prem_mur = 7+rand.nextInt(6);
 		int rand_sec_mur = rand_prem_mur+3+rand.nextInt(4);
 		int nb_salle_g = 2+rand.nextInt(3);
 		int nb_salle_d = 2+rand.nextInt(3);
@@ -129,7 +129,7 @@ public class EditMapImplem extends MapImplem implements EditMapService{
 		}
 		switch(nb_salle_g){
 				case 2:
-					int h_prem = 10+rand.nextInt(30);
+					int h_prem = 4+rand.nextInt(5);
 					int test = rand.nextInt(3);
 					if(test == 0) {
 						for(int k = 1; k<rand_prem_mur;k++) {
@@ -191,7 +191,7 @@ public class EditMapImplem extends MapImplem implements EditMapService{
 		
 		switch(nb_salle_d){
 			case 2:
-				int h_prem = 10+rand.nextInt(30);
+				int h_prem = 4+rand.nextInt(5);
 				int test = rand.nextInt(3);
 				if(test == 0) {
 					for(int k = rand_sec_mur; k<this.getWidth();k++) {

@@ -12,6 +12,7 @@ import dungeonMaster.services.EnvironmentService;
 import dungeonMaster.services.LootService;
 import dungeonMaster.services.LootType;
 import dungeonMaster.services.MobService;
+import dungeonMaster.services.MonstreService;
 import dungeonMaster.services.Option;
 import dungeonMaster.services.OptionService;
 import dungeonMaster.services.PlayerService;
@@ -22,8 +23,8 @@ public class EngineImplem implements EngineService {
 	private EnvironmentService env;
 	private ArrayList<EntityService> entities;
 	
-	private final int default_hauteur = 40;
-	private final int default_largeur = 50;
+	private final int default_hauteur = 20;
+	private final int default_largeur = 30;
 	
 	@Override
 	public EnvironmentService getEnv() {
@@ -94,6 +95,7 @@ public class EngineImplem implements EngineService {
 						if(!exist_another_player) {
 							this.isgameover=true;
 							this.iswin=false;
+							return true;
 						}
 					}
 					OptionService<MobService> opt = new OptionImplem<>();
@@ -131,7 +133,7 @@ public class EngineImplem implements EngineService {
 		Random rand = new Random();
 		int nb_mob = 10+rand.nextInt(6);
 		for(int i =0; i<nb_mob;i++) {
-			CowService cow = new CowImplem();
+			MonstreService cow = new MonsterImplem();
 			int x = 1+rand.nextInt(default_largeur-1);
 			int y = 1+rand.nextInt(default_hauteur-1);
 			Cell cell = env_tmp.cellNature(x,y);
@@ -140,7 +142,7 @@ public class EngineImplem implements EngineService {
 				y = 1+rand.nextInt(default_hauteur-1);
 				cell = env_tmp.cellNature(x,y);
 			}
-			cow.init(env_tmp, x, y, Dir.N,4);
+			cow.init(env_tmp, x, y, Dir.N,5,1,1,2);
 			addEntity(cow);
 		}
 		int nb_item = 4+rand.nextInt(4);

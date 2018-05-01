@@ -22,6 +22,7 @@ import dungeonMaster.services.EntityService;
 import dungeonMaster.services.EnvironmentService;
 import dungeonMaster.services.LootService;
 import dungeonMaster.services.MobService;
+import dungeonMaster.services.MonstreService;
 import dungeonMaster.services.OptionService;
 import dungeonMaster.services.PlayerService;
 
@@ -29,6 +30,8 @@ public class DungeonMasterDemo {
    private static final Color GREEN = new Color(200, 255, 200);
    private static final Color BLUE = new Color(200, 200, 255);
    private static EngineService engine = new EngineImplem();
+   private static MyPanel panel_info=new MyPanel(1200, 100);
+   private static PlayerService player_info ; 
  
    
    
@@ -43,15 +46,22 @@ public class DungeonMasterDemo {
     		  player = (PlayerService) entity;
     	  }
       }
+      player_info = player;
       final PlayerService player_final = player;
       // note that a JFrame's contentPane uses BorderLayout by default
-      frame.getContentPane().add(new MyPanel(1200, 80), BorderLayout.SOUTH);
-      MyPanel display = new MyPanel(900, 620);
+      
+      panel_info.setBackground(Color.WHITE);
+      JLabel lab = new JLabel(handlePlayerInfo(player));
+      panel_info.add(lab);
+      frame.getContentPane().add(panel_info, BorderLayout.SOUTH);
+      MyPanel display = new MyPanel(700, 520);
       display.setLayout(new GridBagLayout());
       
       display.setBackground(Color.BLACK);
       frame.getContentPane().add(display, BorderLayout.WEST);
       drawAsciiPanelSquare(display);
+      
+      
       MyPanel panel_button = new MyPanel(300,620);
       panel_button.setLayout(new GridBagLayout());
       GridBagConstraints c = new GridBagConstraints();
@@ -354,7 +364,10 @@ public class DungeonMasterDemo {
    }
    
    private static String gereLine(PlayerService player,int index) {
-	   String str = "|          |          |          |\n";
+	   String str = "|     *    |     *    |     *    |\n";
+	   if(player == null) {
+		   return "Game is Over";
+	   }
 	   switch(player.getFace()) {
 	   case N:
 		   if(player.getRow()+index<engine.getEnv().getHeight()) {
@@ -367,7 +380,15 @@ public class DungeonMasterDemo {
 				   str="|          ";
 			   }
 			   if(index==0) {
-				   str+="|     P    |";
+				   if(engine.isGameOver()) {
+					   if(engine.isWin()) {
+						   str+="|     W    |";
+					   }else {
+						   str+="|     X    |";
+					   }
+				   }else {
+					   str+="|     P    |";
+				   }
 			   }else {
 				   str+="|     "+handleCellNat(player,0, index,engine.getEnv().cellContent(player.getCol(), player.getRow()+index))+"    |";
 			   }
@@ -389,7 +410,15 @@ public class DungeonMasterDemo {
 			   str="|          ";
 		   }
 		   if(index==0) {
-			   str+="|     P    |";
+			   if(engine.isGameOver()) {
+				   if(engine.isWin()) {
+					   str+="|     W    |";
+				   }else {
+					   str+="|     X    |";
+				   }
+			   }else {
+				   str+="|     P    |";
+			   }
 		   }else {
 			   str+="|     "+handleCellNat(player,0, index,engine.getEnv().cellContent(player.getCol(), player.getRow()-index))+"    |";
 		   }
@@ -411,7 +440,15 @@ public class DungeonMasterDemo {
 			   str="|          ";
 		   }
 		   if(index==0) {
-			   str+="|     P    |";
+			   if(engine.isGameOver()) {
+				   if(engine.isWin()) {
+					   str+="|     W    |";
+				   }else {
+					   str+="|     X    |";
+				   }
+			   }else {
+				   str+="|     P    |";
+			   }
 		   }else {
 			   str+="|     "+handleCellNat(player,0, index,engine.getEnv().cellContent(player.getCol()-index, player.getRow()))+"    |";
 		   }
@@ -433,7 +470,15 @@ public class DungeonMasterDemo {
 			   str="|          ";
 		   }
 		   if(index==0) {
-			   str+="|     P    |";
+			   if(engine.isGameOver()) {
+				   if(engine.isWin()) {
+					   str+="|     W    |";
+				   }else {
+					   str+="|     X    |";
+				   }
+			   }else {
+				   str+="|     P    |";
+			   }
 		   }else {
 			   str+="|     "+handleCellNat(player,0, index,engine.getEnv().cellContent(player.getCol()+index, player.getRow()+0))+"    |";
 		   }
@@ -468,6 +513,9 @@ public class DungeonMasterDemo {
 				  }
 				  if(opt.getElem() instanceof CowService) {
 					  return "C";
+				  }
+				  if(opt.getElem() instanceof MonstreService) {
+					  return "G";
 				  }
 				  default:
 					  return " ";
@@ -704,6 +752,20 @@ public class DungeonMasterDemo {
 	      
    }
    
+   private static String handlePlayerInfo(PlayerService player ) {
+	   if(player.getHealthPoints()==0) {
+		   return "Game is Over";
+	   }
+	   return "HP : "+player.getHealthPoints()+"|| dmg = "+player.getDegats()+"|| armor = "+player.getArmor();
+   }
+   
+   private static void handlePannelInfo(MyPanel panel) {
+	   panel.removeAll();
+	   JLabel lab = new JLabel(handlePlayerInfo(player_info));
+	   panel_info.add(lab);
+	   panel_info.updateUI();
+   }
+   
    
    private static void initEngine(EngineService engine) {
 	   engine.generateRandomGame();
@@ -720,8 +782,9 @@ public class DungeonMasterDemo {
         		  MyPanel display = createAndShowGui();
     		      while(!engine.isGameOver()) {
     		    	  runStep();
-    		    	  drawAsciiPanelSquare(display);
-    		    	  display.updateUI();
+	    		    drawAsciiPanelSquare(display);
+	    		    display.updateUI();
+	    		    handlePannelInfo(panel_info);
     		    	  this.sleep(500);
     				
     		      }

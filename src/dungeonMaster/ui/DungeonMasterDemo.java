@@ -518,7 +518,7 @@ public class DungeonMasterDemo {
 					  return "G";
 				  }
 				  default:
-					  return " ";
+					  return "*";
 			  }
 		  case IN:
 			  return "+";
@@ -533,7 +533,7 @@ public class DungeonMasterDemo {
 			  case DWO:
 				  return "_o";
 				  default:
-					  return " ";
+					  return "*";
 		  }
 	   }else {
 	   return "*";
@@ -753,10 +753,15 @@ public class DungeonMasterDemo {
    }
    
    private static String handlePlayerInfo(PlayerService player ) {
-	   if(player.getHealthPoints()==0) {
-		   return "Game is Over";
+	   
+	   if(engine.isGameOver()) {
+		   if(engine.isWin()) {
+			   return "YOU WON";
+		   }else {
+			   return "Gaem is Over";
+		   }
 	   }
-	   return "HP : "+player.getHealthPoints()+"|| dmg = "+player.getDegats()+"|| armor = "+player.getArmor();
+	   return "HP : "+player.getHealthPoints()+"|| dmg = "+player.getDegats()+"|| armor = "+player.getArmor()+"|| dir = "+player.getFace();
    }
    
    private static void handlePannelInfo(MyPanel panel) {

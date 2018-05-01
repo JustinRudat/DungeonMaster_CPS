@@ -82,8 +82,8 @@ public class EditMapImplem extends MapImplem implements EditMapService{
 		int index_in_y =0;
 		int index_out_x =0;
 		int index_out_y =0;
-		for(int i=0;i<this.getHeight();i++) {
-			for(int j=0;j<this.getWidth();j++) {
+		for(int i=0;i<this.getWidth();i++) {
+			for(int j=0;j<this.getHeight();j++) {
 				
 				Cell current_cell = this.getPlateau()[i][j];
 				if(current_cell==Cell.IN) {
@@ -117,8 +117,8 @@ public class EditMapImplem extends MapImplem implements EditMapService{
 		int rand_sec_mur = rand_prem_mur+3+rand.nextInt(4);
 		int nb_salle_g = 2+rand.nextInt(3);
 		int nb_salle_d = 2+rand.nextInt(3);
-		for(int i =0; i <this.getWidth()-1;i++) {
-			for(int j = 0;j<this.getHeight()-1;j++) {
+		for(int i =0; i <this.getWidth();i++) {
+			for(int j = 0;j<this.getHeight();j++) {
 				if(i==0 || i==this.getWidth()-1 ||j==0||j==this.getHeight()-1) {
 					setNature(i, j, Cell.WLL);
 				}

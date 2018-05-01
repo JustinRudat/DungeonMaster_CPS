@@ -142,7 +142,7 @@ public class EngineImplem implements EngineService {
 				y = 1+rand.nextInt(default_hauteur-1);
 				cell = env_tmp.cellNature(x,y);
 			}
-			cow.init(env_tmp, x, y, Dir.N,5,1,1,2);
+			cow.init(env_tmp, x, y, Dir.N,10,2,1,2);
 			addEntity(cow);
 		}
 		int nb_item = 4+rand.nextInt(4);
@@ -196,7 +196,7 @@ public class EngineImplem implements EngineService {
 		}
 		
 		PlayerService player = new PlayerImplem();
-		player.init(env_tmp, x, y, Dir.N, 10, 2, 0);
+		player.init(env_tmp, x, y, Dir.N, 50, 3, 0);
 		addEntity(player);
 		this.env = env_tmp;
 		this.isgameover = false;

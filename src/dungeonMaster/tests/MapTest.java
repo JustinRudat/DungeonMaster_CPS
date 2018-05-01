@@ -60,7 +60,7 @@ public class MapTest extends TestCase{
 		int x = largeur /2 ;
 		int y = hauteur /2;
 		map.setNature(0, 0, Cell.IN);
-		map.setNature(hauteur -2, largeur-2, Cell.OUT);
+		map.setNature(x, y, Cell.OUT);
 		assertTrue(map.isReady());
 	}
 	

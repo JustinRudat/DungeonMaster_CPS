@@ -94,8 +94,8 @@ public class MobImplem implements MobService{
 				
 					break;
 				case E:
-					if(this.getRow()<this.getEnv().getWidth()) {	
-						if(this.getCol()+1< this.getEnv().getHeight()) {
+					if(this.getRow()<this.getEnv().getHeight()) {	
+						if(this.getCol()+1< this.getEnv().getWidth()) {
 							nature = this.getEnv().cellNature(this.getCol()+1,this.getRow());
 							if(nature==Cell.EMP || nature==Cell.DWO ||nature ==Cell.OUT||nature ==Cell.IN||nature==Cell.DNO) {
 								if(this.getEnv().cellContent(this.getCol()+1,this.getRow()).getOption()==Option.No) {
@@ -136,7 +136,7 @@ public class MobImplem implements MobService{
 					
 					break;
 				case W:
-					if(this.getRow()<this.getEnv().getWidth()) {	
+					if(this.getRow()<this.getEnv().getHeight()) {	
 						if(this.getCol()-1>=0) {
 							nature = this.getEnv().cellNature(this.getCol()-1,this.getRow());
 							if(nature==Cell.EMP || nature==Cell.DWO ||nature ==Cell.OUT||nature ==Cell.IN||nature==Cell.DNO) {
@@ -168,8 +168,8 @@ public class MobImplem implements MobService{
 		if(this.getCol()>=0 && this.getRow()>=0) {
 			switch(this.getFace()) {
 				case S: 
-					if(this.getCol()<this.getEnv().getHeight()) {
-						if(this.getRow()+1<this.getEnv().getWidth()) {	
+					if(this.getCol()<this.getEnv().getWidth()) {
+						if(this.getRow()+1<this.getEnv().getHeight()) {	
 							nature = this.getEnv().cellNature(this.getCol(),this.getRow()+1);
 							if(nature==Cell.EMP || nature==Cell.DWO ||nature ==Cell.OUT||nature ==Cell.IN||nature==Cell.DNO) {
 								if(this.getEnv().cellContent(this.getCol(),this.getRow()+1).getOption()==Option.No) {
@@ -190,8 +190,8 @@ public class MobImplem implements MobService{
 				
 					break;
 				case W:
-					if(this.getRow()<this.getEnv().getWidth()) {	
-						if(this.getCol()+1< this.getEnv().getHeight()) {
+					if(this.getRow()<this.getEnv().getHeight()) {	
+						if(this.getCol()+1< this.getEnv().getWidth()) {
 							nature = this.getEnv().cellNature(this.getCol()+1,this.getRow());
 							if(nature==Cell.EMP || nature==Cell.DWO ||nature ==Cell.OUT||nature ==Cell.IN||nature==Cell.DNO) {
 								if(this.getEnv().cellContent(this.getCol()+1,this.getRow()).getOption()==Option.No) {
@@ -211,7 +211,7 @@ public class MobImplem implements MobService{
 					
 					break;
 				case N: 
-					if(this.getCol()<this.getEnv().getHeight()) {
+					if(this.getCol()<this.getEnv().getWidth()) {
 						if(this.getRow()-1>=0) {	
 							nature = this.getEnv().cellNature(this.getCol(),this.getRow()-1);
 							if(nature==Cell.EMP || nature==Cell.DWO ||nature ==Cell.OUT||nature ==Cell.IN||nature==Cell.DNO) {
@@ -232,7 +232,7 @@ public class MobImplem implements MobService{
 					
 					break;
 				case E:
-					if(this.getRow()<this.getEnv().getWidth()) {	
+					if(this.getRow()<this.getEnv().getHeight()) {	
 						if(this.getCol()-1>=0) {
 							nature = this.getEnv().cellNature(this.getCol()-1,this.getRow());
 							if(nature==Cell.EMP || nature==Cell.DWO ||nature ==Cell.OUT||nature ==Cell.IN||nature==Cell.DNO) {
@@ -328,8 +328,8 @@ public class MobImplem implements MobService{
 				
 					break;
 				case S:
-					if(this.getRow()<this.getEnv().getWidth()) {	
-						if(this.getCol()+1< this.getEnv().getHeight()) {
+					if(this.getRow()<this.getEnv().getHeight()) {	
+						if(this.getCol()+1< this.getEnv().getWidth()) {
 							nature = this.getEnv().cellNature(this.getCol()+1,this.getRow());
 							if(nature==Cell.EMP || nature==Cell.DWO ||nature ==Cell.OUT||nature ==Cell.IN||nature==Cell.DNO) {
 								if(this.getEnv().cellContent(this.getCol()+1,this.getRow()).getOption()==Option.No) {
@@ -349,7 +349,7 @@ public class MobImplem implements MobService{
 					
 					break;
 				case W: 
-					if(this.getCol()<this.getEnv().getHeight()) {
+					if(this.getCol()<this.getEnv().getWidth()) {
 						if(this.getRow()-1>=0) {	
 							nature = this.getEnv().cellNature(this.getCol(),this.getRow()-1);
 							if(nature==Cell.EMP || nature==Cell.DWO ||nature ==Cell.OUT||nature ==Cell.IN||nature==Cell.DNO) {
@@ -370,7 +370,7 @@ public class MobImplem implements MobService{
 					
 					break;
 				case N:
-					if(this.getRow()<this.getEnv().getWidth()) {	
+					if(this.getRow()<this.getEnv().getHeight()) {	
 						if(this.getCol()-1>=0) {
 							nature = this.getEnv().cellNature(this.getCol()-1,this.getRow());
 							if(nature==Cell.EMP || nature==Cell.DWO ||nature ==Cell.OUT||nature ==Cell.IN||nature==Cell.DNO) {
@@ -402,8 +402,8 @@ public class MobImplem implements MobService{
 		if(this.getCol()>=0 && this.getRow()>=0) {
 			switch(this.getFace()) {
 				case W: 
-					if(this.getCol()<this.getEnv().getHeight()) {
-						if(this.getRow()+1<this.getEnv().getWidth()) {	
+					if(this.getCol()<this.getEnv().getWidth()) {
+						if(this.getRow()+1<this.getEnv().getHeight()) {	
 							nature = this.getEnv().cellNature(this.getCol(),this.getRow()+1);
 							if(nature==Cell.EMP || nature==Cell.DWO ||nature ==Cell.OUT||nature ==Cell.IN||nature==Cell.DNO) {
 								if(this.getEnv().cellContent(this.getCol(),this.getRow()+1).getOption()==Option.No) {
@@ -424,8 +424,8 @@ public class MobImplem implements MobService{
 				
 					break;
 				case N:
-					if(this.getRow()<this.getEnv().getWidth()) {	
-						if(this.getCol()+1< this.getEnv().getHeight()) {
+					if(this.getRow()<this.getEnv().getHeight()) {	
+						if(this.getCol()+1< this.getEnv().getWidth()) {
 							nature = this.getEnv().cellNature(this.getCol()+1,this.getRow());
 							if(nature==Cell.EMP || nature==Cell.DWO ||nature ==Cell.OUT||nature ==Cell.IN||nature==Cell.DNO) {
 								if(this.getEnv().cellContent(this.getCol()+1,this.getRow()).getOption()==Option.No) {
@@ -445,7 +445,7 @@ public class MobImplem implements MobService{
 					
 					break;
 				case E: 
-					if(this.getCol()<this.getEnv().getHeight()) {
+					if(this.getCol()<this.getEnv().getWidth()) {
 						if(this.getRow()-1>=0) {	
 							nature = this.getEnv().cellNature(this.getCol(),this.getRow()-1);
 							if(nature==Cell.EMP || nature==Cell.DWO ||nature ==Cell.OUT||nature ==Cell.IN||nature==Cell.DNO) {
@@ -466,7 +466,7 @@ public class MobImplem implements MobService{
 					
 					break;
 				case S:
-					if(this.getRow()<this.getEnv().getWidth()) {	
+					if(this.getRow()<this.getEnv().getHeight()) {	
 						if(this.getCol()-1>=0) {
 							nature = this.getEnv().cellNature(this.getCol()-1,this.getRow());
 							if(nature==Cell.EMP || nature==Cell.DWO ||nature ==Cell.OUT||nature ==Cell.IN||nature==Cell.DNO) {

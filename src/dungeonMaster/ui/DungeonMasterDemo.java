@@ -525,13 +525,45 @@ public class DungeonMasterDemo {
 		  case OUT:
 			  return "O";
 		  case DNC:
-		   		return "_c";
+		   		return "f";
 			  case DWC:
-				  return "|c";
+				  return "f";
 			  case DNO:
-				  return "|o";
+				  switch(opt.getOption()) {
+				  case No:
+					  return "o";
+				  case So:
+					  if(opt.getElem() instanceof LootService) {
+						  return "L";
+					  }
+					  if(opt.getElem() instanceof CowService) {
+						  return "C";
+					  }
+					  if(opt.getElem() instanceof MonsterService) {
+						  return "G";
+					  }
+					  default:
+						  return "*";
+				  }
+				  
 			  case DWO:
-				  return "_o";
+				  switch(opt.getOption()) {
+				  case No:
+					  return "o";
+				  case So:
+					  if(opt.getElem() instanceof LootService) {
+						  return "L";
+					  }
+					  if(opt.getElem() instanceof CowService) {
+						  return "C";
+					  }
+					  if(opt.getElem() instanceof MonsterService) {
+						  return "G";
+					  }
+					  default:
+						  return "*";
+				  }
+				  
 				  default:
 					  return "*";
 		  }
@@ -758,7 +790,7 @@ public class DungeonMasterDemo {
 		   if(engine.isWin()) {
 			   return "YOU WON";
 		   }else {
-			   return "Gaem is Over";
+			   return "Game is Over";
 		   }
 	   }
 	   return "HP : "+player.getHealthPoints()+"|| dmg = "+player.getDegats()+"|| armor = "+player.getArmor()+"|| dir = "+player.getFace();

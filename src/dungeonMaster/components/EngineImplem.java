@@ -62,7 +62,22 @@ public class EngineImplem implements EngineService {
 		
 		return this.getEntities().add(entity);
 	}
-
+	
+	public boolean addLoot(int x,int y) {
+		Random rand = new Random();
+		LootService loot = new LootImplem();
+		switch(rand.nextInt(2)) {
+		case 0: 
+			loot.init(this.getEnv(), x, y,LootType.Weapon,1,"epee");
+			break;
+		case 1: 
+			loot.init(this.getEnv(), x, y,LootType.Armor,1,"cote de maille");
+			break;
+		default:
+			break;
+	}
+		return true;
+	}
 	@Override
 	public boolean step() {
 		for(int j=0; j<entities.size();j++) {
@@ -99,9 +114,14 @@ public class EngineImplem implements EngineService {
 						}
 					}
 					OptionService<MobService> opt = new OptionImplem<>();
+					Random rand = new Random();
+					
 					opt.init(null, Option.No);
 					this.getEnv().getContent().set(entity_tmp.getRow()*this.getEnv().getWidth()+entity_tmp.getCol(),opt);
 					entities.remove(entity_tmp);
+					if(rand.nextInt(100)<30) {
+						addLoot(entity_tmp.getCol(),entity_tmp.getRow());
+					}
 					i--;
 				}
 			}

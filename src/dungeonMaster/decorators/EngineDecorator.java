@@ -70,6 +70,11 @@ public class EngineDecorator implements EngineService{
 		return this.delegate.generateRandomGame();
 	}
 
+	@Override
+	public boolean addLoot(int x, int y) {
+		return this.delegate.addLoot(x, y);
+	}
+
 	
 
 }

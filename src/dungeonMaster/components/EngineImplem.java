@@ -12,7 +12,7 @@ import dungeonMaster.services.EnvironmentService;
 import dungeonMaster.services.LootService;
 import dungeonMaster.services.LootType;
 import dungeonMaster.services.MobService;
-import dungeonMaster.services.MonstreService;
+import dungeonMaster.services.MonsterService;
 import dungeonMaster.services.Option;
 import dungeonMaster.services.OptionService;
 import dungeonMaster.services.PlayerService;
@@ -153,7 +153,7 @@ public class EngineImplem implements EngineService {
 		Random rand = new Random();
 		int nb_mob = 10+rand.nextInt(6);
 		for(int i =0; i<nb_mob;i++) {
-			MonstreService cow = new MonsterImplem();
+			MonsterService cow = new MonsterImplem();
 			int x = 1+rand.nextInt(default_largeur-1);
 			int y = 1+rand.nextInt(default_hauteur-1);
 			Cell cell = env_tmp.cellNature(x,y);

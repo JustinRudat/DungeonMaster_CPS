@@ -56,6 +56,10 @@ public class EnvironmentImplem extends MapImplem implements EnvironmentService{
 		content.set(y*this.getWidth()+x,option);
 		return true;
 	}
-
+	
+	@Override
+	public boolean closeDoor(int x,int y) {
+		return super.closeDoor(x, y);
+	}
 	
 }

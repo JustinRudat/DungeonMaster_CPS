@@ -144,7 +144,10 @@ public class EngineImplem implements EngineService {
 		this.entities = new ArrayList<>();
 		EditMapImplem editmap = new EditMapImplem();
 		editmap.init(default_largeur,default_hauteur);
-		editmap.randomEdit();
+		
+		while(!editmap.randomEdit()) {
+			System.out.println("generating a map\n");
+		}
 		
 		EnvironmentService env_tmp = new EnvironmentImplem();
 		env_tmp.init(default_largeur,default_hauteur);
@@ -153,7 +156,11 @@ public class EngineImplem implements EngineService {
 		Random rand = new Random();
 		int nb_mob = 10+rand.nextInt(6);
 		for(int i =0; i<nb_mob;i++) {
+			if(rand.nextInt(100)<=60) {
 			MonsterService cow = new MonsterImplem();
+			}else {
+				CowService cow = new CowImplem();
+			}
 			int x = 1+rand.nextInt(default_largeur-1);
 			int y = 1+rand.nextInt(default_hauteur-1);
 			Cell cell = env_tmp.cellNature(x,y);
@@ -162,7 +169,15 @@ public class EngineImplem implements EngineService {
 				y = 1+rand.nextInt(default_hauteur-1);
 				cell = env_tmp.cellNature(x,y);
 			}
-			cow.init(env_tmp, x, y, Dir.N,10,2,1,2);
+			EntityService cow = null;
+			if(rand.nextInt(100)<=60) {
+				cow = new MonsterImplem();
+				((MonsterService)cow).init(env_tmp, x, y, Dir.N,10,2,1,2);
+			}else {
+				cow = new CowImplem();
+				((CowService)cow).init(env_tmp, x, y, Dir.N,4);
+			}
+			
 			addEntity(cow);
 		}
 		int nb_item = 4+rand.nextInt(4);

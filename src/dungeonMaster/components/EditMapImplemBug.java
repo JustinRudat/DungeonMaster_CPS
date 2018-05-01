@@ -108,6 +108,12 @@ public class EditMapImplemBug extends MapImplem implements EditMapService{
 		return true;
 	}
 
+	@Override
+	public boolean randomEdit() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 	
 	
 

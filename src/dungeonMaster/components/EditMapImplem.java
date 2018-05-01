@@ -9,8 +9,8 @@ import dungeonMaster.services.EditMapService;
 import dungeonMaster.services.MapService;
 
 public class EditMapImplem extends MapImplem implements EditMapService{
-	private final int default_hauteur = 20;
-	private final int default_largeur = 30;
+	private final int default_hauteur = 30;
+	private final int default_largeur = 40;
 	
 	@Override
 	public boolean isReachable(int x1, int y1, int x2, int y2) {
@@ -113,8 +113,8 @@ public class EditMapImplem extends MapImplem implements EditMapService{
 
 	public boolean randomEdit() {
 		Random rand = new Random();
-		int rand_prem_mur = 7+rand.nextInt(6);
-		int rand_sec_mur = rand_prem_mur+3+rand.nextInt(4);
+		int rand_prem_mur = 16;
+		int rand_sec_mur = rand_prem_mur+4;
 		int nb_salle_g = 2+rand.nextInt(3);
 		int nb_salle_d = 2+rand.nextInt(3);
 		for(int i =0; i <this.getWidth();i++) {
@@ -197,17 +197,17 @@ public class EditMapImplem extends MapImplem implements EditMapService{
 					for(int k = rand_sec_mur; k<this.getWidth();k++) {
 						setNature(k, h_prem, Cell.WLL);
 					}
-					int rand_door = 1+rand.nextInt(rand_prem_mur);
+					int rand_door = 2+rand.nextInt(rand_prem_mur);
 					setNature(rand_door, h_prem, Cell.DNC);
 					
-					rand_door = 1+rand.nextInt(h_prem);
+					rand_door = 2+rand.nextInt(h_prem);
 					setNature(rand_sec_mur, rand_door, Cell.DWC);
 				}
 				else if(test == 1) {
 					for(int k = rand_sec_mur; k<this.getWidth();k++) {
 						setNature(k, h_prem, Cell.WLL);
 					}
-					int rand_door = 1+rand.nextInt(rand_prem_mur);
+					int rand_door = 2+rand.nextInt(rand_prem_mur);
 					setNature(rand_door, h_prem, Cell.DNC);
 					
 					rand_door = h_prem+rand.nextInt(this.getHeight()-h_prem);
@@ -216,7 +216,7 @@ public class EditMapImplem extends MapImplem implements EditMapService{
 					for(int k = rand_sec_mur; k<this.getWidth();k++) {
 						setNature(k, h_prem, Cell.WLL);
 					}
-					int rand_door = 1+rand.nextInt(rand_prem_mur);
+					int rand_door = 2+rand.nextInt(rand_prem_mur);
 					setNature(rand_sec_mur, rand_door, Cell.DWC);
 					
 					rand_door = h_prem+rand.nextInt(this.getHeight()-h_prem);
@@ -229,7 +229,7 @@ public class EditMapImplem extends MapImplem implements EditMapService{
 					setNature(k, hauttmp, Cell.WLL);
 					setNature(k, 2*hauttmp+1, Cell.WLL);
 				}
-				int h_door = 1+rand.nextInt(hauttmp);
+				int h_door = 2+rand.nextInt(hauttmp);
 				setNature(rand_sec_mur, h_door, Cell.DWC);
 				setNature(rand_sec_mur, h_door+hauttmp+1, Cell.DWC);
 				setNature(rand_sec_mur, h_door+2*hauttmp+2, Cell.DWC);
@@ -241,7 +241,7 @@ public class EditMapImplem extends MapImplem implements EditMapService{
 					setNature(k, 2*haut_tmp_sec+1, Cell.WLL);
 					setNature(k, 3*haut_tmp_sec+2, Cell.WLL);
 				}
-				int haut_door = 1+rand.nextInt(haut_tmp_sec);
+				int haut_door = 2+rand.nextInt(haut_tmp_sec);
 				setNature(rand_sec_mur, haut_door, Cell.DWC);
 				setNature(rand_sec_mur, haut_door+haut_tmp_sec+1, Cell.DWC);
 				setNature(rand_sec_mur, haut_door+2*haut_tmp_sec+2, Cell.DWC);
@@ -250,12 +250,13 @@ public class EditMapImplem extends MapImplem implements EditMapService{
 			default:
 				break;
 		}
+		
 		setNature(this.getWidth()/2,1,Cell.IN);
-		int col_rand = rand.nextInt(this.getWidth());
-		int row_rand = rand.nextInt(this.getHeight()-(this.getHeight()-20));
+		int col_rand = rand.nextInt(this.getWidth()-2);
+		int row_rand = rand.nextInt(this.getHeight()-2);
 		while(this.cellNature(col_rand, row_rand)!=Cell.EMP) {
-			col_rand = rand.nextInt(this.getWidth());
-			row_rand = rand.nextInt(this.getHeight()-(this.getHeight()-20));
+			col_rand = rand.nextInt(this.getWidth()-2);
+			row_rand = rand.nextInt(this.getHeight()-2);
 		}
 		
 		setNature(col_rand, row_rand, Cell.OUT);

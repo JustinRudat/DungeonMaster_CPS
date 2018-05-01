@@ -1,5 +1,8 @@
 package dungeonMaster.decorators;
 
+import java.util.ArrayList;
+
+import dungeonMaster.components.Noeud;
 import dungeonMaster.services.Cell;
 import dungeonMaster.services.EditMapService;
 import dungeonMaster.services.PlayerService;
@@ -24,6 +27,18 @@ public class EditMapDecorator extends MapDecorator implements EditMapService{
 	public boolean setNature(int x, int y, Cell c) {
 		return ((EditMapService) this.getDelegate()).setNature(x, y, c);
 		
+	}
+
+	@Override
+	public ArrayList<Noeud> plusCourtChemin(Cell[][] graphe, Noeud depart, Noeud fin) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean randomEdit() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 

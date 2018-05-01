@@ -85,6 +85,12 @@ public class EngineImplemBug implements EngineService {
 		return null;
 	}
 
+	@Override
+	public boolean addLoot(int x, int y) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 	
 	
 	

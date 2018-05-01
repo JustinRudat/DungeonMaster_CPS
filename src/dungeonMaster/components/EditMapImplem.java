@@ -111,7 +111,7 @@ public class EditMapImplem extends MapImplem implements EditMapService{
 		return true;
 	}
 
-	public void randomEdit() {
+	public boolean randomEdit() {
 		Random rand = new Random();
 		int rand_prem_mur = 7+rand.nextInt(6);
 		int rand_sec_mur = rand_prem_mur+3+rand.nextInt(4);
@@ -259,6 +259,8 @@ public class EditMapImplem extends MapImplem implements EditMapService{
 		}
 		
 		setNature(col_rand, row_rand, Cell.OUT);
+		
+		return isReady();
 	}
 	
 

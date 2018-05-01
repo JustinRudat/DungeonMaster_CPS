@@ -1,5 +1,9 @@
 package dungeonMaster.services;
 
+import java.util.ArrayList;
+
+import dungeonMaster.components.Noeud;
+
 public interface EditMapService extends /*refine*/ MapService{
     /** Invariants :
      * inv: isReachable(int x1,int y1,int x2,int y2) =
@@ -63,6 +67,10 @@ public interface EditMapService extends /*refine*/ MapService{
      */
     public boolean setNature(int x, int y, Cell c);
     
+    
+    public ArrayList<Noeud> plusCourtChemin(Cell[][] graphe, Noeud depart, Noeud fin);
+    
+    public boolean randomEdit();
     
     
 }

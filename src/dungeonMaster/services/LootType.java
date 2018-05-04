@@ -4,5 +4,6 @@ public enum LootType {
 	Treasure,
 	Weapon,
 	Armor,
-	Potion
+	Potion,
+	Key
 }

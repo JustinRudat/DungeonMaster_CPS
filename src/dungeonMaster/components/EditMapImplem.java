@@ -264,5 +264,23 @@ public class EditMapImplem extends MapImplem implements EditMapService{
 		return isReady();
 	}
 	
+	public boolean randomSquareEdit() {
+		
+		for (int i=0;i<this.getWidth();i++) {
+			for(int j=0;j<this.getHeight();j++) {
+				if(i==0||i==this.getWidth()-1||j==0||j==this.getHeight()-1||j==(this.getHeight()-1)/2||i==(this.getWidth()-1)/2) {
+					setNature(i, j, Cell.WLL);
+				}
+				setNature(1,1,Cell.IN);
+				setNature(this.getWidth()-2,1,Cell.OUT);
+				setNature((this.getWidth()-1)/4,(this.getHeight()-1)/2,Cell.DNC);
+				setNature((this.getWidth()-1)*3/4,(this.getHeight()-1)/2,Cell.DNC);
+				setNature((this.getWidth()-1)/2,(this.getHeight()-1)*3/4,Cell.DWC);
+			}
+		}
+		
+		return isReady();
+	}
+	
 
 }

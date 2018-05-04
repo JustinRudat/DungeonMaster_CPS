@@ -87,7 +87,7 @@ public class EngineImplem implements EngineService {
 			entity.step();
 			if(entity instanceof PlayerService) {
 				if(this.getEnv().cellNature(entity.getCol(), entity.getRow())==Cell.OUT ) {
-					if(((PlayerService)entity).getBag().size() > 0 && ((PlayerService)entity).getBagAt(0).getLootType() == LootType.Treasure) {
+					if(((PlayerService)entity).getBag().size() > 0 && ((PlayerService)entity).getBag().get(0).getLootType() == LootType.Treasure) {
 						this.isgameover=true;
 						this.iswin=true;
 						break;

@@ -155,10 +155,7 @@ public class PlayerImplem extends EntityImplem implements PlayerService {
 		return this.bag;
 	}
 
-	@Override
-	public LootService getBagAt(int index) {
-		return this.bag.get(index);
-	}
+	
 
 	@Override
 	public boolean addLoot(LootService lt) {
@@ -266,6 +263,18 @@ public class PlayerImplem extends EntityImplem implements PlayerService {
 		}
 		
 		return true;
+	}
+
+	@Override
+	public ArrayList<LootService> getKeys() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean addKey(LootService lt) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 }

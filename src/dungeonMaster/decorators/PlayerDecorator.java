@@ -48,10 +48,7 @@ public class PlayerDecorator extends EntityDecorator implements PlayerService{
 		return ((PlayerService) this.getDelegate()).getBag();
 	}
 
-	@Override
-	public LootService getBagAt(int index) {
-		return ((PlayerService) this.getDelegate()).getBagAt(index);
-	}
+	
 
 	@Override
 	public boolean addLoot(LootService lt) {
@@ -61,6 +58,18 @@ public class PlayerDecorator extends EntityDecorator implements PlayerService{
 	@Override
 	public boolean take() {
 		return ((PlayerService) this.getDelegate()).take();
+	}
+
+	@Override
+	public ArrayList<LootService> getKeys() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean addKey(LootService lt) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 

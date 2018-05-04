@@ -10,7 +10,8 @@ public interface PlayerService extends /* includes */ EntityService {
 	public Cell getNature(int x, int y);
 	public Cell getViewable(int x, int y);
 	public ArrayList<LootService> getBag();
-	public LootService getBagAt(int index);
+	public ArrayList<LootService> getKeys();
+	public boolean addKey(LootService lt);
 	public boolean addLoot(LootService lt);
 	
 	/** Invariants :
@@ -49,4 +50,5 @@ public interface PlayerService extends /* includes */ EntityService {
 	
 	public boolean take();
 	
+
 }

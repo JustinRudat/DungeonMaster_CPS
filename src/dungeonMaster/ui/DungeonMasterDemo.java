@@ -21,6 +21,7 @@ import dungeonMaster.services.EngineService;
 import dungeonMaster.services.EntityService;
 import dungeonMaster.services.EnvironmentService;
 import dungeonMaster.services.LootService;
+import dungeonMaster.services.LootType;
 import dungeonMaster.services.MobService;
 import dungeonMaster.services.MonsterService;
 import dungeonMaster.services.OptionService;
@@ -37,7 +38,7 @@ public class DungeonMasterDemo {
    
    private static MyPanel createAndShowGui() {
 	  engine = new EngineImplem();
-	  engine = engine.generateRandomGame();
+	  engine = engine.generateRandomSquareGame();
       JFrame frame = new JFrame("SimpleLayout");
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       PlayerService player = null;
@@ -502,13 +503,22 @@ public class DungeonMasterDemo {
 	   if(nat!=null) {
 	   switch(nat) {
 	   	case WLL:
-	   		return "q";
+	   		return "#";
 		  case EMP:
 			  switch(opt.getOption()) {
 			  case No:
 				  return " ";
 			  case So:
 				  if(opt.getElem() instanceof LootService) {
+					  if(((LootService)opt.getElem()).getLootType()==LootType.Treasure) {
+						  return "t";
+					  }
+					  if(((LootService)opt.getElem()).getLootType()==LootType.Potion) {
+						  return "p";
+					  }
+					  if(((LootService)opt.getElem()).getLootType()==LootType.Armor) {
+						  return "a";
+					  }
 					  return "L";
 				  }
 				  if(opt.getElem() instanceof CowService) {
@@ -805,7 +815,7 @@ public class DungeonMasterDemo {
    
    
    private static void initEngine(EngineService engine) {
-	   engine.generateRandomGame();
+	   engine.generateRandomSquareGame();
    }
    
    

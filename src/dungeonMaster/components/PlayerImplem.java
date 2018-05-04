@@ -176,6 +176,10 @@ public class PlayerImplem extends EntityImplem implements PlayerService {
 				this.setDegats(this.getDegats()+lt.getPuis());
 				break;
 				
+			case Potion:
+				this.setHealthPoints(this.getHealthPoints()+lt.getPuis());
+				break;
+				
 			default:
 				break;
 		}

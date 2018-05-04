@@ -51,6 +51,8 @@ public interface EngineService {
 	
 	public EngineService generateRandomGame();
 	
+	public EngineService generateRandomSquareGame();
+	
 	public boolean addLoot(int x,int y);
 	
 }

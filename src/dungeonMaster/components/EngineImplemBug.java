@@ -91,6 +91,12 @@ public class EngineImplemBug implements EngineService {
 		return false;
 	}
 
+	@Override
+	public EngineService generateRandomSquareGame() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 	
 	

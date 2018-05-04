@@ -191,13 +191,118 @@ public class EngineImplem implements EngineService {
 				y = 1+rand.nextInt(default_hauteur-1);
 				cell = env_tmp.cellNature(x,y);
 			}
-			switch(rand.nextInt(2)) {
+			switch(rand.nextInt(3)) {
 				case 0: 
 					loot.init(env_tmp, x, y,LootType.Weapon,1,"epee");
 					break;
 				case 1: 
 					loot.init(env_tmp, x, y,LootType.Armor,1,"cote de maille");
 					break;
+				case 2:
+					loot.init(env_tmp, x, y, LootType.Potion,10,"potion de soin");
+				default:
+					break;
+			}
+			
+			
+		}
+		LootService tresor = new LootImplem();
+		int x = 1+rand.nextInt(default_largeur-1);
+		int y = 1+rand.nextInt(default_hauteur-1);
+		Cell cell = env_tmp.cellNature(x,y);
+		while(cell!=Cell.EMP&&cell!=Cell.OUT&&cell!=Cell.WLL&&cell!=Cell.DWC&&cell!=Cell.DNC&&cell!=Cell.IN) {
+			x = 1+rand.nextInt(default_largeur-1);
+			y = 1+rand.nextInt(default_hauteur-1);
+			cell = env_tmp.cellNature(x,y);
+		}
+		tresor.init(env_tmp, x, y, LootType.Treasure,0,"Treasure");
+		
+		boolean trouve = false;
+		for(int i=1;i<env_tmp.getWidth();i++) {
+			for(int j=1;j<env_tmp.getHeight();j++) {
+				if(env_tmp.cellNature(i, j)==Cell.IN) {
+					x=i;
+					y=j;
+					trouve = true;
+					break;
+				}
+			}
+			if(trouve) {
+				break;
+			}
+		}
+		
+		PlayerService player = new PlayerImplem();
+		player.init(env_tmp, x, y, Dir.N, 50, 3, 0);
+		addEntity(player);
+		this.env = env_tmp;
+		this.isgameover = false;
+		this.iswin=false;
+		
+		
+		return this;
+	}
+	
+	public EngineService generateRandomSquareGame() {
+		this.entities = new ArrayList<>();
+		EditMapImplem editmap = new EditMapImplem();
+		editmap.init(default_largeur,default_hauteur);
+		
+		while(!editmap.randomSquareEdit()) {
+			System.out.println("generating a map\n");
+		}
+		
+		EnvironmentService env_tmp = new EnvironmentImplem();
+		env_tmp.init(default_largeur,default_hauteur);
+		env_tmp.setPlateau(editmap.getPlateau());
+		
+		Random rand = new Random();
+		int nb_mob = 10+rand.nextInt(6);
+		for(int i =0; i<nb_mob;i++) {
+			if(rand.nextInt(100)<=60) {
+			MonsterService cow = new MonsterImplem();
+			}else {
+				CowService cow = new CowImplem();
+			}
+			int x = 1+rand.nextInt(default_largeur-1);
+			int y = 1+rand.nextInt(default_hauteur-1);
+			Cell cell = env_tmp.cellNature(x,y);
+			while(cell!=Cell.EMP&&cell!=Cell.OUT&&cell!=Cell.WLL&&cell!=Cell.DWC&&cell!=Cell.DNC&&cell!=Cell.IN) {
+				x = 1+rand.nextInt(default_largeur-1);
+				y = 1+rand.nextInt(default_hauteur-1);
+				cell = env_tmp.cellNature(x,y);
+			}
+			EntityService cow = null;
+			if(rand.nextInt(100)<=60) {
+				cow = new MonsterImplem();
+				((MonsterService)cow).init(env_tmp, x, y, Dir.N,10,2,1,2);
+			}else {
+				cow = new CowImplem();
+				((CowService)cow).init(env_tmp, x, y, Dir.N,4);
+			}
+			
+			addEntity(cow);
+		}
+		int nb_item = 4+rand.nextInt(4);
+		for(int i =0; i<nb_item;i++) {
+			LootService loot = new LootImplem();
+			int x = 1+rand.nextInt(default_largeur-1);
+			int y = 1+rand.nextInt(default_hauteur-1);
+			Cell cell = env_tmp.cellNature(x,y);
+			while(cell!=Cell.EMP&&cell!=Cell.OUT&&cell!=Cell.WLL&&cell!=Cell.DWC&&cell!=Cell.DNC&&cell!=Cell.IN) {
+				x = 1+rand.nextInt(default_largeur-1);
+				y = 1+rand.nextInt(default_hauteur-1);
+				cell = env_tmp.cellNature(x,y);
+			}
+			switch(rand.nextInt(3)) {
+				case 0: 
+					loot.init(env_tmp, x, y,LootType.Weapon,1,"epee");
+					break;
+				case 1: 
+					loot.init(env_tmp, x, y,LootType.Armor,1,"cote de maille");
+					break;
+				case 2:
+					loot.init(env_tmp, x, y, LootType.Potion,10,"potion de soin");
 				default:
 					break;
 			}

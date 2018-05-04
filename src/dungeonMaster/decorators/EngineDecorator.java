@@ -75,6 +75,11 @@ public class EngineDecorator implements EngineService{
 		return this.delegate.addLoot(x, y);
 	}
 
+	@Override
+	public EngineService generateRandomSquareGame() {
+		return this.delegate.generateRandomSquareGame();
+	}
+
 	
 
 }

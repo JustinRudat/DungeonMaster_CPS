@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.Random;
 
 import dungeonMaster.services.Cell;
+import dungeonMaster.services.ColorKeyDoor;
+import dungeonMaster.services.DoorLockService;
 import dungeonMaster.services.EditMapService;
 import dungeonMaster.services.MapService;
 
@@ -271,15 +273,29 @@ public class EditMapImplem extends MapImplem implements EditMapService{
 				if(i==0||i==this.getWidth()-1||j==0||j==this.getHeight()-1||j==(this.getHeight()-1)/2||i==(this.getWidth()-1)/2) {
 					setNature(i, j, Cell.WLL);
 				}
-				setNature(1,1,Cell.IN);
-				setNature(this.getWidth()-2,1,Cell.OUT);
-				setNature((this.getWidth()-1)/4,(this.getHeight()-1)/2,Cell.DNC);
-				setNature((this.getWidth()-1)*3/4,(this.getHeight()-1)/2,Cell.DNC);
-				setNature((this.getWidth()-1)/2,(this.getHeight()-1)*3/4,Cell.DWC);
+				
 			}
 		}
+		setNature(1,1,Cell.IN);
+		setNature(this.getWidth()-2,1,Cell.OUT);
 		
+		addDoorLock((this.getWidth()-1)/4, (this.getHeight()-1)/2, ColorKeyDoor.RED);
+		setNature((this.getWidth()-1)/4,(this.getHeight()-1)/2,Cell.DNL);
+		
+		addDoorLock((this.getWidth()-1)*3/4, (this.getHeight()-1)/2, ColorKeyDoor.GREEN);
+		setNature((this.getWidth()-1)*3/4,(this.getHeight()-1)/2,Cell.DNL);
+		
+		addDoorLock((this.getWidth()-1)/2, (this.getHeight()-1)*3/4, ColorKeyDoor.BLACK);
+		setNature((this.getWidth()-1)/2,(this.getHeight()-1)*3/4,Cell.DWL);
 		return isReady();
+	}
+
+	@Override
+	public boolean addDoorLock(int x, int y, String color) {
+		DoorLockService door = new DoorLockImplem();
+		door.init(x, y, color);
+		this.getDoorLocked().add(door);
+		return true;
 	}
 	
 

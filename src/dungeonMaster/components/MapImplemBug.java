@@ -1,6 +1,9 @@
 package dungeonMaster.components;
 
+import java.util.ArrayList;
+
 import dungeonMaster.services.Cell;
+import dungeonMaster.services.DoorLockService;
 import dungeonMaster.services.MapService;
 
 public class MapImplemBug implements MapService{
@@ -74,6 +77,18 @@ public class MapImplemBug implements MapService{
 	public boolean setPlateau(Cell[][] plateau) {
 		this.plateau = plateau;
 		return true;
+	}
+
+	@Override
+	public ArrayList<DoorLockService> getDoorLocked() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean setDoorLocked(ArrayList<DoorLockService> doors) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

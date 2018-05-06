@@ -4,13 +4,17 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import dungeonMaster.services.Cell;
+import dungeonMaster.services.ColorKeyDoor;
 import dungeonMaster.services.CowService;
 import dungeonMaster.services.Dir;
+import dungeonMaster.services.DoorLockService;
 import dungeonMaster.services.EngineService;
 import dungeonMaster.services.EntityService;
 import dungeonMaster.services.EnvironmentService;
+import dungeonMaster.services.GobelinService;
 import dungeonMaster.services.LootService;
 import dungeonMaster.services.LootType;
+import dungeonMaster.services.MinotaurService;
 import dungeonMaster.services.MobService;
 import dungeonMaster.services.MonsterService;
 import dungeonMaster.services.Option;
@@ -115,13 +119,17 @@ public class EngineImplem implements EngineService {
 					}
 					OptionService<MobService> opt = new OptionImplem<>();
 					Random rand = new Random();
-					
 					opt.init(null, Option.No);
 					this.getEnv().getContent().set(entity_tmp.getRow()*this.getEnv().getWidth()+entity_tmp.getCol(),opt);
-					entities.remove(entity_tmp);
-					if(rand.nextInt(100)<30) {
-						addLoot(entity_tmp.getCol(),entity_tmp.getRow());
+					if(entity_tmp instanceof MonsterService) {
+						int alea = 1+rand.nextInt(100);
+						
+						if(alea<=((MonsterService)entity_tmp).getDropChance()) {
+							addLoot(entity_tmp.getCol(),entity_tmp.getRow());
+						}
 					}
+					entities.remove(entity_tmp);
+					
 					i--;
 				}
 			}
@@ -172,7 +180,7 @@ public class EngineImplem implements EngineService {
 			EntityService cow = null;
 			if(rand.nextInt(100)<=60) {
 				cow = new MonsterImplem();
-				((MonsterService)cow).init(env_tmp, x, y, Dir.N,10,2,1,2);
+				((MonsterService)cow).init(env_tmp, x, y, Dir.N,10,2,1,2, 15, 30);
 			}else {
 				cow = new CowImplem();
 				((CowService)cow).init(env_tmp, x, y, Dir.N,4);
@@ -255,30 +263,27 @@ public class EngineImplem implements EngineService {
 		EnvironmentService env_tmp = new EnvironmentImplem();
 		env_tmp.init(default_largeur,default_hauteur);
 		env_tmp.setPlateau(editmap.getPlateau());
+		env_tmp.setDoorLocked(editmap.getDoorLocked());
 		
 		Random rand = new Random();
 		int nb_mob = 10+rand.nextInt(6);
 		for(int i =0; i<nb_mob;i++) {
-			if(rand.nextInt(100)<=60) {
-			MonsterService cow = new MonsterImplem();
-			}else {
-				CowService cow = new CowImplem();
-			}
+			
 			int x = 1+rand.nextInt(default_largeur-1);
 			int y = 1+rand.nextInt(default_hauteur-1);
 			Cell cell = env_tmp.cellNature(x,y);
-			while(cell!=Cell.EMP&&cell!=Cell.OUT&&cell!=Cell.WLL&&cell!=Cell.DWC&&cell!=Cell.DNC&&cell!=Cell.IN) {
+			while(cell!=Cell.EMP&&cell!=Cell.OUT&&cell!=Cell.WLL&&cell!=Cell.DWC&&cell!=Cell.DNC&&cell!=Cell.IN&&cell!=Cell.DWL&&cell!=Cell.DNL) {
 				x = 1+rand.nextInt(default_largeur-1);
 				y = 1+rand.nextInt(default_hauteur-1);
 				cell = env_tmp.cellNature(x,y);
 			}
 			EntityService cow = null;
 			if(rand.nextInt(100)<=60) {
-				cow = new MonsterImplem();
-				((MonsterService)cow).init(env_tmp, x, y, Dir.N,10,2,1,2);
+				cow = new GobelinImplem();
+				((GobelinService)cow).init(env_tmp, x, y, Dir.N);
 			}else {
-				cow = new CowImplem();
-				((CowService)cow).init(env_tmp, x, y, Dir.N,4);
+				cow = new MinotaurImplem();
+				((MinotaurService)cow).init(env_tmp, x, y, Dir.N);
 			}
 			
 			addEntity(cow);
@@ -289,7 +294,7 @@ public class EngineImplem implements EngineService {
 			int x = 1+rand.nextInt(default_largeur-1);
 			int y = 1+rand.nextInt(default_hauteur-1);
 			Cell cell = env_tmp.cellNature(x,y);
-			while(cell!=Cell.EMP&&cell!=Cell.OUT&&cell!=Cell.WLL&&cell!=Cell.DWC&&cell!=Cell.DNC&&cell!=Cell.IN) {
+			while(cell!=Cell.EMP&&cell!=Cell.OUT&&cell!=Cell.WLL&&cell!=Cell.DWC&&cell!=Cell.DNC&&cell!=Cell.IN&&cell!=Cell.DWL&&cell!=Cell.DNL) {
 				x = 1+rand.nextInt(default_largeur-1);
 				y = 1+rand.nextInt(default_hauteur-1);
 				cell = env_tmp.cellNature(x,y);
@@ -309,11 +314,24 @@ public class EngineImplem implements EngineService {
 			
 			
 		}
+		for(int t=0;t<env_tmp.getDoorLocked().size();t++) {
+			DoorLockService door = env_tmp.getDoorLocked().get(t);
+			int x = 1+rand.nextInt(door.getCol()-1);
+			int y = 1+rand.nextInt(door.getRow()-1);
+			Cell cell = env_tmp.cellNature(x,y);
+			while(cell!=Cell.EMP&&cell!=Cell.OUT&&cell!=Cell.WLL&&cell!=Cell.DWC&&cell!=Cell.DNC&&cell!=Cell.IN&&cell!=Cell.DWL&&cell!=Cell.DNL) {
+				x = 1+rand.nextInt(door.getCol()-1);
+				y = 1+rand.nextInt(door.getRow()-1);
+				cell = env_tmp.cellNature(x,y);
+			}
+			LootService key = new LootImplem();
+			key.init(env_tmp, x, y,LootType.Key,0,door.getColor());
+		}
 		LootService tresor = new LootImplem();
 		int x = 1+rand.nextInt(default_largeur-1);
 		int y = 1+rand.nextInt(default_hauteur-1);
 		Cell cell = env_tmp.cellNature(x,y);
-		while(cell!=Cell.EMP&&cell!=Cell.OUT&&cell!=Cell.WLL&&cell!=Cell.DWC&&cell!=Cell.DNC&&cell!=Cell.IN) {
+		while(cell!=Cell.EMP&&cell!=Cell.OUT&&cell!=Cell.WLL&&cell!=Cell.DWC&&cell!=Cell.DNC&&cell!=Cell.IN&&cell!=Cell.DWL&&cell!=Cell.DNL) {
 			x = 1+rand.nextInt(default_largeur-1);
 			y = 1+rand.nextInt(default_hauteur-1);
 			cell = env_tmp.cellNature(x,y);
@@ -337,7 +355,7 @@ public class EngineImplem implements EngineService {
 		
 		PlayerService player = new PlayerImplem();
 		player.init(env_tmp, x, y, Dir.N, 50, 3, 0);
-		addEntity(player);
+		this.getEntities().add(0,player);
 		this.env = env_tmp;
 		this.isgameover = false;
 		this.iswin=false;

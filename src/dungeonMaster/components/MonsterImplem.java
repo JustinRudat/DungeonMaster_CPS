@@ -17,7 +17,15 @@ public class MonsterImplem extends EntityImplem implements MonsterService {
 	private int portee;
 	private int player_at_x;
 	private int player_at_y;
+	private int drop_c;
+	private int ment_res;
 	private ArrayList<Noeud> chemin;
+	
+	
+	public boolean setPortee(int portee) {
+		this.portee=portee;
+		return true;
+	}
 	@Override
 	public boolean sniffAPlayer() {
 		for(int i=-portee;i<portee;i++) {
@@ -39,12 +47,7 @@ public class MonsterImplem extends EntityImplem implements MonsterService {
 		return false;
 	}
 
-	@Override
-	public boolean init(EnvironmentService env, int x, int y, Dir dir, int hp, int dmg, int armor, int portee) {
-		super.init(env, x, y, dir, hp, dmg, armor);
-		this.portee = portee;
-		return false;
-	}
+	
 
 	@Override
 	public boolean step() {
@@ -247,5 +250,45 @@ public class MonsterImplem extends EntityImplem implements MonsterService {
 			}
 		}
 		return true;
+	}
+
+	@Override
+	public boolean init(EnvironmentService env, int x, int y, Dir dir, int hp, int dmg, int armor, int portee,
+			int ment_res, int drop_c) {
+		super.init(env, x, y, dir, hp, dmg, armor);
+		this.portee = portee;
+		this.ment_res=ment_res;
+		this.drop_c=drop_c;
+		return true;
+	}
+
+
+
+	@Override
+	public boolean setDropChance(int drop_c) {
+		this.drop_c = drop_c;
+		return true;
+	}
+
+
+
+	@Override
+	public int getMentRes() {
+		return this.ment_res;
+	}
+
+
+
+	@Override
+	public boolean setMentRes(int ment_res) {
+		this.ment_res=ment_res;
+		return true;
+	}
+
+
+
+	@Override
+	public int getDropChance() {
+		return this.drop_c;
 	}
 }

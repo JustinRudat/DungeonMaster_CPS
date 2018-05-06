@@ -1,12 +1,16 @@
 package dungeonMaster.components;
 
+import java.util.ArrayList;
+
 import dungeonMaster.services.Cell;
+import dungeonMaster.services.DoorLockService;
 import dungeonMaster.services.MapService;
 
 public class MapImplem implements MapService{
 	private Cell[][] plateau;
 	private int height;
 	private int width;
+	private ArrayList<DoorLockService> locked_doors;
 	@Override
 	public int getHeight() {
 		return this.height;
@@ -24,6 +28,12 @@ public class MapImplem implements MapService{
 
 	@Override
 	public Cell cellNature(int i, int j) {
+		if(i<0||i>=this.getWidth()) {
+			return null;
+		}
+		if(j<0 || j>this.getHeight()) {
+			return null;
+		}
 		return this.plateau[i][j];
 	}
 
@@ -37,6 +47,7 @@ public class MapImplem implements MapService{
 				this.plateau[i][j] = Cell.EMP;
 			}
 		}
+		this.locked_doors = new ArrayList<>();
 		return true;
 	}
 
@@ -74,6 +85,17 @@ public class MapImplem implements MapService{
 	public boolean setPlateau(Cell[][] plateau) {
 		this.plateau=plateau;
 		return true;
+	}
+
+	@Override
+	public ArrayList<DoorLockService> getDoorLocked() {
+		return this.locked_doors;
+	}
+
+	@Override
+	public boolean setDoorLocked(ArrayList<DoorLockService> doors) {
+		 this.locked_doors = doors;
+		 return true;
 	}
 
 }

@@ -6,6 +6,7 @@ import dungeonMaster.services.EnvironmentService;
 import dungeonMaster.services.MobService;
 import dungeonMaster.services.Option;
 import dungeonMaster.services.OptionService;
+import dungeonMaster.services.PlayerService;
 
 public class EntityImplem extends MobImplem implements EntityService{
 	private int healthPoints;
@@ -46,53 +47,48 @@ public class EntityImplem extends MobImplem implements EntityService{
 	@Override
 	public boolean attack() {
 		OptionService<MobService> opt = null;
+		int x =-1;
+		int y =-1;
 		switch(this.getFace()) {
 			case N:
-				opt = this.getEnv().cellContent(this.getCol(), this.getRow()+1);
-				if(opt.getOption()==Option.So) {
-					if(opt.getElem() instanceof EntityService) {
-						EntityService victim = (EntityService)opt.getElem();
-						if(this.getDegats()-victim.getArmor()>0) {
-							victim.setHealthPoints(victim.getHealthPoints()-(this.getDegats()-victim.getArmor()));
-						}
-					}
-				}
+				x = this.getCol();
+				y = this.getRow()+1;
 				break;
 			case S:
-				opt = this.getEnv().cellContent(this.getCol(), this.getRow()-1);
-				if(opt.getOption()==Option.So) {
-					if(opt.getElem() instanceof EntityService) {
-						EntityService victim = (EntityService)opt.getElem();
-						if(this.getDegats()-victim.getArmor()>0) {
-							victim.setHealthPoints(victim.getHealthPoints()-(this.getDegats()-victim.getArmor()));
-						}
-					}
-				}
+				x = this.getCol();
+				y = this.getRow()-1;
 				break;
 			case W:
-				opt = this.getEnv().cellContent(this.getCol()-1, this.getRow());
-				if(opt.getOption()==Option.So) {
-					if(opt.getElem() instanceof EntityService) {
-						EntityService victim = (EntityService)opt.getElem();
-						if(this.getDegats()-victim.getArmor()>0) {
-							victim.setHealthPoints(victim.getHealthPoints()-(this.getDegats()-victim.getArmor()));
-						}
-					}
-				}
+				x = this.getCol()-1;
+				y = this.getRow();
 				break;
 			case E:
-				opt = this.getEnv().cellContent(this.getCol()+1, this.getRow());
-				if(opt.getOption()==Option.So) {
-					if(opt.getElem() instanceof EntityService) {
-						EntityService victim = (EntityService)opt.getElem();
-						if(this.getDegats()-victim.getArmor()>0) {
-							victim.setHealthPoints(victim.getHealthPoints()-(this.getDegats()-victim.getArmor()));
-						}
-					}
-				}
+				x = this.getCol()+1;
+				y = this.getRow();
 				break;
 			default: 
 				break;
+		}
+		opt = this.getEnv().cellContent(x,y);
+		if(opt.getOption()==Option.So) {
+			if(opt.getElem() instanceof EntityService) {
+				EntityService victim = (EntityService)opt.getElem();
+				if(victim instanceof PlayerService) {
+					if(this.getDegats()-victim.getArmor()>0) {
+						int degat=this.getDegats()-victim.getArmor()-(((PlayerService)victim).isDef()?1:0);
+						if(degat>0) {
+							victim.setHealthPoints(victim.getHealthPoints()-degat);
+						}
+					}
+				}else {
+					if(this.getDegats()-victim.getArmor()>0) {
+						int degat = this.getDegats() - victim.getArmor();
+						if(degat>0) {
+							victim.setHealthPoints(victim.getHealthPoints()-degat);
+						}
+					}
+				}
+			}
 		}
 		return true;
 	}

@@ -17,6 +17,8 @@ public class MonsterImplemBug extends EntityImplem implements MonsterService {
 	private int portee;
 	private int player_at_x;
 	private int player_at_y;
+	private int ment_res;
+	private int drop_c;
 	private ArrayList<Noeud> chemin;
 	@Override
 	public boolean sniffAPlayer() {
@@ -40,10 +42,12 @@ public class MonsterImplemBug extends EntityImplem implements MonsterService {
 	}
 
 	@Override
-	public boolean init(EnvironmentService env, int x, int y, Dir dir, int hp, int dmg, int armor, int portee) {
+	public boolean init(EnvironmentService env, int x, int y, Dir dir, int hp, int dmg, int armor, int portee,int ment_res,int drop_c) {
 		super.init(env, x, y, dir, hp, dmg, armor);
 		this.portee = portee;
-		return false;
+		this.ment_res = ment_res;
+		this.drop_c= drop_c;
+		return true;
 	}
 
 	@Override
@@ -247,5 +251,29 @@ public class MonsterImplemBug extends EntityImplem implements MonsterService {
 			}
 		}
 		return true;
+	}
+
+	@Override
+	public boolean setDropChance(int drop_c) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public int getMentRes() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public boolean setMentRes(int ment_res) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public int getDropChance() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

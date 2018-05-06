@@ -8,5 +8,7 @@ public enum Command {
     TL,
     TR,
     AA,
-    TK
+    TK,
+    DF,
+    PF
 }

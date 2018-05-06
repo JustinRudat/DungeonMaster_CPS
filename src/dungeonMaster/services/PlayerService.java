@@ -9,10 +9,14 @@ public interface PlayerService extends /* includes */ EntityService {
 	public OptionService<MobService> getContent(int x, int y);
 	public Cell getNature(int x, int y);
 	public Cell getViewable(int x, int y);
+	public int getPacification();
 	public ArrayList<LootService> getBag();
 	public ArrayList<LootService> getKeys();
 	public boolean addKey(LootService lt);
 	public boolean addLoot(LootService lt);
+	public boolean isDef();
+	public boolean init(EnvironmentService env, int x, int y, Dir dir, int hp,int dmg,int armor);
+	public Cell isViewable(int col, int row);
 	
 	/** Invariants :
 	 *  inv: this.getFace() == N \implies this.getContent(u,v) = this.getEnv().cellNature(this.getCol()+u, this.getRow()+v)
@@ -49,6 +53,7 @@ public interface PlayerService extends /* includes */ EntityService {
 	public boolean attack();
 	
 	public boolean take();
+	public boolean pacify();
 	
 
 }

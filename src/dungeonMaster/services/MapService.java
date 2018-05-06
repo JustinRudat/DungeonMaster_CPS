@@ -1,5 +1,7 @@
 package dungeonMaster.services;
 
+import java.util.ArrayList;
+
 public interface MapService {
     /** Observateur : hauteur de la Map 
      *
@@ -18,6 +20,12 @@ public interface MapService {
      * @return
      */
     public Cell[][] getPlateau();
+    
+    public ArrayList<DoorLockService> getDoorLocked();
+    
+    public boolean setDoorLocked(ArrayList<DoorLockService> doors);
+    
+    
     
     public boolean setPlateau(Cell[][] plateau);
     

@@ -72,5 +72,7 @@ public interface EditMapService extends /*refine*/ MapService{
     
     public boolean randomEdit();
     
+    public boolean addDoorLock(int x,int y, String color);
+    
     
 }

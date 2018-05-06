@@ -8,5 +8,7 @@ public enum Cell {
     DNO,
     DNC,
     DWO,
-    DWC;
+    DWC,
+    DWL,
+    DNL
 }

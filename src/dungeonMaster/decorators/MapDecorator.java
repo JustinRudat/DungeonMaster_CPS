@@ -1,6 +1,9 @@
 package dungeonMaster.decorators;
 
+import java.util.ArrayList;
+
 import dungeonMaster.services.Cell;
+import dungeonMaster.services.DoorLockService;
 import dungeonMaster.services.MapService;
 
 public class MapDecorator implements MapService{
@@ -56,6 +59,18 @@ public class MapDecorator implements MapService{
 	@Override
 	public boolean setPlateau(Cell[][] plateau) {
 		return this.delegate.setPlateau(plateau);
+	}
+
+	@Override
+	public ArrayList<DoorLockService> getDoorLocked() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean setDoorLocked(ArrayList<DoorLockService> doors) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import dungeonMaster.components.Noeud;
 import dungeonMaster.services.Cell;
+import dungeonMaster.services.DoorLockService;
 import dungeonMaster.services.EditMapService;
 import dungeonMaster.services.PlayerService;
 
@@ -37,6 +38,14 @@ public class EditMapDecorator extends MapDecorator implements EditMapService{
 
 	@Override
 	public boolean randomEdit() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	
+
+	@Override
+	public boolean addDoorLock(int x, int y, String color) {
 		// TODO Auto-generated method stub
 		return false;
 	}

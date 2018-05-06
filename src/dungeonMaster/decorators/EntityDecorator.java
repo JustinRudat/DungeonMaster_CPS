@@ -5,7 +5,6 @@ import dungeonMaster.services.EntityService;
 import dungeonMaster.services.EnvironmentService;
 
 public  class EntityDecorator extends MobDecorator implements EntityService {
-	
 	public EntityDecorator(EntityService delegate) {
 		super(delegate);
 	}

@@ -71,6 +71,30 @@ public class PlayerDecorator extends EntityDecorator implements PlayerService{
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public int getPacification() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public boolean isDef() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean pacify() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Cell isViewable(int col, int row) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 }

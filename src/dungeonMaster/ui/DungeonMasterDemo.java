@@ -3,6 +3,7 @@ package dungeonMaster.ui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -20,10 +21,13 @@ import dungeonMaster.services.CowService;
 import dungeonMaster.services.EngineService;
 import dungeonMaster.services.EntityService;
 import dungeonMaster.services.EnvironmentService;
+import dungeonMaster.services.GobelinService;
 import dungeonMaster.services.LootService;
 import dungeonMaster.services.LootType;
+import dungeonMaster.services.MinotaurService;
 import dungeonMaster.services.MobService;
 import dungeonMaster.services.MonsterService;
+import dungeonMaster.services.Option;
 import dungeonMaster.services.OptionService;
 import dungeonMaster.services.PlayerService;
 
@@ -167,6 +171,34 @@ public class DungeonMasterDemo {
 	});
       panel_button.add(button,c);
       
+      c.gridx = 1;
+      c.gridy = 3;
+      c.insets = new Insets(10,0,0,0);
+      button = new JButton("DF");
+      button.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			player_final.setLastCommand(Command.DF);
+			
+		}
+	});
+      panel_button.add(button,c);
+      
+      c.gridx = 3;
+      c.gridy = 3;
+      c.insets = new Insets(10,0,0,0);
+      button = new JButton("PF");
+      button.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			player_final.setLastCommand(Command.PF);
+			
+		}
+	});
+      panel_button.add(button,c);
+      
       frame.getContentPane().add(panel_button, BorderLayout.CENTER);
       frame.pack();
       frame.setLocationByPlatform(true);
@@ -185,6 +217,7 @@ public class DungeonMasterDemo {
 	      String str = "                      _________________\n";
 	      str = str.replace(" ","  ");
 	      JLabel label = new JLabel(str); 
+	      label.setFont(new Font("Droid Sans Mono", Font.PLAIN, 12));
 	      label.setForeground(Color.white);
 	      c_panel.gridx = 0;
 	      c_panel.gridy = 0;
@@ -364,6 +397,84 @@ public class DungeonMasterDemo {
 	      
    }
    
+   
+   private static String gereLineSec(PlayerService player,int index) {
+	   String str = "";
+	   Cell[][] plateau = engine.getEnv().getPlateau();
+	   int x,y;
+	   for(int j = 0 ; j<engine.getEnv().getWidth();j++) {
+		   switch(player.getFace()) {
+		   case N:
+			   x = index - player.getRow();
+			   y = j - player.getCol();
+			   if(y>=-1 && y<=1) {
+				   if(x <= 4 && x>=-1) {
+					   str+=handleCellNatSec(player, x, y);
+				   }
+				   else {
+					   str+="*";
+				   }
+			   }else {
+				   str+="*";
+			   }
+			   break;
+			   
+		   case S:
+			   x = index - player.getRow();
+			   y = j - player.getCol();
+			   if(y>=-1 && y<=1) {
+				   if(x <= 1 && x>=-4) {
+					   str+=handleCellNatSec(player, x, y);
+				   }else {
+					   str+="*";
+				   }
+			   }else {
+				   str+="*";
+			   }
+			   break;
+			   
+		   case E:
+			   x = index - player.getRow();
+			   y = j - player.getCol();
+			   if(y>=-1 && y<=4) {
+				   if(x <= 1 && x>=-1) {
+					   str+=handleCellNatSec(player, x, y);
+				   }else {
+					   str+="*";
+				   }
+			   }else {
+				   str+="*";
+			   }
+			   break;
+			   
+		   case W:
+			   x = index - player.getRow();
+			   y = j - player.getCol();
+			   if(y>=-4 && y<=1) {
+				   if(x <= 1 && x>=-1) {
+					   str+=handleCellNatSec(player, x, y);
+				   }else {
+					   str+="*";
+				   }
+			   }else {
+				   str+="*";
+			   }
+			   break;
+			   
+			   default:
+				   break;
+		   }
+		   if(player.isViewable(j, index)!=null) {
+			   str+=handleCellNatSec(player, index, j);
+		   }else {
+			   str+="*";
+		   }
+	   }
+	   return str;
+   }
+   
+   
+   
    private static String gereLine(PlayerService player,int index) {
 	   String str = "|     *    |     *    |     *    |\n";
 	   if(player == null) {
@@ -519,13 +630,23 @@ public class DungeonMasterDemo {
 					  if(((LootService)opt.getElem()).getLootType()==LootType.Armor) {
 						  return "a";
 					  }
+					  if(((LootService)opt.getElem()).getLootType()==LootType.Key){
+						  return "k";
+					  }
+					  
 					  return "L";
 				  }
 				  if(opt.getElem() instanceof CowService) {
 					  return "C";
 				  }
-				  if(opt.getElem() instanceof MonsterService) {
+				  if(opt.getElem() instanceof GobelinService) {
 					  return "G";
+				  }
+				  if(opt.getElem() instanceof MinotaurService) {
+					  return "M";
+				  }
+				  if(opt.getElem() instanceof MonsterService) {
+					  return "m";
 				  }
 				  default:
 					  return "*";
@@ -538,6 +659,10 @@ public class DungeonMasterDemo {
 		   		return "f";
 			  case DWC:
 				  return "f";
+			  case DWL:
+				  return "l";
+			  case DNL:
+				  return "l";
 			  case DNO:
 				  switch(opt.getOption()) {
 				  case No:
@@ -581,6 +706,100 @@ public class DungeonMasterDemo {
 	   return "*";
 	   }
    }
+   
+   private static String handleCellNatSec(PlayerService player ,int x,int y ) {
+	   Cell nat = player.isViewable(x, y);
+	   
+	   if(nat!=null) {
+		   OptionService<MobService> opt = engine.getEnv().cellContent(x, y);
+	   switch(nat) {
+	   	case WLL:
+	   		return "#";
+		  case EMP:
+			  switch(opt.getOption()) {
+			  case No:
+				  return " ";
+			  case So:
+				  if(opt.getElem() instanceof LootService) {
+					  if(((LootService)opt.getElem()).getLootType()==LootType.Treasure) {
+						  return "t";
+					  }
+					  if(((LootService)opt.getElem()).getLootType()==LootType.Potion) {
+						  return "p";
+					  }
+					  if(((LootService)opt.getElem()).getLootType()==LootType.Armor) {
+						  return "a";
+					  }
+					  if(((LootService)opt.getElem()).getLootType()==LootType.Key){
+						  return "k";
+					  }
+					  return "L";
+				  }
+				  if(opt.getElem() instanceof CowService) {
+					  return "C";
+				  }
+				  if(opt.getElem() instanceof MonsterService) {
+					  return "G";
+				  }
+				  default:
+					  return "*";
+			  }
+		  case IN:
+			  return "+";
+		  case OUT:
+			  return "O";
+		  case DNC:
+		   		return "f";
+			  case DWC:
+				  return "f";
+			  case DWL:
+				  return "l";
+			  case DNL:
+				  return "l";
+			  case DNO:
+				  switch(opt.getOption()) {
+				  case No:
+					  return "o";
+				  case So:
+					  if(opt.getElem() instanceof LootService) {
+						  return "L";
+					  }
+					  if(opt.getElem() instanceof CowService) {
+						  return "C";
+					  }
+					  if(opt.getElem() instanceof MonsterService) {
+						  return "G";
+					  }
+					  default:
+						  return "*";
+				  }
+				  
+			  case DWO:
+				  switch(opt.getOption()) {
+				  case No:
+					  return "o";
+				  case So:
+					  if(opt.getElem() instanceof LootService) {
+						  return "L";
+					  }
+					  if(opt.getElem() instanceof CowService) {
+						  return "C";
+					  }
+					  if(opt.getElem() instanceof MonsterService) {
+						  return "G";
+					  }
+					  default:
+						  return "*";
+				  }
+				  
+				  default:
+					  return "*";
+		  }
+	   }else {
+	   return "*";
+	   }
+   }
+   
    private static void drawAsciiPanelSquare(JPanel panel) {
 	   panel.removeAll();
 	   GridBagConstraints c_panel = new GridBagConstraints();
@@ -593,6 +812,7 @@ public class DungeonMasterDemo {
 	      c_panel.fill=GridBagConstraints.HORIZONTAL;
 	      String str = "_____________________________________________\n";
 	      JLabel label = new JLabel(str); 
+	      label.setFont(new Font("Droid Sans Mono", Font.PLAIN, 12));
 	      label.setForeground(Color.white);
 	      c_panel.gridx = 0;
 	      c_panel.gridy = 0;
@@ -600,6 +820,7 @@ public class DungeonMasterDemo {
 	      str = "|          |          |          |          |          |\n";
 	      str = str.replace(" ","  ");
 	      label = new JLabel(str);
+	      label.setFont(new Font("Droid Sans Mono", Font.PLAIN, 12));
 	      label.setForeground(Color.white);
 	      c_panel.gridx = 0;
 	      c_panel.gridy = c_panel.gridy+1;
@@ -608,6 +829,7 @@ public class DungeonMasterDemo {
 	      str = gereLine(player, 4);
 	      str = str.replace(" ","  ");
 	      label = new JLabel(str);
+	      label.setFont(new Font("Droid Sans Mono", Font.PLAIN, 12));
 	      label.setForeground(Color.white);
 	      c_panel.gridx = 0;
 	      c_panel.gridy = c_panel.gridy+1;
@@ -616,12 +838,14 @@ public class DungeonMasterDemo {
 	      str = "|          |          |          |          |          |\n";
 	      str = str.replace(" ","  ");
 	      label = new JLabel(str);
+	      label.setFont(new Font("Droid Sans Mono", Font.PLAIN, 12));
 	      label.setForeground(Color.white);
 	      c_panel.gridx = 0;
 	      c_panel.gridy = c_panel.gridy+1;
 	      panel.add(label,c_panel);
 	      str = "_____________________________________________\n";
 	      label = new JLabel(str); 
+	      label.setFont(new Font("Droid Sans Mono", Font.PLAIN, 12));
 	      label.setForeground(Color.white);
 	      c_panel.gridx = 0;
 	      c_panel.gridy = c_panel.gridy+1;
@@ -629,6 +853,7 @@ public class DungeonMasterDemo {
 	      str = "|          |          |          |          |          |\n";
 	      str = str.replace(" ","  ");
 	      label = new JLabel(str);
+	      label.setFont(new Font("Droid Sans Mono", Font.PLAIN, 12));
 	      label.setForeground(Color.white);
 	      c_panel.gridx = 0;
 	      c_panel.gridy = c_panel.gridy+1;
@@ -637,6 +862,7 @@ public class DungeonMasterDemo {
 	      str = gereLine(player, 3);
 	      str = str.replace(" ","  ");
 	      label = new JLabel(str);
+	      label.setFont(new Font("Droid Sans Mono", Font.PLAIN, 12));
 	      label.setForeground(Color.white);
 	      c_panel.gridx = 0;
 	      c_panel.gridy = c_panel.gridy+1;
@@ -645,12 +871,14 @@ public class DungeonMasterDemo {
 	      str = "|          |          |          |          |          |\n";
 	      str = str.replace(" ","  ");
 	      label = new JLabel(str);
+	      label.setFont(new Font("Droid Sans Mono", Font.PLAIN, 12));
 	      label.setForeground(Color.white);
 	      c_panel.gridx = 0;
 	      c_panel.gridy = c_panel.gridy+1;
 	      panel.add(label,c_panel);
 	      str = "_____________________________________________\n";
 	      label = new JLabel(str); 
+	      label.setFont(new Font("Droid Sans Mono", Font.PLAIN, 12));
 	      label.setForeground(Color.white);
 	      c_panel.gridx = 0;
 	      c_panel.gridy = c_panel.gridy+1;
@@ -658,6 +886,7 @@ public class DungeonMasterDemo {
 	      str = "|          |          |          |          |          |\n";
 	      str = str.replace(" ","  ");
 	      label = new JLabel(str);
+	      label.setFont(new Font("Droid Sans Mono", Font.PLAIN, 12));
 	      label.setForeground(Color.white);
 	      c_panel.gridx = 0;
 	      c_panel.gridy = c_panel.gridy+1;
@@ -666,6 +895,7 @@ public class DungeonMasterDemo {
 	      str = gereLine(player, 2);
 	      str = str.replace(" ","  ");
 	      label = new JLabel(str);
+	      label.setFont(new Font("Droid Sans Mono", Font.PLAIN, 12));
 	      label.setForeground(Color.white);
 	      c_panel.gridx = 0;
 	      c_panel.gridy = c_panel.gridy+1;
@@ -674,6 +904,7 @@ public class DungeonMasterDemo {
 	      str = "|          |          |          |          |          |\n";
 	      str = str.replace(" ","  ");
 	      label = new JLabel(str);
+	      label.setFont(new Font("Droid Sans Mono", Font.PLAIN, 12));
 	      label.setForeground(Color.white);
 	      c_panel.gridx = 0;
 	      c_panel.gridy = c_panel.gridy+1;
@@ -681,6 +912,7 @@ public class DungeonMasterDemo {
 	      str = "_____________________________________________\n";
 	      str = str.replace(" ","  ");
 	      label = new JLabel(str); 
+	      label.setFont(new Font("Droid Sans Mono", Font.PLAIN, 12));
 	      label.setForeground(Color.white);
 	      c_panel.gridx = 0;
 	      c_panel.gridy = c_panel.gridy+1;
@@ -688,6 +920,7 @@ public class DungeonMasterDemo {
 	      str = "          |          |          |          |\n";
 	      str = str.replace(" ","  ");
 	      label = new JLabel(str); 
+	      label.setFont(new Font("Droid Sans Mono", Font.PLAIN, 12));
 	      label.setForeground(Color.white);
 	      c_panel.gridx = 0;
 	      c_panel.gridy = c_panel.gridy+1;
@@ -696,6 +929,7 @@ public class DungeonMasterDemo {
 	      str = gereLine(player, 1);
 	      str = str.replace(" ","  ");
 	      label = new JLabel(str);
+	      label.setFont(new Font("Droid Sans Mono", Font.PLAIN, 12));
 	      label.setForeground(Color.white);
 	      c_panel.gridx = 0;
 	      c_panel.gridy = c_panel.gridy+1;
@@ -704,6 +938,7 @@ public class DungeonMasterDemo {
 	      str = "          |          |          |          |\n";
 	      str = str.replace(" ","  ");
 	      label = new JLabel(str); 
+	      label.setFont(new Font("Droid Sans Mono", Font.PLAIN, 12));
 	      label.setForeground(Color.white);
 	      c_panel.gridx = 0;
 	      c_panel.gridy = c_panel.gridy+1;
@@ -711,6 +946,8 @@ public class DungeonMasterDemo {
 	      str = "          ___________________________\n";
 	      str = str.replace(" ","  ");
 	      label = new JLabel(str);
+	      
+	      label.setFont(new Font("Droid Sans Mono", Font.PLAIN, 12));
 	      label.setForeground(Color.white);
 	      c_panel.gridx = 0;
 	      c_panel.gridy = c_panel.gridy+1;
@@ -718,6 +955,7 @@ public class DungeonMasterDemo {
 	      str = "          |          |          |          |\n";
 	      str = str.replace(" ","  ");
 	      label = new JLabel(str); 
+	      label.setFont(new Font("Droid Sans Mono", Font.PLAIN, 12));
 	      label.setForeground(Color.white);
 	      c_panel.gridx = 0;
 	      c_panel.gridy = c_panel.gridy+1;
@@ -725,6 +963,7 @@ public class DungeonMasterDemo {
 	      str = "          |          |          |          |\n";
 	      str = str.replace(" ","  ");
 	      label = new JLabel(str); 
+	      label.setFont(new Font("Droid Sans Mono", Font.PLAIN, 12));
 	      label.setForeground(Color.white);
 	      c_panel.gridx = 0;
 	      c_panel.gridy = c_panel.gridy+1;
@@ -733,6 +972,7 @@ public class DungeonMasterDemo {
 	      str = gereLine(player, 0);
 	      str = str.replace(" ","  ");
 	      label = new JLabel(str);
+	      label.setFont(new Font("Droid Sans Mono", Font.PLAIN, 12));
 	      label.setForeground(Color.white);
 	      c_panel.gridx = 0;
 	      c_panel.gridy = c_panel.gridy+1;
@@ -742,6 +982,7 @@ public class DungeonMasterDemo {
 	      str = "          |          |          |          |\n";
 	      str = str.replace(" ","  ");
 	      label = new JLabel(str ); 
+	      label.setFont(new Font("Droid Sans Mono", Font.PLAIN, 12));
 	      label.setForeground(Color.white);
 	      c_panel.gridx = 0;
 	      c_panel.gridy = c_panel.gridy+1;
@@ -749,6 +990,7 @@ public class DungeonMasterDemo {
 	      str = "          ___________________________\n";
 	      str = str.replace(" ","  ");
 	      label = new JLabel(str ); 
+	      label.setFont(new Font("Droid Sans Mono", Font.PLAIN, 12));
 	      label.setForeground(Color.white);
 	      c_panel.gridx = 0;
 	      c_panel.gridy = c_panel.gridy+1;
@@ -756,6 +998,7 @@ public class DungeonMasterDemo {
 	      str = "          |          |          |          |\n";
 	      str = str.replace(" ","  ");
 	      label = new JLabel(str);
+	      label.setFont(new Font("Droid Sans Mono", Font.PLAIN, 12));
 	      label.setForeground(Color.white);
 	      c_panel.gridx = 0;
 	      c_panel.gridy = c_panel.gridy+1;
@@ -763,6 +1006,7 @@ public class DungeonMasterDemo {
 	      str = "          |          |          |          |\n";
 	      str = str.replace(" ","  ");
 	      label = new JLabel(str);
+	      label.setFont(new Font("Droid Sans Mono", Font.PLAIN, 12));
 	      label.setForeground(Color.white);
 	      c_panel.gridx = 0;
 	      c_panel.gridy = c_panel.gridy+1;
@@ -772,6 +1016,7 @@ public class DungeonMasterDemo {
 	      str = gereLine(player, -1);
 	      str = str.replace(" ","  ");
 	      label = new JLabel(str);
+	      label.setFont(new Font("Droid Sans Mono", Font.PLAIN, 12));
 	      label.setForeground(Color.white);
 	      c_panel.gridx = 0;
 	      c_panel.gridy = c_panel.gridy+1;
@@ -780,6 +1025,7 @@ public class DungeonMasterDemo {
 	      str = "          |          |          |          |\n";
 	      str = str.replace(" ","  ");
 	      label = new JLabel(str);
+	      label.setFont(new Font("Droid Sans Mono", Font.PLAIN, 12));
 	      label.setForeground(Color.white);
 	      c_panel.gridx = 0;
 	      c_panel.gridy = c_panel.gridy+1;
@@ -787,6 +1033,7 @@ public class DungeonMasterDemo {
 	      str = "          ___________________________\n";
 	      str = str.replace(" ","  ");
 	      label = new JLabel(str);
+	      label.setFont(new Font("Droid Sans Mono", Font.PLAIN, 12));
 	      label.setForeground(Color.white);
 	      c_panel.gridx = 0;
 	      c_panel.gridy = c_panel.gridy+1;
@@ -818,6 +1065,28 @@ public class DungeonMasterDemo {
 	   engine.generateRandomSquareGame();
    }
    
+   private static void drawAsciiPanelFinal(JPanel panel) {
+	   panel.removeAll();
+	   GridBagConstraints c_panel = new GridBagConstraints();
+	   PlayerService player = null;
+	      for(EntityService entity : engine.getEntities()) {
+	    	  if(entity instanceof PlayerService) {
+	    		  player = (PlayerService) entity;
+	    	  }
+	      }
+	      c_panel.fill=GridBagConstraints.HORIZONTAL;
+	      c_panel.gridx = 0;
+	      c_panel.gridy = 0;
+	   for(int i=engine.getEnv().getHeight();i>0 ;i--) {
+		   String str = gereLineSec(player, i);
+		      JLabel label = new JLabel(str); 
+		      label.setForeground(Color.white);
+		      
+		      panel.add(label,c_panel);
+		      c_panel.gridy++;
+	   }
+   }
+   
    
    
    
@@ -828,10 +1097,12 @@ public class DungeonMasterDemo {
         	  try {
         		  MyPanel display = createAndShowGui();
     		      while(!engine.isGameOver()) {
+    		    	  if(player_info.getLastCommand().getOption()!=Option.No) {
     		    	  runStep();
 	    		    drawAsciiPanelSquare(display);
 	    		    display.updateUI();
 	    		    handlePannelInfo(panel_info);
+    		    	  }
     		    	  this.sleep(500);
     				
     		      }

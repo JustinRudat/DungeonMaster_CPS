@@ -80,14 +80,32 @@ public class PlayerImplem extends EntityImplem implements PlayerService {
 		
 		return null;
 	}
-	
+
 	public Cell isViewable(int col, int row) {
-		
-		int x = col -this.getCol()  ;
+		System.out.println("I'm called");
+		int x = col - this.getCol();
 		int y = row -  this.getRow();
-		
-		return getViewable(x, y);
-		
+		// Move camera
+		switch (getFace()) {
+			case E:
+			    x += 2;
+			    break;
+			case W:
+			    x -= 2;
+			    break;
+            case N:
+                y -= 2;
+                break;
+            case S:
+                y += 2;
+                break;
+            default:
+                System.out.println(getFace());
+		}
+
+		if (Math.abs(x) < 4 && Math.abs(y) < 4)
+			return getEnv().cellNature(col, row);
+		else return null;
 	}
 	
 	@Override

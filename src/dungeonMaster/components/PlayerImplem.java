@@ -87,10 +87,10 @@ public class PlayerImplem extends EntityImplem implements PlayerService {
 		int y = row -  this.getRow();
 		// Move camera
 		switch (getFace()) {
-			case E:
+			case W:
 			    x += 2;
 			    break;
-			case W:
+			case E:
 			    x -= 2;
 			    break;
             case N:

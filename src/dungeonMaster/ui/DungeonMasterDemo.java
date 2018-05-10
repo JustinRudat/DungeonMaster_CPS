@@ -510,12 +510,32 @@ public class DungeonMasterDemo {
                                 return "G";
                             }
                             if (opt.getElem() instanceof PlayerService) {
-                                return "@";
+                                switch(opt.getElem().getFace()) {
+                                case N:
+                                	return "^";
+                                case S:
+                                	return "v";
+                                case E:
+                                	return ">";
+                                case W:
+                                	return "<";
+                                	default : break;	
+                                }
                             }
                     }
                 case IN:
                     if (opt.getElem() instanceof PlayerService) {
-                        return "@";
+                    	switch(opt.getElem().getFace()) {
+                        case N:
+                        	return "^";
+                        case S:
+                        	return "v";
+                        case E:
+                        	return ">";
+                        case W:
+                        	return "<";
+                        	default : break;	
+                        }
                     }
                     return "+";
                 case OUT:
@@ -602,10 +622,10 @@ public class DungeonMasterDemo {
         c_panel.fill=GridBagConstraints.HORIZONTAL;
         c_panel.gridx = 0;
         c_panel.gridy = 0;
-        for (int i = 0; i < engine.getEnv().getWidth(); i++) {
+        for (int i = engine.getEnv().getHeight()-1; i >=0; i--) {
             String str = "";
-            for (int j = 0; j < engine.getEnv().getHeight(); j++) {
-                str += handleCellNatSec(player, i, j);
+            for (int j = 0; j < engine.getEnv().getWidth() ; j++) {
+                str += handleCellNatSec(player, j, i);
             }
             str += "\n";
             JLabel label = new JLabel(str);

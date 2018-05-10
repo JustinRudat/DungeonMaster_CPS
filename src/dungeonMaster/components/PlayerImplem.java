@@ -86,54 +86,159 @@ public class PlayerImplem extends EntityImplem implements PlayerService {
 		int x = col - this.getCol();
 		int y = row -  this.getRow();
 		// Move camera
+		
+		
+		
 		switch (getFace()) {
 			case W:
 			    x += 2;
-			    break;
+			    if (Math.abs(x) < 4 && Math.abs(y) < 3)
+			    	if(!viewBlocked(col, row))
+			    		return getEnv().cellNature(col, row);
+			    	
+				return null;
 			case E:
 			    x -= 2;
-			    break;
+			    if (Math.abs(x) < 4 && Math.abs(y) < 3)
+			    	if(!viewBlocked(col, row))
+			    		return getEnv().cellNature(col, row);
+				return null;
             case N:
                 y -= 2;
-                break;
+                if (Math.abs(x) < 3 && Math.abs(y) < 4)
+                	if(!viewBlocked(col, row))
+                		return getEnv().cellNature(col, row);
+        		return null;
             case S:
                 y += 2;
-                break;
+                if (Math.abs(x) < 3 && Math.abs(y) < 4)
+                	if(!viewBlocked(col, row))
+                		return getEnv().cellNature(col, row);
+        		return null;
             default:
                 System.out.println(getFace());
 		}
 
-		if (Math.abs(x) < 4 && Math.abs(y) < 4)
-			return getEnv().cellNature(col, row);
-		else return null;
+		return null;
+	}
+	
+	public boolean isIn(ArrayList<Cell> cells, Cell c) {
+		for(Cell c_tmp : cells) {
+			if(c==c_tmp) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	
+	public boolean viewBlocked(int col,int row) {
+		int x,y;
+		x = col - this.getCol();
+		y = row - this.getRow();
+		ArrayList<Cell> cells_to_test = new ArrayList<>();
+		cells_to_test.add(Cell.WLL);
+		cells_to_test.add(Cell.DWC);
+		cells_to_test.add(Cell.DNC);
+		cells_to_test.add(Cell.DWL);
+		cells_to_test.add(Cell.DNL);
+		
+		return false;
 	}
 	
 	@Override
-	public Cell getViewable(int x, int y) {
-		if(x<=1 && x>=-1) {
-			if(y==0||y==1||y==-1) {
-				return this.getNature(x, y);
+	public Cell getViewable(int dx, int dy) {
+		int x,y;
+		ArrayList<Cell> cells_to_test = new ArrayList<>();
+		cells_to_test.add(Cell.WLL);
+		cells_to_test.add(Cell.DWC);
+		cells_to_test.add(Cell.DNC);
+		cells_to_test.add(Cell.DWL);
+		cells_to_test.add(Cell.DNL);
+		switch(getFace()) {
+			case N:
+				x=dx;
+				y=dy;
+				break;
+			case S:
+				x=dx;
+				y=-dy;
+				break;
+			case E:
+				x=dy;
+				y=dx;
+				break;
+			case W:
+				x=dy;
+				y=-dx;
+				break;
+			default:
+				x=0;
+				y=0;
+				break;
+		}
+		if(x<=2 && x>=-2) {
+			if(x==-2 || x == 2 ) {
+				if(y==0||y==1||y==-1) {
+					if(!isIn(cells_to_test,this.getNature(x-1, y-1))) 
+						return this.getNature(x, y);
+				}
+				if(y==2) {
+					if(!isIn(cells_to_test,this.getNature(0, y-1))) {
+						if(!isIn(cells_to_test,this.getNature(x-1, y-1)))
+							return this.getNature(x, y);
+					}
+				}else
+				if(y==4) {
+					if(x==0) {
+						if(!isIn(cells_to_test,this.getNature(x-1, y-1))) 
+							if(!isIn(cells_to_test,this.getNature(x, y-1))) {
+								if(!isIn(cells_to_test,this.getNature(x-1, y-2))) 
+									if(!isIn(cells_to_test,this.getNature(x, y-2))) {
+										if(!isIn(cells_to_test,this.getNature(x-1, y-3))) 
+											if(!isIn(cells_to_test,this.getNature(x, y-3))) {
+												return this.getNature(x, y);
+											}
+									}
+							}
+					}
+				}else if(y==3) {
+					if(this.getViewable(x, y-1)!=null) {
+						if(!isIn(cells_to_test,this.getNature(x-1, y-1)))
+							if(!isIn(cells_to_test,this.getNature(x, y-1))) {
+								if(!isIn(cells_to_test,this.getNature(x-1, y-2)))
+									if(!isIn(cells_to_test,this.getNature(x, y-2))) {
+										return this.getNature(x, y);
+									}
+							}
+					}
+				}
 			}
-			if(y==2) {
-				if(this.getNature(0, y-1)!=Cell.WLL&&this.getNature(0, y-1)!=Cell.DNC&&this.getNature(0, y-1)!=Cell.DWC&&this.getNature(0, y-1)!=Cell.DWL&&this.getNature(0, y-1)!=Cell.DNL) {
+			else {
+				if(y==0||y==1||y==-1) {
 					return this.getNature(x, y);
 				}
-			}else
-			if(y==4) {
-				if(x==0) {
-					if(this.getNature(x, y-1)!=Cell.WLL&&this.getNature(x, y-1)!=Cell.DNC&&this.getNature(x, y-1)!=Cell.DWC&&this.getNature(0, y-1)!=Cell.DWL&&this.getNature(0, y-1)!=Cell.DNL) {
-						if(this.getNature(x, y-2)!=Cell.WLL&&this.getNature(x, y-2)!=Cell.DNC&&this.getNature(x, y-2)!=Cell.DWC&&this.getNature(0, y-2)!=Cell.DWL&&this.getNature(0, y-2)!=Cell.DNL) {
-							if(this.getNature(x, y-3)!=Cell.WLL&&this.getNature(x, y-3)!=Cell.DNC&&this.getNature(x, y-3)!=Cell.DWC&&this.getNature(0, y-3)!=Cell.DWL&&this.getNature(0, y-3)!=Cell.DNL) {
-								return this.getNature(x, y);
+				if(y==2) {
+					if(!isIn(cells_to_test,this.getNature(0, y-1))) {
+						return this.getNature(x, y);
+					}
+				}else
+				if(y==4) {
+					if(x==0) {
+						if(!isIn(cells_to_test,this.getNature(x, y-1))) {
+							if(!isIn(cells_to_test,this.getNature(x, y-2))) {
+								if(!isIn(cells_to_test,this.getNature(x, y-3))) {
+									return this.getNature(x, y);
+								}
 							}
 						}
 					}
-				}
-			}else if(y==3) {
-				if(this.getViewable(x, y-1)!=null) {
-					if(this.getNature(x, y-1)!=Cell.WLL&&this.getNature(x, y-1)!=Cell.DNC&&this.getNature(x, y-1)!=Cell.DWC&&this.getNature(x, y-1)!=Cell.DWL&&this.getNature(x, y-1)!=Cell.DNL) {
-						if(this.getNature(x, y-2)!=Cell.WLL&&this.getNature(x, y-2)!=Cell.DNC&&this.getNature(x, y-2)!=Cell.DWC&&this.getNature(x, y-2)!=Cell.DWL&&this.getNature(x, y-2)!=Cell.DNL) {
-							return this.getNature(x, y);
+				}else if(y==3) {
+					if(this.getViewable(x, y-1)!=null) {
+						if(!isIn(cells_to_test,this.getNature(x, y-1))) {
+							if(!isIn(cells_to_test,this.getNature(x, y-2))) {
+								return this.getNature(x, y);
+							}
 						}
 					}
 				}

@@ -475,7 +475,7 @@ public class DungeonMasterDemo {
 
 
     private static String handleCellNatSec(PlayerService player ,int x,int y ) {
-        Cell nat = player.isViewable(x, y);
+        Cell nat = player.getViewable(x-player.getCol(),y- player.getRow());
         //Cell nat = engine.getEnv().cellNature(x, y);
 
         if (nat != null) {
@@ -506,8 +506,14 @@ public class DungeonMasterDemo {
                             if (opt.getElem() instanceof CowService) {
                                 return "C";
                             }
-                            if (opt.getElem() instanceof MonsterService) {
+                            if (opt.getElem() instanceof GobelinService) {
                                 return "G";
+                            }
+                            if (opt.getElem() instanceof MinotaurService) {
+                                return "M";
+                            }
+                            if (opt.getElem() instanceof MonsterService) {
+                                return "m";
                             }
                             if (opt.getElem() instanceof PlayerService) {
                                 switch(opt.getElem().getFace()) {
@@ -539,6 +545,19 @@ public class DungeonMasterDemo {
                     }
                     return "+";
                 case OUT:
+                	if (opt.getElem() instanceof PlayerService) {
+                        switch(opt.getElem().getFace()) {
+                        case N:
+                        	return "^";
+                        case S:
+                        	return "v";
+                        case E:
+                        	return ">";
+                        case W:
+                        	return "<";
+                        	default : break;	
+                        }
+                    }
                     return "O";
                 case DNC:
                     return "f";
@@ -559,8 +578,27 @@ public class DungeonMasterDemo {
                             if (opt.getElem() instanceof CowService) {
                                 return "C";
                             }
-                            if (opt.getElem() instanceof MonsterService) {
+                            if (opt.getElem() instanceof GobelinService) {
                                 return "G";
+                            }
+                            if (opt.getElem() instanceof MinotaurService) {
+                                return "M";
+                            }
+                            if (opt.getElem() instanceof MonsterService) {
+                                return "m";
+                            }
+                            if (opt.getElem() instanceof PlayerService) {
+                                switch(opt.getElem().getFace()) {
+                                case N:
+                                	return "^";
+                                case S:
+                                	return "v";
+                                case E:
+                                	return ">";
+                                case W:
+                                	return "<";
+                                	default : break;	
+                                }
                             }
                     }
 
@@ -575,8 +613,14 @@ public class DungeonMasterDemo {
                             if (opt.getElem() instanceof CowService) {
                                 return "C";
                             }
-                            if (opt.getElem() instanceof MonsterService) {
+                            if (opt.getElem() instanceof GobelinService) {
                                 return "G";
+                            }
+                            if (opt.getElem() instanceof MinotaurService) {
+                                return "M";
+                            }
+                            if (opt.getElem() instanceof MonsterService) {
+                                return "m";
                             }
                     }
                     return "?";

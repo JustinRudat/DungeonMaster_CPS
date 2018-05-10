@@ -149,6 +149,7 @@ public class PlayerImplem extends EntityImplem implements PlayerService {
 	@Override
 	public Cell getViewable(int dx, int dy) {
 		int x,y;
+		
 		ArrayList<Cell> cells_to_test = new ArrayList<>();
 		cells_to_test.add(Cell.WLL);
 		cells_to_test.add(Cell.DWC);
@@ -180,22 +181,22 @@ public class PlayerImplem extends EntityImplem implements PlayerService {
 		if(x<=2 && x>=-2) {
 			if(x==-2 || x == 2 ) {
 				if(y==0||y==1||y==-1) {
-					if(!isIn(cells_to_test,this.getNature(x-1, y-1))) 
+					if(!isIn(cells_to_test,this.getNature(x+(x==2?-1:1), y-1))) 
 						return this.getNature(x, y);
 				}
 				if(y==2) {
 					if(!isIn(cells_to_test,this.getNature(0, y-1))) {
-						if(!isIn(cells_to_test,this.getNature(x-1, y-1)))
+						if(!isIn(cells_to_test,this.getNature(x+(x==2?-1:1), y-1)))
 							return this.getNature(x, y);
 					}
 				}else
 				if(y==4) {
 					if(x==0) {
-						if(!isIn(cells_to_test,this.getNature(x-1, y-1))) 
+						if(!isIn(cells_to_test,this.getNature(x+(x==2?-1:1), y-1))) 
 							if(!isIn(cells_to_test,this.getNature(x, y-1))) {
-								if(!isIn(cells_to_test,this.getNature(x-1, y-2))) 
+								if(!isIn(cells_to_test,this.getNature(x+(x==2?-1:1), y-2))) 
 									if(!isIn(cells_to_test,this.getNature(x, y-2))) {
-										if(!isIn(cells_to_test,this.getNature(x-1, y-3))) 
+										if(!isIn(cells_to_test,this.getNature(x+(x==2?-1:1), y-3))) 
 											if(!isIn(cells_to_test,this.getNature(x, y-3))) {
 												return this.getNature(x, y);
 											}
@@ -204,9 +205,9 @@ public class PlayerImplem extends EntityImplem implements PlayerService {
 					}
 				}else if(y==3) {
 					if(this.getViewable(x, y-1)!=null) {
-						if(!isIn(cells_to_test,this.getNature(x-1, y-1)))
+						if(!isIn(cells_to_test,this.getNature(x+(x==2?-1:1), y-1)))
 							if(!isIn(cells_to_test,this.getNature(x, y-1))) {
-								if(!isIn(cells_to_test,this.getNature(x-1, y-2)))
+								if(!isIn(cells_to_test,this.getNature(x+(x==2?-1:1), y-2)))
 									if(!isIn(cells_to_test,this.getNature(x, y-2))) {
 										return this.getNature(x, y);
 									}

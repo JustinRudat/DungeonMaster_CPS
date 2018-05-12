@@ -1,10 +1,13 @@
 package dungeonMaster.contracts;
 
 import dungeonMaster.decorators.EntityDecorator;
+import dungeonMaster.exceptions.PostConditionException;
 import dungeonMaster.exceptions.PreConditionException;
 import dungeonMaster.services.Dir;
 import dungeonMaster.services.EntityService;
 import dungeonMaster.services.EnvironmentService;
+import dungeonMaster.services.MobService;
+import dungeonMaster.services.Option;
 
 public class EntityContract extends EntityDecorator {
 
@@ -12,13 +15,11 @@ public class EntityContract extends EntityDecorator {
 		super(delegate);
 	}
 
-	@Override
-	public int getHealthPoints() {
-		return super.getHealthPoints();
-	}
+	
 
 	@Override
 	public boolean init(EnvironmentService env, int x, int y, Dir dir, int hp,int degat,int armor) {
+		boolean retour = false;
 		try {
 			if(hp<=0) {
 				throw new PreConditionException("hp initialized to 0 or less");
@@ -28,75 +29,37 @@ public class EntityContract extends EntityDecorator {
 			return false;
 		}
 		
-		return super.init(env, x, y, dir, hp, degat,armor);
+		retour= super.init(env, x, y, dir, hp, degat,armor);
+		
+		try {
+			if(getHealthPoints()!=hp) {
+				throw new PostConditionException("init : entity : error on hp setting");
+			}
+			if(getArmor()!=armor) {
+				throw new PostConditionException("init : entity : error on armor setting");
+			}
+			if(getDegats()!=degat) {
+				throw new PostConditionException("init : entity : error on degat setting");
+			}
+		}catch(PostConditionException e ) {
+			e.printStackTrace();
+			retour = false;
+		}
+		
+		return retour;
 	}
 
 	@Override
 	public boolean step() {
-		return super.step();
-
+		boolean retour = false;
+		
+		retour = super.step();
+		
+		return retour;
 	}
 
-	@Override
-	public EnvironmentService getEnv() {
-		return super.getEnv();
-	}
+	
 
-	@Override
-	public int getCol() {
-		return super.getCol();
-	}
-
-	@Override
-	public int getRow() {
-		return super.getRow();
-	}
-
-	@Override
-	public Dir getFace() {
-		return super.getFace();
-	}
-
-	@Override
-	public boolean init(EnvironmentService env, int x, int y, Dir dir) {
-		return super.init(env, x, y, dir);
-
-	}
-
-	@Override
-	public boolean forward() {
-		return super.forward();
-
-	}
-
-	@Override
-	public boolean backward() {
-		return super.backward();
-
-	}
-
-	@Override
-	public boolean turnL() {
-		return super.turnL();
-
-	}
-
-	@Override
-	public boolean turnR() {
-		return super.turnR();
-
-	}
-
-	@Override
-	public boolean strafeL() {
-		return super.strafeL();
-
-	}
-
-	@Override
-	public boolean strafeR() {
-		return super.strafeR();
-
-	}
+	
 
 }

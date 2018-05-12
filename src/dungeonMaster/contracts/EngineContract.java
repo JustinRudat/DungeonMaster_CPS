@@ -9,9 +9,14 @@ import dungeonMaster.exceptions.EnvironmentInvariantException;
 import dungeonMaster.exceptions.InvariantException;
 import dungeonMaster.exceptions.PostConditionException;
 import dungeonMaster.exceptions.PreConditionException;
+import dungeonMaster.services.Cell;
 import dungeonMaster.services.EngineService;
 import dungeonMaster.services.EntityService;
 import dungeonMaster.services.EnvironmentService;
+import dungeonMaster.services.LootService;
+import dungeonMaster.services.LootType;
+import dungeonMaster.services.Option;
+import dungeonMaster.services.PlayerService;
 
 public class EngineContract extends EngineDecorator {
 
@@ -153,12 +158,142 @@ public class EngineContract extends EngineDecorator {
 			e.printStackTrace();
 			return false;
 		}
+		ArrayList<EntityService> entity_clone = new ArrayList<>();
+		
 		checkInvariants();
 		
 		boolean retour = super.step();
 		
 		checkInvariants();
+		
+		try {
+			boolean test = false;
+			for(EntityService entity: this.getEntities()) {
+				if(entity instanceof PlayerService) {
+					if(entity.getHealthPoints()==0) {
+						if(!isGameOver()||isWin()) {
+							throw new PostConditionException("step : engine : game not over or win while player hp =0\n");
+						}
+					}
+					if(this.getEnv().cellNature(entity.getCol(), entity.getRow())==Cell.OUT ) {
+						if(((PlayerService)entity).getBag().size() > 0 && ((PlayerService)entity).getBag().get(0).getLootType() == LootType.Treasure) {
+							if(!(isGameOver()||isWin())) {
+								throw new PostConditionException("step : engine : game not over and win while player is on Out with treasure\n");
+							}
+						}
+					}
+				}
+				if(entity.getHealthPoints()<=0) {
+					test= true;
+					break;
+				}
+			}
+			if(test) {
+				throw new PostConditionException("step : Engine : mob with hp under or equal 0");
+			}
+		}catch (PostConditionException e) {
+			e.printStackTrace();
+			return false;
+		}
 		return retour;
+	}
+	
+	
+
+	@Override
+	public EngineService generateRandomGame() {
+		EngineService retour = null;
+		
+		
+		
+		checkInvariants();
+		retour = super.generateRandomGame();
+		checkInvariants();
+		
+		try {
+			if(retour.isGameOver()) {
+				throw new PostConditionException("generaterandomsquaregame : engine : gameover true");
+			}
+			if(retour.isWin()) {
+				throw new PostConditionException("generaterandomsquaregame : engine : win true");
+			}
+			if(retour.getEntities().size()==0) {
+				throw new PostConditionException("generaterandomsquaregame : engine : entities empty");
+			}
+			if(retour.getEnv()==null) {
+				throw new PostConditionException("generaterandomsquaregame : engine : env null");
+			}
+		}catch(PostConditionException e) {
+			e.printStackTrace();
+		}
+		
+		return retour ;
+	}
+
+	@Override
+	public boolean addLoot(int x, int y) {
+		boolean retour = false;
+		try {
+			if(x<0||x>=getEnv().getWidth()) {
+				throw new PreConditionException("addloot : engine : error on x\n");
+			}
+			if(y<0||y>=getEnv().getHeight()) {
+				throw new PreConditionException("addloot : engine : error on y\n");
+			}
+			if(getEnv().cellContent(x, y).getOption()!=Option.No) {
+				if(getEnv().cellContent(x, y).getElem() instanceof EntityService) {
+					if(((EntityService)getEnv().cellContent(x, y).getElem()).getHealthPoints()!=0) {
+						throw new PreConditionException("addloot : engine : cell already takne by a live entity\n");
+					}
+				}
+			}
+		}catch(PreConditionException e) {
+			e.printStackTrace();
+		}
+		checkInvariants();
+		retour = super.addLoot(x, y);
+		checkInvariants();
+		try {
+			if(getEnv().cellContent(x, y).getOption()!=Option.No){
+				if(!(getEnv().cellContent(x, y).getElem() instanceof LootService)) {
+					throw new PostConditionException("addloot : engine :  not a loot\n");
+				}
+			}
+			
+		}catch(PostConditionException e ) {
+			e.printStackTrace();
+		}
+		return retour;
+	}
+
+	@Override
+	public EngineService generateRandomSquareGame() {
+		EngineService retour = null;
+		
+		
+		
+		checkInvariants();
+		retour = super.generateRandomSquareGame();
+		checkInvariants();
+		
+		try {
+			if(retour.isGameOver()) {
+				throw new PostConditionException("generaterandomsquaregame : engine : gameover true");
+			}
+			if(retour.isWin()) {
+				throw new PostConditionException("generaterandomsquaregame : engine : win true");
+			}
+			if(retour.getEntities().size()==0) {
+				throw new PostConditionException("generaterandomsquaregame : engine : entities empty");
+			}
+			if(retour.getEnv()==null) {
+				throw new PostConditionException("generaterandomsquaregame : engine : env null");
+			}
+		}catch(PostConditionException e) {
+			e.printStackTrace();
+		}
+		
+		return retour ;
 	}
 
 }

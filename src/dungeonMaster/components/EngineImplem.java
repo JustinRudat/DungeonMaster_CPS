@@ -117,10 +117,8 @@ public class EngineImplem implements EngineService {
 							return true;
 						}
 					}
-					OptionService<MobService> opt = new OptionImplem<>();
+					getEnv().removeMobOption(getEnv().cellContent(entity_tmp.getCol(), entity_tmp.getRow()).getElem());
 					Random rand = new Random();
-					opt.init(null, Option.No);
-					this.getEnv().getContent().set(entity_tmp.getRow()*this.getEnv().getWidth()+entity_tmp.getCol(),opt);
 					if(entity_tmp instanceof MonsterService) {
 						int alea = 1+rand.nextInt(100);
 						
@@ -256,7 +254,7 @@ public class EngineImplem implements EngineService {
 		EditMapImplem editmap = new EditMapImplem();
 		editmap.init(default_largeur,default_hauteur);
 		
-		while(!editmap.randomSquareEdit()) {
+		while(!editmap.randomEditSquare()) {
 			System.out.println("generating a map\n");
 		}
 		

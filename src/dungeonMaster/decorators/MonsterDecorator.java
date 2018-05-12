@@ -35,6 +35,11 @@ public class MonsterDecorator extends EntityDecorator implements MonsterService 
 	public boolean moveTo(int x, int y) {
 		return false;
 	}
+	
+	@Override
+	public boolean step() {
+		return false;
+	}
 
 	@Override
 	public boolean setDropChance(int drop_c) {
@@ -53,6 +58,12 @@ public class MonsterDecorator extends EntityDecorator implements MonsterService 
 
 	@Override
 	public int getDropChance() {
+		return 0;
+	}
+
+	@Override
+	public int getPortee() {
+		// TODO Auto-generated method stub
 		return 0;
 	}
 

@@ -291,4 +291,9 @@ public class MonsterImplem extends EntityImplem implements MonsterService {
 	public int getDropChance() {
 		return this.drop_c;
 	}
+	
+	@Override
+	public int getPortee() {
+		return this.portee;
+	}
 }

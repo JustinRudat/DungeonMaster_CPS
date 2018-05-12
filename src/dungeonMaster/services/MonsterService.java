@@ -24,6 +24,8 @@ public interface MonsterService extends /* includes */ EntityService {
 	
 	public int getDropChance();
 	
+	public int getPortee();
+	
 	
 	
 }

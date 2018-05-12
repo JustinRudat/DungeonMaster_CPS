@@ -12,7 +12,7 @@ import dungeonMaster.services.MonsterService;
 
 public class GobelinDecorator extends MonsterDecorator implements GobelinService {
 
-	public GobelinDecorator(MonsterService delegate) {
+	public GobelinDecorator(GobelinService delegate) {
 		super(delegate);
 	}
 

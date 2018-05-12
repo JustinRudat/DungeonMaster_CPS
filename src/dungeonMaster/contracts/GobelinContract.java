@@ -3,6 +3,8 @@ package dungeonMaster.contracts;
 import dungeonMaster.decorators.GobelinDecorator;
 import dungeonMaster.exceptions.PostConditionException;
 import dungeonMaster.services.Dir;
+import dungeonMaster.services.EnvironmentService;
+import dungeonMaster.services.GobelinService;
 import dungeonMaster.services.MobService;
 import dungeonMaster.services.MonsterService;
 import dungeonMaster.services.Option;
@@ -10,79 +12,42 @@ import dungeonMaster.services.PlayerService;
 
 public class GobelinContract extends GobelinDecorator{
 
-	public GobelinContract(MonsterService delegate) {
+	public GobelinContract(GobelinService delegate) {
 		super(delegate);
 	}
 	
-	@Override
-	public boolean step() {
-		boolean retour = false;
-		MobService mob = null;
-		int player_hp=-1;
-		int player_armor=-1;
-		boolean player_def=false;
-		switch(getFace()) {
-		case N:
-			if(getEnv().cellContent(this.getCol(),this.getRow()+1).getOption()!=Option.No) {
-				if(mob instanceof PlayerService) {
-					mob = getEnv().cellContent(this.getCol(),this.getRow()+1).getElem();
-					player_hp = ((PlayerService)mob).getHealthPoints();
-					player_armor = ((PlayerService)mob).getArmor();
-					player_def = ((PlayerService)mob).isDef();
-				}
-			}
-			break;
-		case S:
-			if(getEnv().cellContent(this.getCol(),this.getRow()-1).getOption()!=Option.No) {
-				if(mob instanceof PlayerService) {
-					mob = getEnv().cellContent(this.getCol(),this.getRow()-1).getElem();
-					player_hp = ((PlayerService)mob).getHealthPoints();
-					player_armor = ((PlayerService)mob).getArmor();
-					player_def = ((PlayerService)mob).isDef();
-				}
-			}
-			break;
-		case E:
-			if(getEnv().cellContent(this.getCol()+1,this.getRow()).getOption()!=Option.No) {
-				if(mob instanceof PlayerService) {
-					mob = getEnv().cellContent(this.getCol()+1,this.getRow()).getElem();
-					player_hp = ((PlayerService)mob).getHealthPoints();
-					player_armor = ((PlayerService)mob).getArmor();
-					player_def = ((PlayerService)mob).isDef();
-				}
-			}
-			break;
-		case W:
-			if(getEnv().cellContent(this.getCol()-1,this.getRow()).getOption()!=Option.No) {
-				if(mob instanceof PlayerService) {
-					mob = getEnv().cellContent(this.getCol()-1,this.getRow()).getElem();
-					player_hp = ((PlayerService)mob).getHealthPoints();
-					player_armor = ((PlayerService)mob).getArmor();
-					player_def = ((PlayerService)mob).isDef();
-				}
-			}
-			break;
-			
-		}
-		Dir face_at_pre = this.getFace();
-		int col_at_pre = this.getCol();
-		int row_at_pre = this.getRow();
+	public boolean init(EnvironmentService env, int col, int row, Dir dir) {
+		boolean retour = false; 
 		
-		retour = super.step();
+		super.init(env, col, row, dir);
+		
 		try {
-			if(mob!=null) {
-				if(((PlayerService)mob).getHealthPoints() != player_hp - (getDegats()>player_armor+(player_def?1:0)?getDegats()-player_armor-(player_def?1:0):0)){
-					throw new PostConditionException("step : gobelin: monster didnt attack");
-				}
-			}else {
-				if(face_at_pre==getFace() && (col_at_pre==getCol()&&row_at_pre==getRow())) {
-					throw new PostConditionException("step : gobelin : didnt move or turned");
-				}
-				
+			if(getArmor()!=1) {
+				throw new PostConditionException("init : gobelin : error on armor setting");
 			}
+			if(getDegats()!=2) {
+				throw new PostConditionException("init : gobelin : error on dammage setting");
+			}
+			if(getDropChance()!=30) {
+				throw new PostConditionException("init : gobelin : error on drop chance setting");
+			}
+			if(getHealthPoints()!=10) {
+				throw new PostConditionException("init : gobelin : error on hp setting");
+			}
+			if(getMentRes()!=15) {
+				throw new PostConditionException("init : gobelin : error on mental resistance setting");
+			}
+			if(getPortee()!=3) {
+				throw new PostConditionException("init : gobelin : error on range setting");
+			}
+			
+			
+			
 		}catch(PostConditionException e) {
 			e.printStackTrace();
+			retour =false;
 		}
+		
 		return retour;
 	}
 }

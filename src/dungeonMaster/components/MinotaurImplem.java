@@ -115,7 +115,6 @@ public class MinotaurImplem extends MonsterImplem  implements MinotaurService {
 								default:
 									break;
 							}
-							victim.backward();
 							if(col_pre == victim.getCol() && row_pre == victim.getRow()) {
 								int dgt_tmp = this.getDegats()-victim.getArmor();
 								if(dgt_tmp>0) {

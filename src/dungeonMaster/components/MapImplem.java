@@ -2,7 +2,7 @@ package dungeonMaster.components;
 
 import java.util.ArrayList;
 
-import dungeonMaster.services.Cell;
+import dungeonMaster.enumeration.Cell;
 import dungeonMaster.services.DoorLockService;
 import dungeonMaster.services.MapService;
 

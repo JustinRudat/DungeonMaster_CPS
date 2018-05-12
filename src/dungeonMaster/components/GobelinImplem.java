@@ -1,6 +1,6 @@
 package dungeonMaster.components;
 
-import dungeonMaster.services.Dir;
+import dungeonMaster.enumeration.Dir;
 import dungeonMaster.services.EnvironmentService;
 import dungeonMaster.services.GobelinService;
 

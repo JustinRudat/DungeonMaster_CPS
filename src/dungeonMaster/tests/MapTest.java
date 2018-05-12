@@ -6,7 +6,7 @@ import dungeonMaster.components.EditMapImplem;
 import dungeonMaster.components.MapImplem;
 import dungeonMaster.contracts.EditMapContract;
 import dungeonMaster.contracts.MapContract;
-import dungeonMaster.services.Cell;
+import dungeonMaster.enumeration.Cell;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestResult;

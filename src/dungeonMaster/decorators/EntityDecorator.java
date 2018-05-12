@@ -1,6 +1,6 @@
 package dungeonMaster.decorators;
 
-import dungeonMaster.services.Dir;
+import dungeonMaster.enumeration.Dir;
 import dungeonMaster.services.EntityService;
 import dungeonMaster.services.EnvironmentService;
 

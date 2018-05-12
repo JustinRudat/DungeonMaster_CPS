@@ -1,12 +1,12 @@
 package dungeonMaster.contracts;
 
 import dungeonMaster.decorators.MinotaurDecorator;
+import dungeonMaster.enumeration.Dir;
+import dungeonMaster.enumeration.Option;
 import dungeonMaster.exceptions.PostConditionException;
-import dungeonMaster.services.Dir;
 import dungeonMaster.services.EnvironmentService;
 import dungeonMaster.services.MinotaurService;
 import dungeonMaster.services.MobService;
-import dungeonMaster.services.Option;
 import dungeonMaster.services.PlayerService;
 
 public class MinotaurContract extends MinotaurDecorator {

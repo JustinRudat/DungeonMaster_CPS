@@ -1,9 +1,9 @@
 package dungeonMaster.decorators;
 
-import dungeonMaster.services.Dir;
+import dungeonMaster.enumeration.Dir;
+import dungeonMaster.enumeration.LootType;
 import dungeonMaster.services.EnvironmentService;
 import dungeonMaster.services.LootService;
-import dungeonMaster.services.LootType;
 import dungeonMaster.services.MobService;
 
 public class LootDecorator extends MobDecorator implements LootService {

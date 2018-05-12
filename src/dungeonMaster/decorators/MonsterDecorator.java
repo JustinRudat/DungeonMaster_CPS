@@ -3,8 +3,8 @@ package dungeonMaster.decorators;
 import java.util.ArrayList;
 
 import dungeonMaster.components.Noeud;
-import dungeonMaster.services.Cell;
-import dungeonMaster.services.Dir;
+import dungeonMaster.enumeration.Cell;
+import dungeonMaster.enumeration.Dir;
 import dungeonMaster.services.EntityService;
 import dungeonMaster.services.EnvironmentService;
 import dungeonMaster.services.MonsterService;

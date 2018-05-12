@@ -3,19 +3,19 @@ package dungeonMaster.contracts;
 import java.util.ArrayList;
 
 import dungeonMaster.decorators.EngineDecorator;
+import dungeonMaster.enumeration.Cell;
+import dungeonMaster.enumeration.LootType;
+import dungeonMaster.enumeration.Option;
 import dungeonMaster.exceptions.ConditionException;
 import dungeonMaster.exceptions.EntityInvariantException;
 import dungeonMaster.exceptions.EnvironmentInvariantException;
 import dungeonMaster.exceptions.InvariantException;
 import dungeonMaster.exceptions.PostConditionException;
 import dungeonMaster.exceptions.PreConditionException;
-import dungeonMaster.services.Cell;
 import dungeonMaster.services.EngineService;
 import dungeonMaster.services.EntityService;
 import dungeonMaster.services.EnvironmentService;
 import dungeonMaster.services.LootService;
-import dungeonMaster.services.LootType;
-import dungeonMaster.services.Option;
 import dungeonMaster.services.PlayerService;
 
 public class EngineContract extends EngineDecorator {

@@ -2,7 +2,7 @@ package dungeonMaster.decorators;
 
 import java.util.ArrayList;
 
-import dungeonMaster.services.Cell;
+import dungeonMaster.enumeration.Cell;
 import dungeonMaster.services.EnvironmentService;
 import dungeonMaster.services.MobService;
 import dungeonMaster.services.OptionService;

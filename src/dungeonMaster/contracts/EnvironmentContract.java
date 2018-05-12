@@ -3,13 +3,13 @@ package dungeonMaster.contracts;
 import java.util.ArrayList;
 
 import dungeonMaster.decorators.EnvironmentDecorator;
+import dungeonMaster.enumeration.Cell;
+import dungeonMaster.enumeration.Option;
 import dungeonMaster.exceptions.PostConditionException;
 import dungeonMaster.exceptions.PreConditionException;
-import dungeonMaster.services.Cell;
 import dungeonMaster.services.EnvironmentService;
 import dungeonMaster.services.MapService;
 import dungeonMaster.services.MobService;
-import dungeonMaster.services.Option;
 import dungeonMaster.services.OptionService;
 
 public class EnvironmentContract extends EnvironmentDecorator {

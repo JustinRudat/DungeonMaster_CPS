@@ -1,10 +1,10 @@
 package dungeonMaster.components;
 
-import dungeonMaster.services.Dir;
+import dungeonMaster.enumeration.Dir;
+import dungeonMaster.enumeration.Option;
 import dungeonMaster.services.EntityService;
 import dungeonMaster.services.EnvironmentService;
 import dungeonMaster.services.MobService;
-import dungeonMaster.services.Option;
 import dungeonMaster.services.OptionService;
 import dungeonMaster.services.PlayerService;
 

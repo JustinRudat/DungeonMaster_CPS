@@ -1,11 +1,11 @@
 package dungeonMaster.contracts;
 
 import dungeonMaster.decorators.MonsterDecorator;
+import dungeonMaster.enumeration.Dir;
+import dungeonMaster.enumeration.Option;
 import dungeonMaster.exceptions.PostConditionException;
-import dungeonMaster.services.Dir;
 import dungeonMaster.services.MobService;
 import dungeonMaster.services.MonsterService;
-import dungeonMaster.services.Option;
 import dungeonMaster.services.PlayerService;
 
 public class MonsterContract extends MonsterDecorator {

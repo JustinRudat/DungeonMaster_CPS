@@ -1,11 +1,11 @@
 package dungeonMaster.contracts;
 
 import dungeonMaster.decorators.LootDecorator;
+import dungeonMaster.enumeration.LootType;
 import dungeonMaster.exceptions.PostConditionException;
 import dungeonMaster.exceptions.PreConditionException;
 import dungeonMaster.services.EnvironmentService;
 import dungeonMaster.services.LootService;
-import dungeonMaster.services.LootType;
 
 public class LootContract extends LootDecorator {
 

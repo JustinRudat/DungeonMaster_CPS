@@ -1,11 +1,11 @@
 package dungeonMaster.contracts;
 
 import dungeonMaster.decorators.CowDecorator;
+import dungeonMaster.enumeration.Dir;
 import dungeonMaster.exceptions.ConditionException;
 import dungeonMaster.exceptions.PostConditionException;
 import dungeonMaster.exceptions.PreConditionException;
 import dungeonMaster.services.CowService;
-import dungeonMaster.services.Dir;
 import dungeonMaster.services.EnvironmentService;
 
 public class CowContract extends CowDecorator {

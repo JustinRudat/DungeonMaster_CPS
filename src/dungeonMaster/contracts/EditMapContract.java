@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 import dungeonMaster.components.Noeud;
 import dungeonMaster.decorators.EditMapDecorator;
+import dungeonMaster.enumeration.Cell;
 import dungeonMaster.exceptions.PostConditionException;
 import dungeonMaster.exceptions.PreConditionException;
-import dungeonMaster.services.Cell;
 import dungeonMaster.services.EditMapService;
 import dungeonMaster.services.MapService;
 

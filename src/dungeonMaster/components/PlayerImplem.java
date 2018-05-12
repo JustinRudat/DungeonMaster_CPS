@@ -3,18 +3,17 @@ package dungeonMaster.components;
 import java.util.ArrayList;
 import java.util.Random;
 
-import dungeonMaster.services.Cell;
-import dungeonMaster.services.ColorKeyDoor;
-import dungeonMaster.services.Command;
-import dungeonMaster.services.Dir;
+import dungeonMaster.enumeration.Cell;
+import dungeonMaster.enumeration.Command;
+import dungeonMaster.enumeration.Dir;
+import dungeonMaster.enumeration.LootType;
+import dungeonMaster.enumeration.Option;
 import dungeonMaster.services.DoorLockService;
 import dungeonMaster.services.EntityService;
 import dungeonMaster.services.EnvironmentService;
 import dungeonMaster.services.LootService;
-import dungeonMaster.services.LootType;
 import dungeonMaster.services.MobService;
 import dungeonMaster.services.MonsterService;
-import dungeonMaster.services.Option;
 import dungeonMaster.services.OptionService;
 import dungeonMaster.services.PlayerService;
 

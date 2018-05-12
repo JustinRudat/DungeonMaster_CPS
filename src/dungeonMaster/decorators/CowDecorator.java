@@ -1,7 +1,7 @@
 package dungeonMaster.decorators;
 
+import dungeonMaster.enumeration.Dir;
 import dungeonMaster.services.CowService;
-import dungeonMaster.services.Dir;
 import dungeonMaster.services.EntityService;
 import dungeonMaster.services.EnvironmentService;
 import dungeonMaster.services.PlayerService;

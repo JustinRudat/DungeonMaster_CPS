@@ -2,6 +2,10 @@ package dungeonMaster.services;
 
 import java.util.ArrayList;
 
+import dungeonMaster.enumeration.Cell;
+import dungeonMaster.enumeration.Command;
+import dungeonMaster.enumeration.Dir;
+
 public interface PlayerService extends /* includes */ EntityService {
 
 	public OptionService<Command> getLastCommand();

@@ -1,5 +1,7 @@
 package dungeonMaster.services;
 
+import dungeonMaster.enumeration.Dir;
+
 public interface EntityService extends /*includes */ MobService  {
 	/**
 	 * 

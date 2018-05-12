@@ -2,6 +2,8 @@ package dungeonMaster.services;
 
 import java.util.ArrayList;
 
+import dungeonMaster.enumeration.Cell;
+
 public interface MapService {
     /** Observateur : hauteur de la Map 
      *

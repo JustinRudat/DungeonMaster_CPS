@@ -15,19 +15,19 @@ import javax.swing.*;
 
 import dungeonMaster.components.EngineImplem;
 import dungeonMaster.components.EnvironmentImplem;
-import dungeonMaster.services.Cell;
-import dungeonMaster.services.Command;
+import dungeonMaster.enumeration.Cell;
+import dungeonMaster.enumeration.Command;
+import dungeonMaster.enumeration.LootType;
+import dungeonMaster.enumeration.Option;
 import dungeonMaster.services.CowService;
 import dungeonMaster.services.EngineService;
 import dungeonMaster.services.EntityService;
 import dungeonMaster.services.EnvironmentService;
 import dungeonMaster.services.GobelinService;
 import dungeonMaster.services.LootService;
-import dungeonMaster.services.LootType;
 import dungeonMaster.services.MinotaurService;
 import dungeonMaster.services.MobService;
 import dungeonMaster.services.MonsterService;
-import dungeonMaster.services.Option;
 import dungeonMaster.services.OptionService;
 import dungeonMaster.services.PlayerService;
 

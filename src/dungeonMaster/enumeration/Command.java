@@ -1,4 +1,4 @@
-package dungeonMaster.services;
+package dungeonMaster.enumeration;
 
 public enum Command {
     FF,

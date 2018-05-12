@@ -1,10 +1,10 @@
 package dungeonMaster.components;
 
-import dungeonMaster.services.Cell;
-import dungeonMaster.services.Dir;
+import dungeonMaster.enumeration.Cell;
+import dungeonMaster.enumeration.Dir;
+import dungeonMaster.enumeration.Option;
 import dungeonMaster.services.EnvironmentService;
 import dungeonMaster.services.MobService;
-import dungeonMaster.services.Option;
 import dungeonMaster.services.OptionService;
 
 public class MobImplem implements MobService{

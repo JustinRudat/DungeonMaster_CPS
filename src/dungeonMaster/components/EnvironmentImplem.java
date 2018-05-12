@@ -2,10 +2,10 @@ package dungeonMaster.components;
 
 import java.util.ArrayList;
 
-import dungeonMaster.services.Dir;
+import dungeonMaster.enumeration.Dir;
+import dungeonMaster.enumeration.Option;
 import dungeonMaster.services.EnvironmentService;
 import dungeonMaster.services.MobService;
-import dungeonMaster.services.Option;
 import dungeonMaster.services.OptionService;
 
 public class EnvironmentImplem extends MapImplem implements EnvironmentService{

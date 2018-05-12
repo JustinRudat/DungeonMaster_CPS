@@ -2,12 +2,12 @@ package dungeonMaster.components;
 
 import java.util.Random;
 
-import dungeonMaster.services.Cell;
+import dungeonMaster.enumeration.Cell;
+import dungeonMaster.enumeration.Dir;
+import dungeonMaster.enumeration.Option;
 import dungeonMaster.services.CowService;
-import dungeonMaster.services.Dir;
 import dungeonMaster.services.EnvironmentService;
 import dungeonMaster.services.MobService;
-import dungeonMaster.services.Option;
 import dungeonMaster.services.OptionService;
 
 public class CowImplemBug extends EntityImplem implements CowService {

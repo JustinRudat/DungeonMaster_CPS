@@ -2,11 +2,11 @@ package dungeonMaster.components;
 
 import java.util.ArrayList;
 
+import dungeonMaster.enumeration.Option;
 import dungeonMaster.services.EngineService;
 import dungeonMaster.services.EntityService;
 import dungeonMaster.services.EnvironmentService;
 import dungeonMaster.services.MobService;
-import dungeonMaster.services.Option;
 import dungeonMaster.services.OptionService;
 
 public class EngineImplemBug implements EngineService {

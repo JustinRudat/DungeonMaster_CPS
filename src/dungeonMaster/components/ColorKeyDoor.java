@@ -1,4 +1,4 @@
-package dungeonMaster.services;
+package dungeonMaster.components;
 
 public class ColorKeyDoor {
 	public static final String RED="red";

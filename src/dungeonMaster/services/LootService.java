@@ -1,5 +1,7 @@
 package dungeonMaster.services;
 
+import dungeonMaster.enumeration.LootType;
+
 public interface LootService extends MobService{
 	public boolean init(EnvironmentService env, int col, int row,LootType lt, int puis,String name);
 	public int getPuis();

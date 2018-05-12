@@ -1,6 +1,6 @@
 package dungeonMaster.components;
 
-import dungeonMaster.services.Option;
+import dungeonMaster.enumeration.Option;
 import dungeonMaster.services.OptionService;
 
 public class OptionImplem<T> implements OptionService<T> {

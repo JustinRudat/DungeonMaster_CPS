@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-import dungeonMaster.services.Cell;
-import dungeonMaster.services.ColorKeyDoor;
+import dungeonMaster.enumeration.Cell;
 import dungeonMaster.services.DoorLockService;
 import dungeonMaster.services.EditMapService;
 import dungeonMaster.services.MapService;

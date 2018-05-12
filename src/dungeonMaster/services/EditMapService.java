@@ -3,6 +3,7 @@ package dungeonMaster.services;
 import java.util.ArrayList;
 
 import dungeonMaster.components.Noeud;
+import dungeonMaster.enumeration.Cell;
 
 public interface EditMapService extends /*refine*/ MapService{
     /** Invariants :

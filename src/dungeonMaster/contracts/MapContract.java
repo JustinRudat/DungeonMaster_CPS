@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import dungeonMaster.decorators.MapDecorator;
+import dungeonMaster.enumeration.Cell;
 import dungeonMaster.exceptions.PostConditionException;
 import dungeonMaster.exceptions.PreConditionException;
-import dungeonMaster.services.Cell;
 import dungeonMaster.services.MapService;
 
 public class MapContract extends MapDecorator {

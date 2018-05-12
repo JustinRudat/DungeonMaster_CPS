@@ -1,9 +1,9 @@
 package dungeonMaster.components;
 
-import dungeonMaster.services.Dir;
+import dungeonMaster.enumeration.Dir;
+import dungeonMaster.enumeration.LootType;
 import dungeonMaster.services.EnvironmentService;
 import dungeonMaster.services.LootService;
-import dungeonMaster.services.LootType;
 
 public class LootImplem extends MobImplem implements LootService {
 	private String name;

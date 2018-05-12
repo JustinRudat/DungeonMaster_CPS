@@ -1,13 +1,13 @@
 package dungeonMaster.contracts;
 
 import dungeonMaster.decorators.EntityDecorator;
+import dungeonMaster.enumeration.Dir;
+import dungeonMaster.enumeration.Option;
 import dungeonMaster.exceptions.PostConditionException;
 import dungeonMaster.exceptions.PreConditionException;
-import dungeonMaster.services.Dir;
 import dungeonMaster.services.EntityService;
 import dungeonMaster.services.EnvironmentService;
 import dungeonMaster.services.MobService;
-import dungeonMaster.services.Option;
 
 public class EntityContract extends EntityDecorator {
 

@@ -3,6 +3,8 @@ package dungeonMaster.services;
 import java.util.ArrayList;
 
 import dungeonMaster.components.Noeud;
+import dungeonMaster.enumeration.Cell;
+import dungeonMaster.enumeration.Dir;
 
 public interface MonsterService extends /* includes */ EntityService {
 	

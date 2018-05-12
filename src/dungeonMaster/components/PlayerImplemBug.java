@@ -2,14 +2,14 @@ package dungeonMaster.components;
 
 import java.util.ArrayList;
 
-import dungeonMaster.services.Cell;
-import dungeonMaster.services.Command;
-import dungeonMaster.services.Dir;
+import dungeonMaster.enumeration.Cell;
+import dungeonMaster.enumeration.Command;
+import dungeonMaster.enumeration.Dir;
+import dungeonMaster.enumeration.Option;
 import dungeonMaster.services.EntityService;
 import dungeonMaster.services.EnvironmentService;
 import dungeonMaster.services.LootService;
 import dungeonMaster.services.MobService;
-import dungeonMaster.services.Option;
 import dungeonMaster.services.OptionService;
 import dungeonMaster.services.PlayerService;
 

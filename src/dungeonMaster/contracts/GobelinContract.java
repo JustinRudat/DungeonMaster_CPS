@@ -1,13 +1,13 @@
 package dungeonMaster.contracts;
 
 import dungeonMaster.decorators.GobelinDecorator;
+import dungeonMaster.enumeration.Dir;
+import dungeonMaster.enumeration.Option;
 import dungeonMaster.exceptions.PostConditionException;
-import dungeonMaster.services.Dir;
 import dungeonMaster.services.EnvironmentService;
 import dungeonMaster.services.GobelinService;
 import dungeonMaster.services.MobService;
 import dungeonMaster.services.MonsterService;
-import dungeonMaster.services.Option;
 import dungeonMaster.services.PlayerService;
 
 public class GobelinContract extends GobelinDecorator{

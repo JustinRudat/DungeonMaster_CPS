@@ -12,7 +12,12 @@ public class EnvironmentDecorator extends MapDecorator implements EnvironmentSer
 	public EnvironmentDecorator(EnvironmentService delegate) {
 		super(delegate);
 	}
-
+	
+	@Override
+	public boolean init(int largeur,int hauteur) {
+		return ((EnvironmentService)this.getDelegate()).init(largeur, hauteur);
+	}
+	
 	@Override
 	public OptionService<MobService> cellContent(int x, int y) {
 		return ((EnvironmentService) this.getDelegate()).cellContent(x,y);

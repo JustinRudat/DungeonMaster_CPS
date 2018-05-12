@@ -18,12 +18,5 @@ public interface EnvironmentService extends /* includes */ MapService {
      */
     public OptionService<MobService> cellContent(int x, int y);
     
-    /** Opérateur :
-     * 
-     * \pre : this.cellContent(x,y) == No
-     * @param x
-     * @param y
-     * @return
-     */
-    public boolean closeDoor(int x, int y);
+   
 }

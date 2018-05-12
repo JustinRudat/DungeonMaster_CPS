@@ -38,7 +38,6 @@ public class EnvironmentImplem extends MapImplem implements EnvironmentService{
 	
 	@Override
 	public boolean addMobOption(MobService mob) {
-		// TODO Auto-generated method stub
 		int x= mob.getCol();
 		int y = mob.getRow();
 		OptionService<MobService> option = new OptionImplem<>();
@@ -48,7 +47,6 @@ public class EnvironmentImplem extends MapImplem implements EnvironmentService{
 	}
 	@Override
 	public boolean removeMobOption(MobService mob) {
-		// TODO Auto-generated method stub
 		int x= mob.getCol();
 		int y = mob.getRow();
 		OptionService<MobService> option = new OptionImplem<>();
@@ -57,9 +55,6 @@ public class EnvironmentImplem extends MapImplem implements EnvironmentService{
 		return true;
 	}
 	
-	@Override
-	public boolean closeDoor(int x,int y) {
-		return super.closeDoor(x, y);
-	}
+	
 	
 }

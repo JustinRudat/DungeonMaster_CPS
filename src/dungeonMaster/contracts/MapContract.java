@@ -84,7 +84,7 @@ public class MapContract extends MapDecorator {
 	@Override
 	public boolean openDoor(int x, int y) {
 		try {
-			if(this.cellNature(x,y)!=Cell.DNC&&this.cellNature(x,y)!=Cell.DWC) {
+			if(this.cellNature(x,y)!=Cell.DNC&&this.cellNature(x,y)!=Cell.DWC&&this.cellNature(x,y)!=Cell.DNL&&this.cellNature(x,y)!=Cell.DWL) {
 				throw new PreConditionException("opendoor : Ceci n'est pas une porte fermée");
 			}
 		}catch (PreConditionException e) {
@@ -126,6 +126,16 @@ public class MapContract extends MapDecorator {
 			if(state_at_pre==Cell.DNC) {
 				if(this.cellNature(x, y)!=Cell.DNO) {
 					throw new PostConditionException("opendoor : DNC -/-> DNO");
+				}
+			}
+			if(state_at_pre==Cell.DWL) {
+				if(this.cellNature(x, y)!=Cell.DWO) {
+					throw new PostConditionException("opendoor : DWL -/-> DWO");
+				}
+			}
+			if(state_at_pre==Cell.DNL) {
+				if(this.cellNature(x, y)!=Cell.DNO) {
+					throw new PostConditionException("opendoor : DNL -/-> DNO");
 				}
 			}
 			

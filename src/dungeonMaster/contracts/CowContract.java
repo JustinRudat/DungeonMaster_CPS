@@ -37,5 +37,26 @@ public class CowContract extends CowDecorator {
 		return retour;
 
 	}
+	
+	@Override
+	public boolean step() {
+		int col_at_pre = this.getCol();
+		int row_at_pre = this.getRow();
+		Dir face_at_pre  =this.getFace();
+		boolean retour = false;
+		retour = super.step();
+		try {
+			if(this.getFace()==face_at_pre) {
+				if(this.getRow()==row_at_pre && this.getCol()==col_at_pre) {
+						retour =false;
+						throw new PostConditionException("Cow didnt act.\n");
+				}
+			}
+		} catch (PostConditionException e) {
+			e.printStackTrace();
+			
+		}
+		return retour;
+	}
 
 }

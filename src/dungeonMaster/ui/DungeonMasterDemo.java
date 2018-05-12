@@ -475,6 +475,7 @@ public class DungeonMasterDemo {
 
 
     private static String handleCellNatSec(PlayerService player ,int x,int y ) {
+    	
         Cell nat = player.getViewable(x-player.getCol(),y- player.getRow());
         //Cell nat = engine.getEnv().cellNature(x, y);
 

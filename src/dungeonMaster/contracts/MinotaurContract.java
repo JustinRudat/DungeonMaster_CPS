@@ -90,6 +90,7 @@ public class MinotaurContract extends MinotaurDecorator {
 				hp_at_pre = ((PlayerService)mob).getHealthPoints();
 			}catch(PreConditionException e) {
 				e.printStackTrace();
+				return false;
 			}
 		}
 		
@@ -109,6 +110,7 @@ public class MinotaurContract extends MinotaurDecorator {
 				}
 			}catch(PostConditionException e) {
 				e.printStackTrace();
+				retour = false;
 			}
 		}
 		

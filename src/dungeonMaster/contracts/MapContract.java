@@ -45,6 +45,7 @@ public class MapContract extends MapDecorator {
 			}
 		}catch (PreConditionException e) {
 			e.printStackTrace();
+			return null;
 		}
 		return super.cellNature(i, j);
 	}
@@ -60,6 +61,7 @@ public class MapContract extends MapDecorator {
 			}
 		}catch (PreConditionException e) {
 			e.printStackTrace();
+			return false;
 		}
 		
 //		checkInvariants();
@@ -77,6 +79,7 @@ public class MapContract extends MapDecorator {
 			}
 		} catch (PostConditionException e) {
 			e.printStackTrace();
+			retour =false;
 		}
 		return retour;
 	}
@@ -89,6 +92,7 @@ public class MapContract extends MapDecorator {
 			}
 		}catch (PreConditionException e) {
 			e.printStackTrace();
+			return false;
 		}
 		
 		int nb_echant = (this.getHeight() + this.getWidth())/10;
@@ -154,6 +158,7 @@ public class MapContract extends MapDecorator {
 			
 		}catch (PostConditionException e) {
 			e.printStackTrace();
+			retour = false;
 		}
 		return retour;
 	}
@@ -166,6 +171,7 @@ public class MapContract extends MapDecorator {
 			}
 		}catch (PreConditionException e) {
 			e.printStackTrace();
+			return false;
 		}
 		
 		Cell state_at_pre = this.cellNature(x,y);
@@ -217,6 +223,7 @@ public class MapContract extends MapDecorator {
 			}
 		}catch (PostConditionException e) {
 			e.printStackTrace();
+			retour = false;
 		}
 		return retour;
 	}

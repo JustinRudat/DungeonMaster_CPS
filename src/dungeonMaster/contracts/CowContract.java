@@ -54,7 +54,7 @@ public class CowContract extends CowDecorator {
 			}
 		} catch (PostConditionException e) {
 			e.printStackTrace();
-			
+			retour = false;
 		}
 		return retour;
 	}

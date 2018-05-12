@@ -92,6 +92,7 @@ public class EnvironmentContract extends EnvironmentDecorator {
 			}
 		}catch(PreConditionException e) {
 			e.printStackTrace();
+			return null;
 		}
 		
 		retour  = super.cellContent(x, y);
@@ -101,6 +102,7 @@ public class EnvironmentContract extends EnvironmentDecorator {
 			}
 		}catch(PostConditionException e) {
 			e.printStackTrace();
+			retour = null;
 		}
 		
 		return retour;

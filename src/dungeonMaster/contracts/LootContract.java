@@ -27,6 +27,7 @@ public class LootContract extends LootDecorator {
 			
 		}catch(PreConditionException e) {
 			e.printStackTrace();
+			return false;
 		}
 		retour =  ((LootService)getDelegate()).init(env, col, row, lt, puis, name);
 		
@@ -42,6 +43,7 @@ public class LootContract extends LootDecorator {
 			}
 		}catch(PostConditionException e) {
 			e.printStackTrace();
+			retour = false;
 		}
 		return retour;
 	}

@@ -225,6 +225,7 @@ public class EngineContract extends EngineDecorator {
 			}
 		}catch(PostConditionException e) {
 			e.printStackTrace();
+			retour = null;
 		}
 		
 		return retour ;
@@ -249,6 +250,7 @@ public class EngineContract extends EngineDecorator {
 			}
 		}catch(PreConditionException e) {
 			e.printStackTrace();
+			return false;
 		}
 		checkInvariants();
 		retour = super.addLoot(x, y);
@@ -262,6 +264,7 @@ public class EngineContract extends EngineDecorator {
 			
 		}catch(PostConditionException e ) {
 			e.printStackTrace();
+			retour = false;
 		}
 		return retour;
 	}
@@ -291,6 +294,7 @@ public class EngineContract extends EngineDecorator {
 			}
 		}catch(PostConditionException e) {
 			e.printStackTrace();
+			retour = null;
 		}
 		
 		return retour ;

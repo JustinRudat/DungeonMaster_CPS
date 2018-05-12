@@ -74,6 +74,7 @@ public class EditMapContract extends EditMapDecorator {
 			}
 		}catch(PreConditionException e) {
 			e.printStackTrace();
+			return false;
 		}
 		boolean retour = false;
 		retour =  super.setNature(x, y, c);
@@ -83,6 +84,7 @@ public class EditMapContract extends EditMapDecorator {
 			}
 		}catch(PostConditionException e) {
 			e.printStackTrace();
+			retour = false;
 		}
 		return retour;
 	}
@@ -118,6 +120,7 @@ public class EditMapContract extends EditMapDecorator {
 			}
 		}catch(PreConditionException e) {
 			e.printStackTrace();
+			return false;
 		}
 		
 		int size_at_pre  = super.getDoorLocked().size();
@@ -128,6 +131,7 @@ public class EditMapContract extends EditMapDecorator {
 			}
 		}catch(PostConditionException e ) {
 			e.printStackTrace();
+			retour = false;
 		}
 		return retour;
 	}

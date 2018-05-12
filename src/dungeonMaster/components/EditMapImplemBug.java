@@ -110,13 +110,13 @@ public class EditMapImplemBug extends MapImplem implements EditMapService{
 	}
 
 	@Override
-	public boolean randomEdit() {
+	public boolean randomEditSquare() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean addDoorLock(int x, int y, String color) {
+	public boolean addDoorLock(int x, int y, String color,Cell type) {
 		// TODO Auto-generated method stub
 		return false;
 	}

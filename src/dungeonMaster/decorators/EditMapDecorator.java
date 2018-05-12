@@ -32,22 +32,19 @@ public class EditMapDecorator extends MapDecorator implements EditMapService{
 
 	@Override
 	public ArrayList<Noeud> plusCourtChemin(Cell[][] graphe, Noeud depart, Noeud fin) {
-		// TODO Auto-generated method stub
-		return null;
+		return ((EditMapService) this.getDelegate()).plusCourtChemin(graphe, depart, fin);
 	}
 
 	@Override
-	public boolean randomEdit() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean randomEditSquare() {
+		return ((EditMapService) this.getDelegate()).randomEditSquare();
 	}
 
 	
 
 	@Override
-	public boolean addDoorLock(int x, int y, String color) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean addDoorLock(int x, int y, String color,Cell type) {
+		return ((EditMapService) this.getDelegate()).addDoorLock(x, y, color,type);
 	}
 	
 

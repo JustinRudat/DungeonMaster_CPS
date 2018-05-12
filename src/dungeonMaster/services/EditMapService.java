@@ -70,9 +70,9 @@ public interface EditMapService extends /*refine*/ MapService{
     
     public ArrayList<Noeud> plusCourtChemin(Cell[][] graphe, Noeud depart, Noeud fin);
     
-    public boolean randomEdit();
+    public boolean randomEditSquare();
     
-    public boolean addDoorLock(int x,int y, String color);
+    public boolean addDoorLock(int x,int y, String color,Cell type);
     
     
 }

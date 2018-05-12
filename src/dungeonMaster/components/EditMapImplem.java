@@ -266,8 +266,18 @@ public class EditMapImplem extends MapImplem implements EditMapService{
 		return isReady();
 	}
 	
-	public boolean randomSquareEdit() {
-		
+
+	@Override
+	public boolean addDoorLock(int x, int y, String color,Cell type) {
+		DoorLockService door = new DoorLockImplem();
+		door.init(x, y, color);
+		setNature(x, y, type);
+		this.getDoorLocked().add(door);
+		return true;
+	}
+
+	@Override
+	public boolean randomEditSquare() {
 		for (int i=0;i<this.getWidth();i++) {
 			for(int j=0;j<this.getHeight();j++) {
 				if(i==0||i==this.getWidth()-1||j==0||j==this.getHeight()-1||j==(this.getHeight()-1)/2||i==(this.getWidth()-1)/2) {
@@ -279,23 +289,12 @@ public class EditMapImplem extends MapImplem implements EditMapService{
 		setNature(1,1,Cell.IN);
 		setNature(this.getWidth()-2,1,Cell.OUT);
 		
-		addDoorLock((this.getWidth()-1)/4, (this.getHeight()-1)/2, ColorKeyDoor.RED);
-		setNature((this.getWidth()-1)/4,(this.getHeight()-1)/2,Cell.DNL);
+		addDoorLock((this.getWidth()-1)/4, (this.getHeight()-1)/2, ColorKeyDoor.RED,Cell.DNL);
 		
-		addDoorLock((this.getWidth()-1)*3/4, (this.getHeight()-1)/2, ColorKeyDoor.GREEN);
-		setNature((this.getWidth()-1)*3/4,(this.getHeight()-1)/2,Cell.DNL);
+		addDoorLock((this.getWidth()-1)*3/4, (this.getHeight()-1)/2, ColorKeyDoor.GREEN,Cell.DNL);
 		
-		addDoorLock((this.getWidth()-1)/2, (this.getHeight()-1)*3/4, ColorKeyDoor.BLACK);
-		setNature((this.getWidth()-1)/2,(this.getHeight()-1)*3/4,Cell.DWL);
+		addDoorLock((this.getWidth()-1)/2, (this.getHeight()-1)*3/4, ColorKeyDoor.BLACK,Cell.DWL);
 		return isReady();
-	}
-
-	@Override
-	public boolean addDoorLock(int x, int y, String color) {
-		DoorLockService door = new DoorLockImplem();
-		door.init(x, y, color);
-		this.getDoorLocked().add(door);
-		return true;
 	}
 	
 

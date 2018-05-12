@@ -17,54 +17,53 @@ public class MonsterDecorator extends EntityDecorator implements MonsterService 
 
 	@Override
 	public boolean sniffAPlayer() {
-		return false;
+		return ((MonsterService)getDelegate()).sniffAPlayer();
 	}
 
 	@Override
 	public boolean init(EnvironmentService env, int x, int y, Dir dir, int hp, int dmg, int armor, int portee,
 			int men_res, int drop_c) {
-		return false;
+		return ((MonsterService)getDelegate()).init(env, x, y, dir, hp, dmg, armor, portee, men_res, drop_c);
 	}
 
 	@Override
 	public ArrayList<Noeud> plusCourtChemin(Cell[][] graphe, Noeud depart, Noeud fin) {
-		return null;
+		return ((MonsterService)getDelegate()).plusCourtChemin(graphe, depart, fin);
 	}
 
 	@Override
 	public boolean moveTo(int x, int y) {
-		return false;
+		return ((MonsterService)getDelegate()).moveTo(x, y);
 	}
 	
 	@Override
 	public boolean step() {
-		return false;
+		return ((MonsterService)getDelegate()).step();
 	}
 
 	@Override
 	public boolean setDropChance(int drop_c) {
-		return false;
+		return ((MonsterService)getDelegate()).setDropChance(drop_c);
 	}
 
 	@Override
 	public int getMentRes() {
-		return 0;
+		return ((MonsterService)getDelegate()).getMentRes();
 	}
 
 	@Override
 	public boolean setMentRes(int ment_res) {
-		return false;
+		return ((MonsterService)getDelegate()).setMentRes(ment_res);
 	}
 
 	@Override
 	public int getDropChance() {
-		return 0;
+		return ((MonsterService)getDelegate()).getDropChance();
 	}
 
 	@Override
 	public int getPortee() {
-		// TODO Auto-generated method stub
-		return 0;
+		return ((MonsterService)getDelegate()).getDropChance();
 	}
 
 }

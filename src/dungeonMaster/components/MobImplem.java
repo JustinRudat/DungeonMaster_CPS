@@ -75,7 +75,7 @@ public class MobImplem implements MobService{
 					if(this.getRow()+1<this.getEnv().getHeight()) {
 						if(this.getCol()<this.getEnv().getWidth()) {	
 							nature = this.getEnv().cellNature(this.getCol(),this.getRow()+1);
-							if(nature==Cell.EMP || nature==Cell.DWO ||nature ==Cell.OUT||nature ==Cell.IN||nature==Cell.DNO ||nature ==Cell.OUT||nature ==Cell.IN||nature==Cell.DNO) {
+							if(nature==Cell.EMP || nature==Cell.DWO ||nature ==Cell.OUT||nature ==Cell.IN||nature==Cell.DNO ) {
 								if(this.getEnv().cellContent(this.getCol(),this.getRow()+1).getOption()==Option.No) {
 									int x = this.getCol();
 									int y = this.getRow();

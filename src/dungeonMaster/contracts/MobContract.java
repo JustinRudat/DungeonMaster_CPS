@@ -31,10 +31,16 @@ public class MobContract extends MobDecorator {
 				throw new CellNatInvariantException("vous etes sur un mur");
 			}
 			if(this.getEnv().cellNature(this.getCol(),this.getRow())==Cell.DWC){
-				throw new CellNatInvariantException("vous etes sur une porte fermée DWC");
+				throw new CellNatInvariantException("vous etes sur une porte fermee DWC");
 			}
 			if(this.getEnv().cellNature(this.getCol(),this.getRow())==Cell.DNC){
-				throw new CellNatInvariantException("vous etes sur une porte fermée DNC");
+				throw new CellNatInvariantException("vous etes sur une porte fermee DNC");
+			}
+			if(this.getEnv().cellNature(this.getCol(),this.getRow())==Cell.DNL){
+				throw new CellNatInvariantException("vous etes sur une porte fermee DNL");
+			}
+			if(this.getEnv().cellNature(this.getCol(),this.getRow())==Cell.DWL){
+				throw new CellNatInvariantException("vous etes sur une porte fermee DWL");
 			}
 		} catch (InvariantException e) {
 			e.printStackTrace();
@@ -103,7 +109,10 @@ public class MobContract extends MobDecorator {
 				case N :
 					if(row_at_pre+1 < env_at_pre.getHeight()) {
 						if(env_at_pre.cellNature(col_at_pre, row_at_pre+1)==Cell.EMP
-						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)==Cell.DWO) {
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)==Cell.DWO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
 							if(env_at_pre.cellContent(col_at_pre, row_at_pre+1).getOption()==Option.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre+1) {
@@ -116,7 +125,10 @@ public class MobContract extends MobDecorator {
 					}
 					if(row_at_pre+1 >= env_at_pre.getHeight()) {
 						if(env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.EMP
-						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DWO) {
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DWO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
 							if(env_at_pre.cellContent(col_at_pre, row_at_pre+1).getOption()!=Option.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre) {
@@ -131,7 +143,10 @@ public class MobContract extends MobDecorator {
 				case E:
 					if(col_at_pre+1 < env_at_pre.getWidth()) {
 						if(env_at_pre.cellNature(col_at_pre+1, row_at_pre)==Cell.EMP
-						||env_at_pre.cellNature(col_at_pre+1, row_at_pre)==Cell.DWO) {
+						||env_at_pre.cellNature(col_at_pre+1, row_at_pre)==Cell.DWO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
 							if(env_at_pre.cellContent(col_at_pre+1, row_at_pre).getOption()==Option.No) {
 								
 								if(this.getCol()!=col_at_pre+1 || this.getRow()!=row_at_pre) {
@@ -144,7 +159,10 @@ public class MobContract extends MobDecorator {
 					}
 					if(col_at_pre+1 >= env_at_pre.getWidth()) {
 						if(env_at_pre.cellNature(col_at_pre+1, row_at_pre)!=Cell.EMP
-						||env_at_pre.cellNature(col_at_pre+1, row_at_pre)!=Cell.DWO) {
+						||env_at_pre.cellNature(col_at_pre+1, row_at_pre)!=Cell.DWO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
 							if(env_at_pre.cellContent(col_at_pre+1, row_at_pre).getOption()!=Option.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre) {
@@ -159,7 +177,10 @@ public class MobContract extends MobDecorator {
 				case S:
 					if(row_at_pre-1 >=0 ) {
 						if(env_at_pre.cellNature(col_at_pre, row_at_pre-1)==Cell.EMP
-						||env_at_pre.cellNature(col_at_pre, row_at_pre-1)==Cell.DWO) {
+						||env_at_pre.cellNature(col_at_pre, row_at_pre-1)==Cell.DWO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
 							if(env_at_pre.cellContent(col_at_pre, row_at_pre-1).getOption()==Option.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre-1) {
@@ -187,7 +208,10 @@ public class MobContract extends MobDecorator {
 				case W:
 					if(col_at_pre+1 >=0 ) {
 						if(env_at_pre.cellNature(col_at_pre-1, row_at_pre)==Cell.EMP
-						||env_at_pre.cellNature(col_at_pre-1, row_at_pre)==Cell.DWO) {
+						||env_at_pre.cellNature(col_at_pre-1, row_at_pre)==Cell.DWO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
 							if(env_at_pre.cellContent(col_at_pre-1, row_at_pre).getOption()==Option.No) {
 								
 								if(this.getCol()!=col_at_pre-1 || this.getRow()!=row_at_pre) {
@@ -200,7 +224,10 @@ public class MobContract extends MobDecorator {
 					}
 					if(col_at_pre+1 < 0 ) {
 						if(env_at_pre.cellNature(col_at_pre-1, row_at_pre)!=Cell.EMP
-						||env_at_pre.cellNature(col_at_pre-1, row_at_pre)!=Cell.DWO) {
+						||env_at_pre.cellNature(col_at_pre-1, row_at_pre)!=Cell.DWO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
 							if(env_at_pre.cellContent(col_at_pre-1, row_at_pre).getOption()!=Option.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre) {
@@ -245,7 +272,10 @@ public class MobContract extends MobDecorator {
 				case S :
 					if(row_at_pre+1 < env_at_pre.getHeight()) {
 						if(env_at_pre.cellNature(col_at_pre, row_at_pre+1)==Cell.EMP
-						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)==Cell.DWO) {
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)==Cell.DWO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
 							if(env_at_pre.cellContent(col_at_pre, row_at_pre+1).getOption()==Option.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre+1) {
@@ -258,7 +288,10 @@ public class MobContract extends MobDecorator {
 					}
 					if(row_at_pre+1 >= env_at_pre.getHeight()) {
 						if(env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.EMP
-						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DWO) {
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DWO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
 							if(env_at_pre.cellContent(col_at_pre, row_at_pre+1).getOption()!=Option.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre) {
@@ -273,7 +306,10 @@ public class MobContract extends MobDecorator {
 				case W :
 					if(col_at_pre+1 < env_at_pre.getWidth()) {
 						if(env_at_pre.cellNature(col_at_pre+1, row_at_pre)==Cell.EMP
-						||env_at_pre.cellNature(col_at_pre+1, row_at_pre)==Cell.DWO) {
+						||env_at_pre.cellNature(col_at_pre+1, row_at_pre)==Cell.DWO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
 							if(env_at_pre.cellContent(col_at_pre+1, row_at_pre).getOption()==Option.No) {
 								
 								if(this.getCol()!=col_at_pre+1 || this.getRow()!=row_at_pre) {
@@ -286,7 +322,10 @@ public class MobContract extends MobDecorator {
 					}
 					if(col_at_pre+1 >= env_at_pre.getWidth()) {
 						if(env_at_pre.cellNature(col_at_pre+1, row_at_pre)!=Cell.EMP
-						||env_at_pre.cellNature(col_at_pre+1, row_at_pre)!=Cell.DWO) {
+						||env_at_pre.cellNature(col_at_pre+1, row_at_pre)!=Cell.DWO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
 							if(env_at_pre.cellContent(col_at_pre+1, row_at_pre).getOption()!=Option.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre) {
@@ -301,7 +340,10 @@ public class MobContract extends MobDecorator {
 				case N :
 					if(row_at_pre-1 >=0 ) {
 						if(env_at_pre.cellNature(col_at_pre, row_at_pre-1)==Cell.EMP
-						||env_at_pre.cellNature(col_at_pre, row_at_pre-1)==Cell.DWO) {
+						||env_at_pre.cellNature(col_at_pre, row_at_pre-1)==Cell.DWO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
 							if(env_at_pre.cellContent(col_at_pre, row_at_pre-1).getOption()==Option.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre-1) {
@@ -314,7 +356,10 @@ public class MobContract extends MobDecorator {
 					}
 					if(row_at_pre-1 < 0 ) {
 						if(env_at_pre.cellNature(col_at_pre, row_at_pre-1)!=Cell.EMP
-						||env_at_pre.cellNature(col_at_pre, row_at_pre-1)!=Cell.DWO) {
+						||env_at_pre.cellNature(col_at_pre, row_at_pre-1)!=Cell.DWO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
 							if(env_at_pre.cellContent(col_at_pre, row_at_pre-1).getOption()!=Option.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre) {
@@ -329,7 +374,10 @@ public class MobContract extends MobDecorator {
 				case E :
 					if(col_at_pre+1 >=0 ) {
 						if(env_at_pre.cellNature(col_at_pre-1, row_at_pre)==Cell.EMP
-						||env_at_pre.cellNature(col_at_pre-1, row_at_pre)==Cell.DWO) {
+						||env_at_pre.cellNature(col_at_pre-1, row_at_pre)==Cell.DWO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
 							if(env_at_pre.cellContent(col_at_pre-1, row_at_pre).getOption()==Option.No) {
 								
 								if(this.getCol()!=col_at_pre-1 || this.getRow()!=row_at_pre) {
@@ -342,7 +390,10 @@ public class MobContract extends MobDecorator {
 					}
 					if(col_at_pre+1 < 0 ) {
 						if(env_at_pre.cellNature(col_at_pre-1, row_at_pre)!=Cell.EMP
-						||env_at_pre.cellNature(col_at_pre-1, row_at_pre)!=Cell.DWO) {
+						||env_at_pre.cellNature(col_at_pre-1, row_at_pre)!=Cell.DWO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
 							if(env_at_pre.cellContent(col_at_pre-1, row_at_pre).getOption()!=Option.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre) {
@@ -466,7 +517,10 @@ public class MobContract extends MobDecorator {
 				case E :
 					if(row_at_pre+1 < env_at_pre.getHeight()) {
 						if(env_at_pre.cellNature(col_at_pre, row_at_pre+1)==Cell.EMP
-						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)==Cell.DWO) {
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)==Cell.DWO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
 							if(env_at_pre.cellContent(col_at_pre, row_at_pre+1).getOption()==Option.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre+1) {
@@ -479,7 +533,10 @@ public class MobContract extends MobDecorator {
 					}
 					if(row_at_pre+1 >= env_at_pre.getHeight()) {
 						if(env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.EMP
-						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DWO) {
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DWO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
 							if(env_at_pre.cellContent(col_at_pre, row_at_pre+1).getOption()!=Option.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre) {
@@ -494,7 +551,10 @@ public class MobContract extends MobDecorator {
 				case S:
 					if(col_at_pre+1 < env_at_pre.getWidth()) {
 						if(env_at_pre.cellNature(col_at_pre+1, row_at_pre)==Cell.EMP
-						||env_at_pre.cellNature(col_at_pre+1, row_at_pre)==Cell.DWO) {
+						||env_at_pre.cellNature(col_at_pre+1, row_at_pre)==Cell.DWO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
 							if(env_at_pre.cellContent(col_at_pre+1, row_at_pre).getOption()==Option.No) {
 								
 								if(this.getCol()!=col_at_pre+1 || this.getRow()!=row_at_pre) {
@@ -507,7 +567,10 @@ public class MobContract extends MobDecorator {
 					}
 					if(col_at_pre+1 >= env_at_pre.getWidth()) {
 						if(env_at_pre.cellNature(col_at_pre+1, row_at_pre)!=Cell.EMP
-						||env_at_pre.cellNature(col_at_pre+1, row_at_pre)!=Cell.DWO) {
+						||env_at_pre.cellNature(col_at_pre+1, row_at_pre)!=Cell.DWO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
 							if(env_at_pre.cellContent(col_at_pre+1, row_at_pre).getOption()!=Option.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre) {
@@ -522,7 +585,10 @@ public class MobContract extends MobDecorator {
 				case W:
 					if(row_at_pre-1 >=0 ) {
 						if(env_at_pre.cellNature(col_at_pre, row_at_pre-1)==Cell.EMP
-						||env_at_pre.cellNature(col_at_pre, row_at_pre-1)==Cell.DWO) {
+						||env_at_pre.cellNature(col_at_pre, row_at_pre-1)==Cell.DWO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
 							if(env_at_pre.cellContent(col_at_pre, row_at_pre-1).getOption()==Option.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre-1) {
@@ -535,7 +601,10 @@ public class MobContract extends MobDecorator {
 					}
 					if(row_at_pre-1 < 0 ) {
 						if(env_at_pre.cellNature(col_at_pre, row_at_pre-1)!=Cell.EMP
-						||env_at_pre.cellNature(col_at_pre, row_at_pre-1)!=Cell.DWO) {
+						||env_at_pre.cellNature(col_at_pre, row_at_pre-1)!=Cell.DWO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
 							if(env_at_pre.cellContent(col_at_pre, row_at_pre-1).getOption()!=Option.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre) {
@@ -550,7 +619,10 @@ public class MobContract extends MobDecorator {
 				case N:
 					if(col_at_pre+1 >=0 ) {
 						if(env_at_pre.cellNature(col_at_pre-1, row_at_pre)==Cell.EMP
-						||env_at_pre.cellNature(col_at_pre-1, row_at_pre)==Cell.DWO) {
+						||env_at_pre.cellNature(col_at_pre-1, row_at_pre)==Cell.DWO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
 							if(env_at_pre.cellContent(col_at_pre-1, row_at_pre).getOption()==Option.No) {
 								
 								if(this.getCol()!=col_at_pre-1 || this.getRow()!=row_at_pre) {
@@ -563,7 +635,10 @@ public class MobContract extends MobDecorator {
 					}
 					if(col_at_pre+1 < 0 ) {
 						if(env_at_pre.cellNature(col_at_pre-1, row_at_pre)!=Cell.EMP
-						||env_at_pre.cellNature(col_at_pre-1, row_at_pre)!=Cell.DWO) {
+						||env_at_pre.cellNature(col_at_pre-1, row_at_pre)!=Cell.DWO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
 							if(env_at_pre.cellContent(col_at_pre-1, row_at_pre).getOption()!=Option.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre) {
@@ -607,7 +682,10 @@ public class MobContract extends MobDecorator {
 				case W :
 					if(row_at_pre+1 < env_at_pre.getHeight()) {
 						if(env_at_pre.cellNature(col_at_pre, row_at_pre+1)==Cell.EMP
-						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)==Cell.DWO) {
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)==Cell.DWO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
 							if(env_at_pre.cellContent(col_at_pre, row_at_pre+1).getOption()==Option.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre+1) {
@@ -620,7 +698,10 @@ public class MobContract extends MobDecorator {
 					}
 					if(row_at_pre+1 >= env_at_pre.getHeight()) {
 						if(env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.EMP
-						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DWO) {
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DWO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
 							if(env_at_pre.cellContent(col_at_pre, row_at_pre+1).getOption()!=Option.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre) {
@@ -635,7 +716,10 @@ public class MobContract extends MobDecorator {
 				case N:
 					if(col_at_pre+1 < env_at_pre.getWidth()) {
 						if(env_at_pre.cellNature(col_at_pre+1, row_at_pre)==Cell.EMP
-						||env_at_pre.cellNature(col_at_pre+1, row_at_pre)==Cell.DWO) {
+						||env_at_pre.cellNature(col_at_pre+1, row_at_pre)==Cell.DWO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
 							if(env_at_pre.cellContent(col_at_pre+1, row_at_pre).getOption()==Option.No) {
 								
 								if(this.getCol()!=col_at_pre+1 || this.getRow()!=row_at_pre) {
@@ -648,7 +732,10 @@ public class MobContract extends MobDecorator {
 					}
 					if(col_at_pre+1 >= env_at_pre.getWidth()) {
 						if(env_at_pre.cellNature(col_at_pre+1, row_at_pre)!=Cell.EMP
-						||env_at_pre.cellNature(col_at_pre+1, row_at_pre)!=Cell.DWO) {
+						||env_at_pre.cellNature(col_at_pre+1, row_at_pre)!=Cell.DWO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
 							if(env_at_pre.cellContent(col_at_pre+1, row_at_pre).getOption()!=Option.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre) {
@@ -663,7 +750,10 @@ public class MobContract extends MobDecorator {
 				case E:
 					if(row_at_pre-1 >=0 ) {
 						if(env_at_pre.cellNature(col_at_pre, row_at_pre-1)==Cell.EMP
-						||env_at_pre.cellNature(col_at_pre, row_at_pre-1)==Cell.DWO) {
+						||env_at_pre.cellNature(col_at_pre, row_at_pre-1)==Cell.DWO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
 							if(env_at_pre.cellContent(col_at_pre, row_at_pre-1).getOption()==Option.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre-1) {
@@ -676,7 +766,10 @@ public class MobContract extends MobDecorator {
 					}
 					if(row_at_pre-1 < 0 ) {
 						if(env_at_pre.cellNature(col_at_pre, row_at_pre-1)!=Cell.EMP
-						||env_at_pre.cellNature(col_at_pre, row_at_pre-1)!=Cell.DWO) {
+						||env_at_pre.cellNature(col_at_pre, row_at_pre-1)!=Cell.DWO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
 							if(env_at_pre.cellContent(col_at_pre, row_at_pre-1).getOption()!=Option.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre) {
@@ -691,7 +784,10 @@ public class MobContract extends MobDecorator {
 				case S:
 					if(col_at_pre+1 >=0 ) {
 						if(env_at_pre.cellNature(col_at_pre-1, row_at_pre)==Cell.EMP
-						||env_at_pre.cellNature(col_at_pre-1, row_at_pre)==Cell.DWO) {
+						||env_at_pre.cellNature(col_at_pre-1, row_at_pre)==Cell.DWO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
 							if(env_at_pre.cellContent(col_at_pre-1, row_at_pre).getOption()==Option.No) {
 								
 								if(this.getCol()!=col_at_pre-1 || this.getRow()!=row_at_pre) {
@@ -704,7 +800,10 @@ public class MobContract extends MobDecorator {
 					}
 					if(col_at_pre+1 < 0 ) {
 						if(env_at_pre.cellNature(col_at_pre-1, row_at_pre)!=Cell.EMP
-						||env_at_pre.cellNature(col_at_pre-1, row_at_pre)!=Cell.DWO) {
+						||env_at_pre.cellNature(col_at_pre-1, row_at_pre)!=Cell.DWO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
+						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
 							if(env_at_pre.cellContent(col_at_pre-1, row_at_pre).getOption()!=Option.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre) {

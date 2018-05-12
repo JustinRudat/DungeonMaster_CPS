@@ -235,13 +235,13 @@ public class PlayerImplem extends EntityImplem implements PlayerService {
 						}
 					}
 				}else if(y==3) {
-					if(this.getViewable(x, y-1)!=null) {
+					
 						if(!isIn(cells_to_test,this.getNature(x, y-1))) {
 							if(!isIn(cells_to_test,this.getNature(x, y-2))) {
 								return this.getNature(x, y);
 							}
 						}
-					}
+					
 				}
 			}
 		}

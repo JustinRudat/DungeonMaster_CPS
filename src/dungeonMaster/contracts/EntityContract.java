@@ -39,7 +39,7 @@ public class EntityContract extends EntityDecorator {
 				throw new PostConditionException("init : entity : error on armor setting");
 			}
 			if(getDegats()!=degat) {
-				throw new PostConditionException("init : entity : error on degat setting");
+				throw new PostConditionException("init : entity : error on damage setting");
 			}
 		}catch(PostConditionException e ) {
 			e.printStackTrace();

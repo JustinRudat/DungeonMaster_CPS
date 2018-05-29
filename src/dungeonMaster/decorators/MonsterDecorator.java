@@ -63,7 +63,7 @@ public class MonsterDecorator extends EntityDecorator implements MonsterService 
 
 	@Override
 	public int getPortee() {
-		return ((MonsterService)getDelegate()).getDropChance();
+		return ((MonsterService)getDelegate()).getPortee();
 	}
 
 }

@@ -2,17 +2,28 @@ package dungeonMaster.tests;
 
 import dungeonMaster.components.CowImplem;
 import dungeonMaster.components.CowImplemBug;
+import dungeonMaster.components.EditMapImplem;
 import dungeonMaster.components.EntityImplem;
 import dungeonMaster.components.EntityImplemBug;
 import dungeonMaster.components.EnvironmentImplem;
+import dungeonMaster.components.GobelinImplem;
+import dungeonMaster.components.GobelinImplemBug;
+import dungeonMaster.components.MinotaurImplem;
+import dungeonMaster.components.MinotaurImplemBug;
 import dungeonMaster.components.MobImplem;
 import dungeonMaster.components.MobImplemBug;
+import dungeonMaster.components.MonsterImplem;
+import dungeonMaster.components.MonsterImplemBug;
 import dungeonMaster.components.PlayerImplem;
 import dungeonMaster.components.PlayerImplemBug;
 import dungeonMaster.contracts.CowContract;
 import dungeonMaster.contracts.EntityContract;
+import dungeonMaster.contracts.GobelinContract;
+import dungeonMaster.contracts.MinotaurContract;
 import dungeonMaster.contracts.MobContract;
+import dungeonMaster.contracts.MonsterContract;
 import dungeonMaster.contracts.PlayerContract;
+import dungeonMaster.enumeration.Cell;
 import dungeonMaster.enumeration.Command;
 import dungeonMaster.enumeration.Dir;
 import dungeonMaster.services.EnvironmentService;
@@ -70,6 +81,26 @@ public class MobTest extends TestCase{
 		System.out.println("col : "+col+ ", row : "+ row + ", face : " + dir);
 		
 		assertTrue(mob.forward());
+	}
+	public void testForwardMobBlock() {
+		EditMapImplem edit = new EditMapImplem();
+		edit.init(70, 50);
+		edit.setNature(x, y+1, Cell.WLL);
+		edit.setNature(x, y-1, Cell.WLL);
+		edit.setNature(x+1, y, Cell.WLL);
+		edit.setNature(x-1, y, Cell.WLL);
+		env.setPlateau(edit.getPlateau());
+		MobContract mob = new MobContract(new MobImplem());
+		
+		mob.init(env, x, y, dir);
+		
+		int col = mob.getCol();
+		int row = mob.getRow();
+		Dir dir_tmp = mob.getFace();
+		
+		System.out.println("col : "+col+ ", row : "+ row + ", face : " + dir);
+		
+		assertFalse(mob.forward());
 	}
 	
 	public void testStrafeRMob() {
@@ -231,7 +262,7 @@ public class MobTest extends TestCase{
 	public void testCowImplem() {
 		CowContract cow  = new CowContract(new CowImplem());
 		
-		assertTrue(cow.init(env, x, y, dir, 4,dmg,armor));
+		assertTrue(cow.init(env, x+3, y, dir, 4,dmg,0));
 		
 		
 		
@@ -380,6 +411,66 @@ public class MobTest extends TestCase{
 		assertTrue(cow.getHealthPoints()==3);
 		
 		
+	}
+	
+	public void testMinotaur() {
+		MinotaurContract mino = new MinotaurContract(new MinotaurImplem());
+		assertTrue(mino.init(env,x,y+4,dir));
+	}
+	
+	public void testMinotaurBug() {
+		MinotaurContract mino = new MinotaurContract(new MinotaurImplemBug());
+		assertFalse(mino.init(env,x,y+3,dir));
+	}
+	
+	public void testGobelin() {
+		GobelinContract gob = new GobelinContract(new GobelinImplem());
+		assertTrue(gob.init(env,x,y+4,dir));
+	}
+	
+	public void testGobelinBug() {
+		GobelinContract gob= new GobelinContract(new GobelinImplemBug());
+		assertFalse(gob.init(env,x,y+3,dir));
+	}
+	
+	public void testMonster() {
+		MonsterContract mon = new MonsterContract(new MonsterImplem());
+		assertTrue(mon.init(env, x, y, dir, hp, dmg, armor, 2, 55, 20));
+	}
+	
+	public void testMonsterBug() {
+		MonsterContract mon = new MonsterContract(new MonsterImplemBug());
+		assertFalse(mon.init(env, x, y, dir, hp, dmg, armor, 2, 55, 20));
+	}
+	
+	public void testSniff() {
+		this.env = new EnvironmentImplem();
+	    this.env.init(70,50);
+		MonsterContract mon = new MonsterContract(new MonsterImplem());
+		mon.init(env, x, y, dir, hp, dmg, armor, 2, 55, 20);
+		PlayerContract player = new PlayerContract(new PlayerImplem());
+		player.init(env,x+1,y,dir,hp,dmg,armor);
+		assertTrue(mon.sniffAPlayer());
+	}
+	
+	public void testSniffTooFar() {
+		this.env = new EnvironmentImplem();
+	    this.env.init(70,50);
+		MonsterContract mon = new MonsterContract(new MonsterImplem());
+		mon.init(env, x, y, dir, hp, dmg, armor, 2, 55, 20);
+		PlayerContract player = new PlayerContract(new PlayerImplem());
+		player.init(env,x+6,y+3,dir,hp,dmg,armor);
+		assertFalse(mon.sniffAPlayer());
+	}
+	
+	public void testSniffBug() {
+		this.env = new EnvironmentImplem();
+	    this.env.init(70,50);
+		MonsterContract mon = new MonsterContract(new MonsterImplemBug());
+		mon.init(env, x, y, dir, hp, dmg, armor, 2, 55, 20);
+		PlayerContract player = new PlayerContract(new PlayerImplem());
+		player.init(env,x+1,y,dir,hp,dmg,armor);
+		assertFalse(mon.sniffAPlayer());
 	}
 	
 	public static final Test suite(){

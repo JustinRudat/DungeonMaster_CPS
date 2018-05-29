@@ -16,11 +16,11 @@ public class MinotaurImplemBug extends MonsterImplem  implements MinotaurService
 	public boolean init(EnvironmentService env, int x, int y, Dir dir) {
 		super.init(env, x, y, dir);
 		this.setArmor(2);
-		this.setDegats(4);
+		this.setDegats(3);
 		this.setDropChance(50);
 		this.setHealthPoints(15);
-		this.setMentRes(35);
-		this.setPortee(4);
+		this.setMentRes(25);
+		this.setPortee(8);
 		return true;
 	}
 

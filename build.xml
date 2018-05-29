@@ -9,7 +9,8 @@
   <!-- METTRE ICI LE NOM DU BINOME -->
   <property name="nom1" value="Rudat"/>
   <property name="nom2" value="Doussot"/>
-
+	
+	
   <target name="init">
     <!-- Create the time stamp -->
     <tstamp/>
@@ -23,26 +24,24 @@
     <javac debug="true" srcdir="${src}" excludes="" destdir="${build}" includeantruntime="false" />
   </target>
 
-  <target name="run1" depends="compile"
+  <target name="run" depends="compile"
           description="run application in release mode">
     <echo>================ Run Object Main ================</echo>
-    <java classname="dungeonMaster.ui.DungeonMasterDemo"
+    <java classname="dungeonMaster.main.Main"
           classpath="${build}">
     </java>
   </target>
 
-	<target name="test" depends="compile"
-	          description="test the application">
-	    <echo>================ Run Object Main ================</echo>
-	    <java classname="dungeonMaster.tests.TestMain"
-	          classpath="${build}">
-	    </java>
-	  </target>
+	
   <target name="dist" depends="init,clean"
         description="Generer la distribution" >
     <!-- tout mettre dans l'archive -->
     <jar basedir=".." jarfile="../Projet_CPS-${nom1}-${nom2}-${DSTAMP}.jar"
-    includes="Projet_CPS/**/*" excludes="**/CVS"/>
+    includes="Projet_CPS/**/*" excludes="**/CVS">
+    	<manifest>
+    	        <attribute name="Main-Class" value="Main" />
+    	      </manifest>
+    	</jar>
   </target>
 
   <target name="clean"

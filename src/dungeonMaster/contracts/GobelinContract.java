@@ -19,7 +19,7 @@ public class GobelinContract extends GobelinDecorator{
 	public boolean init(EnvironmentService env, int col, int row, Dir dir) {
 		boolean retour = false; 
 		
-		super.init(env, col, row, dir);
+		retour = super.init(env, col, row, dir);
 		
 		try {
 			if(getArmor()!=1) {

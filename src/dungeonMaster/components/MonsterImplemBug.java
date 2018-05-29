@@ -8,6 +8,7 @@ import dungeonMaster.enumeration.Cell;
 import dungeonMaster.enumeration.Dir;
 import dungeonMaster.enumeration.Opt;
 import dungeonMaster.services.EnvironmentService;
+import dungeonMaster.services.LootService;
 import dungeonMaster.services.MobService;
 import dungeonMaster.services.MonsterService;
 import dungeonMaster.services.OptionService;
@@ -29,7 +30,7 @@ public class MonsterImplemBug extends EntityImplem implements MonsterService {
 				if(x>=0 && x<this.getEnv().getWidth() && y>=0 && y< this.getEnv().getHeight()) {
 					OptionService<MobService> opt = this.getEnv().cellContent(x, y);
 					if(opt.getOption()==Opt.So) {
-						if(opt.getElem() instanceof PlayerService) {
+						if(opt.getElem() instanceof LootService) {
 							player_at_x=x;
 							player_at_y=y;
 							return true;
@@ -45,8 +46,8 @@ public class MonsterImplemBug extends EntityImplem implements MonsterService {
 	public boolean init(EnvironmentService env, int x, int y, Dir dir, int hp, int dmg, int armor, int portee,int ment_res,int drop_c) {
 		super.init(env, x, y, dir, hp, dmg, armor);
 		this.portee = portee;
-		this.ment_res = ment_res;
-		this.drop_c= drop_c;
+		this.ment_res = drop_c;
+		this.drop_c= ment_res;
 		return true;
 	}
 

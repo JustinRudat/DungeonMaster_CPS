@@ -21,7 +21,7 @@ public class MinotaurContract extends MinotaurDecorator {
 	public boolean init(EnvironmentService env, int x, int y, Dir dir) {
 		boolean retour = false; 
 		
-		super.init(env, x, y, dir);
+		retour = super.init(env, x, y, dir);
 		
 		try {
 			if(getArmor()!=2) {

@@ -25,6 +25,7 @@ public class EngineImplem implements EngineService {
 	private boolean iswin;
 	private EnvironmentService env;
 	private ArrayList<EntityService> entities;
+	private ArrayList<EnvironmentService> map_saved;
 	
 	private final int default_hauteur = 20;
 	private final int default_largeur = 30;
@@ -50,6 +51,7 @@ public class EngineImplem implements EngineService {
 		this.entities = new ArrayList<>();
 		this.isgameover = false;
 		this.iswin=false;
+		this.map_saved= new ArrayList<>();
 		return true;
 	}
 
@@ -356,13 +358,16 @@ public class EngineImplem implements EngineService {
 		this.env = env_tmp;
 		this.isgameover = false;
 		this.iswin=false;
+		saveMap(env);
 		
 		
 		return this;
 	}
 
 	
-	
+	public void saveMap(EnvironmentService map) {
+		map_saved.add(map);
+	}
 	
 
 }

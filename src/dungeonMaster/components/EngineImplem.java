@@ -6,7 +6,7 @@ import java.util.Random;
 import dungeonMaster.enumeration.Cell;
 import dungeonMaster.enumeration.Dir;
 import dungeonMaster.enumeration.LootType;
-import dungeonMaster.enumeration.Option;
+import dungeonMaster.enumeration.Opt;
 import dungeonMaster.services.CowService;
 import dungeonMaster.services.DoorLockService;
 import dungeonMaster.services.EngineService;

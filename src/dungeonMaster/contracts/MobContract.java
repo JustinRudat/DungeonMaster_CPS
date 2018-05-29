@@ -3,7 +3,7 @@ package dungeonMaster.contracts;
 import dungeonMaster.decorators.MobDecorator;
 import dungeonMaster.enumeration.Cell;
 import dungeonMaster.enumeration.Dir;
-import dungeonMaster.enumeration.Option;
+import dungeonMaster.enumeration.Opt;
 import dungeonMaster.exceptions.CellNatInvariantException;
 import dungeonMaster.exceptions.ConditionException;
 import dungeonMaster.exceptions.InvariantException;
@@ -113,7 +113,7 @@ public class MobContract extends MobDecorator {
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
-							if(env_at_pre.cellContent(col_at_pre, row_at_pre+1).getOption()==Option.No) {
+							if(env_at_pre.cellContent(col_at_pre, row_at_pre+1).getOption()==Opt.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre+1) {
 									throw new PostConditionException("forward : face Nord, erreur mouvement");
@@ -129,7 +129,7 @@ public class MobContract extends MobDecorator {
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
-							if(env_at_pre.cellContent(col_at_pre, row_at_pre+1).getOption()!=Option.No) {
+							if(env_at_pre.cellContent(col_at_pre, row_at_pre+1).getOption()!=Opt.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre) {
 									throw new PostConditionException("forward : face Nord, erreur stationaire");
@@ -147,7 +147,7 @@ public class MobContract extends MobDecorator {
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
-							if(env_at_pre.cellContent(col_at_pre+1, row_at_pre).getOption()==Option.No) {
+							if(env_at_pre.cellContent(col_at_pre+1, row_at_pre).getOption()==Opt.No) {
 								
 								if(this.getCol()!=col_at_pre+1 || this.getRow()!=row_at_pre) {
 									throw new PostConditionException("forward : face Est, erreur mouvement");
@@ -163,7 +163,7 @@ public class MobContract extends MobDecorator {
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
-							if(env_at_pre.cellContent(col_at_pre+1, row_at_pre).getOption()!=Option.No) {
+							if(env_at_pre.cellContent(col_at_pre+1, row_at_pre).getOption()!=Opt.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre) {
 									throw new PostConditionException("forward : face Est, erreur stationaire");
@@ -181,7 +181,7 @@ public class MobContract extends MobDecorator {
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
-							if(env_at_pre.cellContent(col_at_pre, row_at_pre-1).getOption()==Option.No) {
+							if(env_at_pre.cellContent(col_at_pre, row_at_pre-1).getOption()==Opt.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre-1) {
 									throw new PostConditionException("forward : face Sud, erreur mouvement");
@@ -194,7 +194,7 @@ public class MobContract extends MobDecorator {
 					if(row_at_pre-1 < 0 ) {
 						if(env_at_pre.cellNature(col_at_pre, row_at_pre-1)!=Cell.EMP
 						||env_at_pre.cellNature(col_at_pre, row_at_pre-1)!=Cell.DWO) {
-							if(env_at_pre.cellContent(col_at_pre, row_at_pre-1).getOption()!=Option.No) {
+							if(env_at_pre.cellContent(col_at_pre, row_at_pre-1).getOption()!=Opt.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre) {
 									throw new PostConditionException("forward : face Sud, erreur stationnaire");
@@ -212,7 +212,7 @@ public class MobContract extends MobDecorator {
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
-							if(env_at_pre.cellContent(col_at_pre-1, row_at_pre).getOption()==Option.No) {
+							if(env_at_pre.cellContent(col_at_pre-1, row_at_pre).getOption()==Opt.No) {
 								
 								if(this.getCol()!=col_at_pre-1 || this.getRow()!=row_at_pre) {
 									throw new PostConditionException("forward : face Est, erreur mouvement");
@@ -228,7 +228,7 @@ public class MobContract extends MobDecorator {
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
-							if(env_at_pre.cellContent(col_at_pre-1, row_at_pre).getOption()!=Option.No) {
+							if(env_at_pre.cellContent(col_at_pre-1, row_at_pre).getOption()!=Opt.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre) {
 									throw new PostConditionException("forward : face Est, erreur stationnaire");
@@ -276,7 +276,7 @@ public class MobContract extends MobDecorator {
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
-							if(env_at_pre.cellContent(col_at_pre, row_at_pre+1).getOption()==Option.No) {
+							if(env_at_pre.cellContent(col_at_pre, row_at_pre+1).getOption()==Opt.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre+1) {
 									throw new PostConditionException("forward : face Nord, erreur mouvement");
@@ -292,7 +292,7 @@ public class MobContract extends MobDecorator {
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
-							if(env_at_pre.cellContent(col_at_pre, row_at_pre+1).getOption()!=Option.No) {
+							if(env_at_pre.cellContent(col_at_pre, row_at_pre+1).getOption()!=Opt.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre) {
 									throw new PostConditionException("forward : face Nord, erreur stationaire");
@@ -310,7 +310,7 @@ public class MobContract extends MobDecorator {
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
-							if(env_at_pre.cellContent(col_at_pre+1, row_at_pre).getOption()==Option.No) {
+							if(env_at_pre.cellContent(col_at_pre+1, row_at_pre).getOption()==Opt.No) {
 								
 								if(this.getCol()!=col_at_pre+1 || this.getRow()!=row_at_pre) {
 									throw new PostConditionException("forward : face Est, erreur mouvement");
@@ -326,7 +326,7 @@ public class MobContract extends MobDecorator {
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
-							if(env_at_pre.cellContent(col_at_pre+1, row_at_pre).getOption()!=Option.No) {
+							if(env_at_pre.cellContent(col_at_pre+1, row_at_pre).getOption()!=Opt.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre) {
 									throw new PostConditionException("forward : face Est, erreur stationaire");
@@ -344,7 +344,7 @@ public class MobContract extends MobDecorator {
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
-							if(env_at_pre.cellContent(col_at_pre, row_at_pre-1).getOption()==Option.No) {
+							if(env_at_pre.cellContent(col_at_pre, row_at_pre-1).getOption()==Opt.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre-1) {
 									throw new PostConditionException("forward : face Sud, erreur mouvement");
@@ -360,7 +360,7 @@ public class MobContract extends MobDecorator {
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
-							if(env_at_pre.cellContent(col_at_pre, row_at_pre-1).getOption()!=Option.No) {
+							if(env_at_pre.cellContent(col_at_pre, row_at_pre-1).getOption()!=Opt.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre) {
 									throw new PostConditionException("forward : face Sud, erreur stationnaire");
@@ -378,7 +378,7 @@ public class MobContract extends MobDecorator {
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
-							if(env_at_pre.cellContent(col_at_pre-1, row_at_pre).getOption()==Option.No) {
+							if(env_at_pre.cellContent(col_at_pre-1, row_at_pre).getOption()==Opt.No) {
 								
 								if(this.getCol()!=col_at_pre-1 || this.getRow()!=row_at_pre) {
 									throw new PostConditionException("forward : face Est, erreur mouvement");
@@ -394,7 +394,7 @@ public class MobContract extends MobDecorator {
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
-							if(env_at_pre.cellContent(col_at_pre-1, row_at_pre).getOption()!=Option.No) {
+							if(env_at_pre.cellContent(col_at_pre-1, row_at_pre).getOption()!=Opt.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre) {
 									throw new PostConditionException("forward : face Est, erreur stationnaire");
@@ -521,7 +521,7 @@ public class MobContract extends MobDecorator {
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
-							if(env_at_pre.cellContent(col_at_pre, row_at_pre+1).getOption()==Option.No) {
+							if(env_at_pre.cellContent(col_at_pre, row_at_pre+1).getOption()==Opt.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre+1) {
 									throw new PostConditionException("forward : face Nord, erreur mouvement");
@@ -537,7 +537,7 @@ public class MobContract extends MobDecorator {
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
-							if(env_at_pre.cellContent(col_at_pre, row_at_pre+1).getOption()!=Option.No) {
+							if(env_at_pre.cellContent(col_at_pre, row_at_pre+1).getOption()!=Opt.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre) {
 									throw new PostConditionException("forward : face Nord, erreur stationaire");
@@ -555,7 +555,7 @@ public class MobContract extends MobDecorator {
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
-							if(env_at_pre.cellContent(col_at_pre+1, row_at_pre).getOption()==Option.No) {
+							if(env_at_pre.cellContent(col_at_pre+1, row_at_pre).getOption()==Opt.No) {
 								
 								if(this.getCol()!=col_at_pre+1 || this.getRow()!=row_at_pre) {
 									throw new PostConditionException("forward : face Est, erreur mouvement");
@@ -571,7 +571,7 @@ public class MobContract extends MobDecorator {
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
-							if(env_at_pre.cellContent(col_at_pre+1, row_at_pre).getOption()!=Option.No) {
+							if(env_at_pre.cellContent(col_at_pre+1, row_at_pre).getOption()!=Opt.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre) {
 									throw new PostConditionException("forward : face Est, erreur stationaire");
@@ -589,7 +589,7 @@ public class MobContract extends MobDecorator {
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
-							if(env_at_pre.cellContent(col_at_pre, row_at_pre-1).getOption()==Option.No) {
+							if(env_at_pre.cellContent(col_at_pre, row_at_pre-1).getOption()==Opt.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre-1) {
 									throw new PostConditionException("forward : face Sud, erreur mouvement");
@@ -605,7 +605,7 @@ public class MobContract extends MobDecorator {
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
-							if(env_at_pre.cellContent(col_at_pre, row_at_pre-1).getOption()!=Option.No) {
+							if(env_at_pre.cellContent(col_at_pre, row_at_pre-1).getOption()!=Opt.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre) {
 									throw new PostConditionException("forward : face Sud, erreur stationnaire");
@@ -623,7 +623,7 @@ public class MobContract extends MobDecorator {
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
-							if(env_at_pre.cellContent(col_at_pre-1, row_at_pre).getOption()==Option.No) {
+							if(env_at_pre.cellContent(col_at_pre-1, row_at_pre).getOption()==Opt.No) {
 								
 								if(this.getCol()!=col_at_pre-1 || this.getRow()!=row_at_pre) {
 									throw new PostConditionException("forward : face Est, erreur mouvement");
@@ -639,7 +639,7 @@ public class MobContract extends MobDecorator {
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
-							if(env_at_pre.cellContent(col_at_pre-1, row_at_pre).getOption()!=Option.No) {
+							if(env_at_pre.cellContent(col_at_pre-1, row_at_pre).getOption()!=Opt.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre) {
 									throw new PostConditionException("forward : face Est, erreur stationnaire");
@@ -686,7 +686,7 @@ public class MobContract extends MobDecorator {
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
-							if(env_at_pre.cellContent(col_at_pre, row_at_pre+1).getOption()==Option.No) {
+							if(env_at_pre.cellContent(col_at_pre, row_at_pre+1).getOption()==Opt.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre+1) {
 									throw new PostConditionException("forward : face Nord, erreur mouvement");
@@ -702,7 +702,7 @@ public class MobContract extends MobDecorator {
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
-							if(env_at_pre.cellContent(col_at_pre, row_at_pre+1).getOption()!=Option.No) {
+							if(env_at_pre.cellContent(col_at_pre, row_at_pre+1).getOption()!=Opt.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre) {
 									throw new PostConditionException("forward : face Nord, erreur stationaire");
@@ -720,7 +720,7 @@ public class MobContract extends MobDecorator {
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
-							if(env_at_pre.cellContent(col_at_pre+1, row_at_pre).getOption()==Option.No) {
+							if(env_at_pre.cellContent(col_at_pre+1, row_at_pre).getOption()==Opt.No) {
 								
 								if(this.getCol()!=col_at_pre+1 || this.getRow()!=row_at_pre) {
 									throw new PostConditionException("forward : face Est, erreur mouvement");
@@ -736,7 +736,7 @@ public class MobContract extends MobDecorator {
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
-							if(env_at_pre.cellContent(col_at_pre+1, row_at_pre).getOption()!=Option.No) {
+							if(env_at_pre.cellContent(col_at_pre+1, row_at_pre).getOption()!=Opt.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre) {
 									throw new PostConditionException("forward : face Est, erreur stationaire");
@@ -754,7 +754,7 @@ public class MobContract extends MobDecorator {
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
-							if(env_at_pre.cellContent(col_at_pre, row_at_pre-1).getOption()==Option.No) {
+							if(env_at_pre.cellContent(col_at_pre, row_at_pre-1).getOption()==Opt.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre-1) {
 									throw new PostConditionException("forward : face Sud, erreur mouvement");
@@ -770,7 +770,7 @@ public class MobContract extends MobDecorator {
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
-							if(env_at_pre.cellContent(col_at_pre, row_at_pre-1).getOption()!=Option.No) {
+							if(env_at_pre.cellContent(col_at_pre, row_at_pre-1).getOption()!=Opt.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre) {
 									throw new PostConditionException("forward : face Sud, erreur stationnaire");
@@ -788,7 +788,7 @@ public class MobContract extends MobDecorator {
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
-							if(env_at_pre.cellContent(col_at_pre-1, row_at_pre).getOption()==Option.No) {
+							if(env_at_pre.cellContent(col_at_pre-1, row_at_pre).getOption()==Opt.No) {
 								
 								if(this.getCol()!=col_at_pre-1 || this.getRow()!=row_at_pre) {
 									throw new PostConditionException("forward : face Est, erreur mouvement");
@@ -804,7 +804,7 @@ public class MobContract extends MobDecorator {
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.DNO
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.IN
 						||env_at_pre.cellNature(col_at_pre, row_at_pre+1)!=Cell.OUT) {
-							if(env_at_pre.cellContent(col_at_pre-1, row_at_pre).getOption()!=Option.No) {
+							if(env_at_pre.cellContent(col_at_pre-1, row_at_pre).getOption()!=Opt.No) {
 								
 								if(this.getCol()!=col_at_pre || this.getRow()!=row_at_pre) {
 									throw new PostConditionException("forward : face Est, erreur stationnaire");

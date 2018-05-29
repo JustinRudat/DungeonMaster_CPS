@@ -1,15 +1,15 @@
 package dungeonMaster.components;
 
-import dungeonMaster.enumeration.Option;
+import dungeonMaster.enumeration.Opt;
 import dungeonMaster.services.OptionService;
 
 public class OptionImplem<T> implements OptionService<T> {
 	
-	private Option option;
+	private Opt option;
 	private T element;
 
 	@Override
-	public Option getOption() {
+	public Opt getOption() {
 		return this.option;
 	}
 
@@ -18,7 +18,7 @@ public class OptionImplem<T> implements OptionService<T> {
 		return this.element;
 	}
 	
-	public boolean init(T elemt, Option opt){
+	public boolean init(T elemt, Opt opt){
 		this.option = opt;
 		this.element = elemt;
 		return true;
@@ -26,7 +26,7 @@ public class OptionImplem<T> implements OptionService<T> {
 	}
 
 	@Override
-	public boolean setOption(Option opt) {
+	public boolean setOption(Opt opt) {
 		this.option=opt;
 		return true;
 	}

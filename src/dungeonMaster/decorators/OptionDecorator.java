@@ -1,7 +1,7 @@
 package dungeonMaster.decorators;
 
 import dungeonMaster.contracts.OptionContract;
-import dungeonMaster.enumeration.Option;
+import dungeonMaster.enumeration.Opt;
 import dungeonMaster.services.OptionService;
 
 public class OptionDecorator<T> implements OptionService<T> {
@@ -13,7 +13,7 @@ public class OptionDecorator<T> implements OptionService<T> {
 	}
 	
 	@Override
-	public Option getOption() {
+	public Opt getOption() {
 		return delegate.getOption();
 	}
 
@@ -23,12 +23,12 @@ public class OptionDecorator<T> implements OptionService<T> {
 	}
 
 	@Override
-	public boolean init(T elem, Option opt) {
+	public boolean init(T elem, Opt opt) {
 		return delegate.init(elem, opt);
 	}
 
 	@Override
-	public boolean setOption(Option opt) {
+	public boolean setOption(Opt opt) {
 		return delegate.setOption(opt);
 	}
 

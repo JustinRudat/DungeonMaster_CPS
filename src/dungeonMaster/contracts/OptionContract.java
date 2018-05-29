@@ -1,7 +1,7 @@
 package dungeonMaster.contracts;
 
 import dungeonMaster.decorators.OptionDecorator;
-import dungeonMaster.enumeration.Option;
+import dungeonMaster.enumeration.Opt;
 import dungeonMaster.exceptions.PostConditionException;
 import dungeonMaster.exceptions.PreConditionException;
 import dungeonMaster.services.OptionService;
@@ -14,14 +14,14 @@ public class OptionContract<T> extends OptionDecorator<T> {
 	
 
 	@Override
-	public boolean init(T elem, Option opt) {
+	public boolean init(T elem, Opt opt) {
 		boolean retour = false;
 		try {
-			if(opt==Option.No) {
+			if(opt==Opt.No) {
 				if(elem!=null) {
 					throw new PreConditionException("init : option : option = no -> mob != null");
 				}
-			}else if(opt==Option.So) {
+			}else if(opt==Opt.So) {
 				if(elem==null) {
 					throw new PreConditionException("init : option : option = So -> mob = null");
 				}
@@ -38,12 +38,12 @@ public class OptionContract<T> extends OptionDecorator<T> {
 			if(getOption()!=opt) {
 				throw new PostConditionException("init : option : error setting option");
 			}
-			if(opt == Option.No) {
+			if(opt == Opt.No) {
 				if(getElem()!=null) {
 					throw new PostConditionException("init : option : error setting elem null");
 				}
 			}
-			if(opt == Option.So) {
+			if(opt == Opt.So) {
 				if(getElem()==null) {
 					throw new PostConditionException("init : option : error setting elem not null");
 				}
@@ -56,7 +56,7 @@ public class OptionContract<T> extends OptionDecorator<T> {
 	}
 
 	@Override
-	public boolean setOption(Option opt) {
+	public boolean setOption(Opt opt) {
 		boolean retour = false;
 		try {
 			if(opt==null) {

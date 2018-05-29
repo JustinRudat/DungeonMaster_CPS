@@ -2,7 +2,7 @@ package dungeonMaster.components;
 
 import dungeonMaster.enumeration.Cell;
 import dungeonMaster.enumeration.Dir;
-import dungeonMaster.enumeration.Option;
+import dungeonMaster.enumeration.Opt;
 import dungeonMaster.services.EnvironmentService;
 import dungeonMaster.services.MobService;
 import dungeonMaster.services.OptionService;
@@ -75,13 +75,13 @@ public class MobImplemBug implements MobService{
 						if(this.getRow()+1<this.getEnv().getWidth()) {	
 							nature = this.getEnv().cellNature(this.getCol(),this.getRow()+1);
 							if(nature==Cell.EMP || nature==Cell.DWO) {
-								if(this.getEnv().cellContent(this.getCol(),this.getRow()+1).getOption()==Option.No) {
+								if(this.getEnv().cellContent(this.getCol(),this.getRow()+1).getOption()==Opt.No) {
 									int x = this.getCol();
 									int y = this.getRow();
 									OptionService<MobService> vode = new OptionImplem<>();
 									OptionService<MobService> vode_mvt = new OptionImplem<>();
-									vode.init(this, Option.So);
-									vode_mvt.init(null,Option.No);
+									vode.init(this, Opt.So);
+									vode_mvt.init(null,Opt.No);
 									this.getEnv().getContent().set((y+1)*this.getEnv().getWidth()+x,vode);
 									this.getEnv().getContent().set(y*this.getEnv().getWidth()+x,vode_mvt);
 									this.row++;
@@ -97,13 +97,13 @@ public class MobImplemBug implements MobService{
 						if(this.getCol()+1< this.getEnv().getHeight()) {
 							nature = this.getEnv().cellNature(this.getCol()+1,this.getRow());
 							if(nature==Cell.EMP || nature==Cell.DWO) {
-								if(this.getEnv().cellContent(this.getCol()+1,this.getRow()).getOption()==Option.No) {
+								if(this.getEnv().cellContent(this.getCol()+1,this.getRow()).getOption()==Opt.No) {
 									int x = this.getCol();
 									int y = this.getRow();
 									OptionService<MobService> vode = new OptionImplem<>();
 									OptionService<MobService> vode_mvt = new OptionImplem<>();
-									vode.init(this, Option.So);
-									vode_mvt.init(null,Option.No);
+									vode.init(this, Opt.So);
+									vode_mvt.init(null,Opt.No);
 									this.getEnv().getContent().set(y*this.getEnv().getWidth()+x+1,vode);
 									this.getEnv().getContent().set(y*this.getEnv().getWidth()+x,vode_mvt);
 									this.col++;
@@ -118,13 +118,13 @@ public class MobImplemBug implements MobService{
 						if(this.getRow()-1>=0) {	
 							nature = this.getEnv().cellNature(this.getCol(),this.getRow()-1);
 							if(nature==Cell.EMP || nature==Cell.DWO) {
-								if(this.getEnv().cellContent(this.getCol(),this.getRow()-1).getOption()==Option.No) {
+								if(this.getEnv().cellContent(this.getCol(),this.getRow()-1).getOption()==Opt.No) {
 									int x = this.getCol();
 									int y = this.getRow();
 									OptionService<MobService> vode = new OptionImplem<>();
 									OptionService<MobService> vode_mvt = new OptionImplem<>();
-									vode.init(this, Option.So);
-									vode_mvt.init(null,Option.No);
+									vode.init(this, Opt.So);
+									vode_mvt.init(null,Opt.No);
 									this.getEnv().getContent().set((y-1)*this.getEnv().getWidth()+x,vode);
 									this.getEnv().getContent().set(y*this.getEnv().getWidth()+x,vode_mvt);
 									this.row--;
@@ -139,13 +139,13 @@ public class MobImplemBug implements MobService{
 						if(this.getCol()-1>=0) {
 							nature = this.getEnv().cellNature(this.getCol()-1,this.getRow());
 							if(nature==Cell.EMP || nature==Cell.DWO) {
-								if(this.getEnv().cellContent(this.getCol()-1,this.getRow()).getOption()==Option.No) {
+								if(this.getEnv().cellContent(this.getCol()-1,this.getRow()).getOption()==Opt.No) {
 									int x = this.getCol();
 									int y = this.getRow();
 									OptionService<MobService> vode = new OptionImplem<>();
 									OptionService<MobService> vode_mvt = new OptionImplem<>();
-									vode.init(this, Option.So);
-									vode_mvt.init(null,Option.No);
+									vode.init(this, Opt.So);
+									vode_mvt.init(null,Opt.No);
 									this.getEnv().getContent().set(y*this.getEnv().getWidth()+x-1,vode);
 									this.getEnv().getContent().set(y*this.getEnv().getWidth()+x,vode_mvt);
 									this.col--;
@@ -171,13 +171,13 @@ public class MobImplemBug implements MobService{
 						if(this.getRow()+1<this.getEnv().getWidth()) {	
 							nature = this.getEnv().cellNature(this.getCol(),this.getRow()+1);
 							if(nature==Cell.EMP || nature==Cell.DWO) {
-								if(this.getEnv().cellContent(this.getCol(),this.getRow()+1).getOption()==Option.No) {
+								if(this.getEnv().cellContent(this.getCol(),this.getRow()+1).getOption()==Opt.No) {
 									int x = this.getCol();
 									int y = this.getRow();
 									OptionService<MobService> vode = new OptionImplem<>();
 									OptionService<MobService> vode_mvt = new OptionImplem<>();
-									vode.init(this, Option.So);
-									vode_mvt.init(null,Option.No);
+									vode.init(this, Opt.So);
+									vode_mvt.init(null,Opt.No);
 									this.getEnv().getContent().set((y+1)*this.getEnv().getWidth()+x,vode);
 									this.getEnv().getContent().set(y*this.getEnv().getWidth()+x,vode_mvt);
 									this.row++;
@@ -193,13 +193,13 @@ public class MobImplemBug implements MobService{
 						if(this.getCol()+1< this.getEnv().getHeight()) {
 							nature = this.getEnv().cellNature(this.getCol()+1,this.getRow());
 							if(nature==Cell.EMP || nature==Cell.DWO) {
-								if(this.getEnv().cellContent(this.getCol()+1,this.getRow()).getOption()==Option.No) {
+								if(this.getEnv().cellContent(this.getCol()+1,this.getRow()).getOption()==Opt.No) {
 									int x = this.getCol();
 									int y = this.getRow();
 									OptionService<MobService> vode = new OptionImplem<>();
 									OptionService<MobService> vode_mvt = new OptionImplem<>();
-									vode.init(this, Option.So);
-									vode_mvt.init(null,Option.No);
+									vode.init(this, Opt.So);
+									vode_mvt.init(null,Opt.No);
 									this.getEnv().getContent().set(y*this.getEnv().getWidth()+x+1,vode);
 									this.getEnv().getContent().set(y*this.getEnv().getWidth()+x,vode_mvt);
 									this.col++;
@@ -214,13 +214,13 @@ public class MobImplemBug implements MobService{
 						if(this.getRow()-1>=0) {	
 							nature = this.getEnv().cellNature(this.getCol(),this.getRow()-1);
 							if(nature==Cell.EMP || nature==Cell.DWO) {
-								if(this.getEnv().cellContent(this.getCol(),this.getRow()-1).getOption()==Option.No) {
+								if(this.getEnv().cellContent(this.getCol(),this.getRow()-1).getOption()==Opt.No) {
 									int x = this.getCol();
 									int y = this.getRow();
 									OptionService<MobService> vode = new OptionImplem<>();
 									OptionService<MobService> vode_mvt = new OptionImplem<>();
-									vode.init(this, Option.So);
-									vode_mvt.init(null,Option.No);
+									vode.init(this, Opt.So);
+									vode_mvt.init(null,Opt.No);
 									this.getEnv().getContent().set((y-1)*this.getEnv().getWidth()+x,vode);
 									this.getEnv().getContent().set(y*this.getEnv().getWidth()+x,vode_mvt);
 									this.row--;
@@ -235,13 +235,13 @@ public class MobImplemBug implements MobService{
 						if(this.getCol()-1>=0) {
 							nature = this.getEnv().cellNature(this.getCol()-1,this.getRow());
 							if(nature==Cell.EMP || nature==Cell.DWO) {
-								if(this.getEnv().cellContent(this.getCol()-1,this.getRow()).getOption()==Option.No) {
+								if(this.getEnv().cellContent(this.getCol()-1,this.getRow()).getOption()==Opt.No) {
 									int x = this.getCol();
 									int y = this.getRow();
 									OptionService<MobService> vode = new OptionImplem<>();
 									OptionService<MobService> vode_mvt = new OptionImplem<>();
-									vode.init(this, Option.So);
-									vode_mvt.init(null,Option.No);
+									vode.init(this, Opt.So);
+									vode_mvt.init(null,Opt.No);
 									this.getEnv().getContent().set(y*this.getEnv().getWidth()+x-1,vode);
 									this.getEnv().getContent().set(y*this.getEnv().getWidth()+x,vode_mvt);
 									this.col--;
@@ -309,13 +309,13 @@ public class MobImplemBug implements MobService{
 						if(this.getRow()+1<this.getEnv().getWidth()) {	
 							nature = this.getEnv().cellNature(this.getCol(),this.getRow()+1);
 							if(nature==Cell.EMP || nature==Cell.DWO) {
-								if(this.getEnv().cellContent(this.getCol(),this.getRow()+1).getOption()==Option.No) {
+								if(this.getEnv().cellContent(this.getCol(),this.getRow()+1).getOption()==Opt.No) {
 									int x = this.getCol();
 									int y = this.getRow();
 									OptionService<MobService> vode = new OptionImplem<>();
 									OptionService<MobService> vode_mvt = new OptionImplem<>();
-									vode.init(this, Option.So);
-									vode_mvt.init(null,Option.No);
+									vode.init(this, Opt.So);
+									vode_mvt.init(null,Opt.No);
 									this.getEnv().getContent().set((y+1)*this.getEnv().getWidth()+x,vode);
 									this.getEnv().getContent().set(y*this.getEnv().getWidth()+x,vode_mvt);
 									this.row++;
@@ -331,13 +331,13 @@ public class MobImplemBug implements MobService{
 						if(this.getCol()+1< this.getEnv().getHeight()) {
 							nature = this.getEnv().cellNature(this.getCol()+1,this.getRow());
 							if(nature==Cell.EMP || nature==Cell.DWO) {
-								if(this.getEnv().cellContent(this.getCol()+1,this.getRow()).getOption()==Option.No) {
+								if(this.getEnv().cellContent(this.getCol()+1,this.getRow()).getOption()==Opt.No) {
 									int x = this.getCol();
 									int y = this.getRow();
 									OptionService<MobService> vode = new OptionImplem<>();
 									OptionService<MobService> vode_mvt = new OptionImplem<>();
-									vode.init(this, Option.So);
-									vode_mvt.init(null,Option.No);
+									vode.init(this, Opt.So);
+									vode_mvt.init(null,Opt.No);
 									this.getEnv().getContent().set(y*this.getEnv().getWidth()+x+1,vode);
 									this.getEnv().getContent().set(y*this.getEnv().getWidth()+x,vode_mvt);
 									this.col++;
@@ -352,13 +352,13 @@ public class MobImplemBug implements MobService{
 						if(this.getRow()-1>=0) {	
 							nature = this.getEnv().cellNature(this.getCol(),this.getRow()-1);
 							if(nature==Cell.EMP || nature==Cell.DWO) {
-								if(this.getEnv().cellContent(this.getCol(),this.getRow()-1).getOption()==Option.No) {
+								if(this.getEnv().cellContent(this.getCol(),this.getRow()-1).getOption()==Opt.No) {
 									int x = this.getCol();
 									int y = this.getRow();
 									OptionService<MobService> vode = new OptionImplem<>();
 									OptionService<MobService> vode_mvt = new OptionImplem<>();
-									vode.init(this, Option.So);
-									vode_mvt.init(null,Option.No);
+									vode.init(this, Opt.So);
+									vode_mvt.init(null,Opt.No);
 									this.getEnv().getContent().set((y-1)*this.getEnv().getWidth()+x,vode);
 									this.getEnv().getContent().set(y*this.getEnv().getWidth()+x,vode_mvt);
 									this.row--;
@@ -373,13 +373,13 @@ public class MobImplemBug implements MobService{
 						if(this.getCol()-1>=0) {
 							nature = this.getEnv().cellNature(this.getCol()-1,this.getRow());
 							if(nature==Cell.EMP || nature==Cell.DWO) {
-								if(this.getEnv().cellContent(this.getCol()-1,this.getRow()).getOption()==Option.No) {
+								if(this.getEnv().cellContent(this.getCol()-1,this.getRow()).getOption()==Opt.No) {
 									int x = this.getCol();
 									int y = this.getRow();
 									OptionService<MobService> vode = new OptionImplem<>();
 									OptionService<MobService> vode_mvt = new OptionImplem<>();
-									vode.init(this, Option.So);
-									vode_mvt.init(null,Option.No);
+									vode.init(this, Opt.So);
+									vode_mvt.init(null,Opt.No);
 									this.getEnv().getContent().set(y*this.getEnv().getWidth()+x-1,vode);
 									this.getEnv().getContent().set(y*this.getEnv().getWidth()+x,vode_mvt);
 									this.col--;
@@ -405,13 +405,13 @@ public class MobImplemBug implements MobService{
 						if(this.getRow()+1<this.getEnv().getWidth()) {	
 							nature = this.getEnv().cellNature(this.getCol(),this.getRow()+1);
 							if(nature==Cell.EMP || nature==Cell.DWO) {
-								if(this.getEnv().cellContent(this.getCol(),this.getRow()+1).getOption()==Option.No) {
+								if(this.getEnv().cellContent(this.getCol(),this.getRow()+1).getOption()==Opt.No) {
 									int x = this.getCol();
 									int y = this.getRow();
 									OptionService<MobService> vode = new OptionImplem<>();
 									OptionService<MobService> vode_mvt = new OptionImplem<>();
-									vode.init(this, Option.So);
-									vode_mvt.init(null,Option.No);
+									vode.init(this, Opt.So);
+									vode_mvt.init(null,Opt.No);
 									this.getEnv().getContent().set((y+1)*this.getEnv().getWidth()+x,vode);
 									this.getEnv().getContent().set(y*this.getEnv().getWidth()+x,vode_mvt);
 									this.row++;
@@ -427,13 +427,13 @@ public class MobImplemBug implements MobService{
 						if(this.getCol()+1< this.getEnv().getHeight()) {
 							nature = this.getEnv().cellNature(this.getCol()+1,this.getRow());
 							if(nature==Cell.EMP || nature==Cell.DWO) {
-								if(this.getEnv().cellContent(this.getCol()+1,this.getRow()).getOption()==Option.No) {
+								if(this.getEnv().cellContent(this.getCol()+1,this.getRow()).getOption()==Opt.No) {
 									int x = this.getCol();
 									int y = this.getRow();
 									OptionService<MobService> vode = new OptionImplem<>();
 									OptionService<MobService> vode_mvt = new OptionImplem<>();
-									vode.init(this, Option.So);
-									vode_mvt.init(null,Option.No);
+									vode.init(this, Opt.So);
+									vode_mvt.init(null,Opt.No);
 									this.getEnv().getContent().set(y*this.getEnv().getWidth()+x+1,vode);
 									this.getEnv().getContent().set(y*this.getEnv().getWidth()+x,vode_mvt);
 									this.col++;
@@ -448,13 +448,13 @@ public class MobImplemBug implements MobService{
 						if(this.getRow()-1>=0) {	
 							nature = this.getEnv().cellNature(this.getCol(),this.getRow()-1);
 							if(nature==Cell.EMP || nature==Cell.DWO) {
-								if(this.getEnv().cellContent(this.getCol(),this.getRow()-1).getOption()==Option.No) {
+								if(this.getEnv().cellContent(this.getCol(),this.getRow()-1).getOption()==Opt.No) {
 									int x = this.getCol();
 									int y = this.getRow();
 									OptionService<MobService> vode = new OptionImplem<>();
 									OptionService<MobService> vode_mvt = new OptionImplem<>();
-									vode.init(this, Option.So);
-									vode_mvt.init(null,Option.No);
+									vode.init(this, Opt.So);
+									vode_mvt.init(null,Opt.No);
 									this.getEnv().getContent().set((y-1)*this.getEnv().getWidth()+x,vode);
 									this.getEnv().getContent().set(y*this.getEnv().getWidth()+x,vode_mvt);
 									this.row--;
@@ -469,13 +469,13 @@ public class MobImplemBug implements MobService{
 						if(this.getCol()-1>=0) {
 							nature = this.getEnv().cellNature(this.getCol()-1,this.getRow());
 							if(nature==Cell.EMP || nature==Cell.DWO) {
-								if(this.getEnv().cellContent(this.getCol()-1,this.getRow()).getOption()==Option.No) {
+								if(this.getEnv().cellContent(this.getCol()-1,this.getRow()).getOption()==Opt.No) {
 									int x = this.getCol();
 									int y = this.getRow();
 									OptionService<MobService> vode = new OptionImplem<>();
 									OptionService<MobService> vode_mvt = new OptionImplem<>();
-									vode.init(this, Option.So);
-									vode_mvt.init(null,Option.No);
+									vode.init(this, Opt.So);
+									vode_mvt.init(null,Opt.No);
 									this.getEnv().getContent().set(y*this.getEnv().getWidth()+x-1,vode);
 									this.getEnv().getContent().set(y*this.getEnv().getWidth()+x,vode_mvt);
 									this.col--;

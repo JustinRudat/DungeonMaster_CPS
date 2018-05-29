@@ -1,7 +1,7 @@
 package dungeonMaster.components;
 
 import dungeonMaster.enumeration.Dir;
-import dungeonMaster.enumeration.Option;
+import dungeonMaster.enumeration.Opt;
 import dungeonMaster.services.EntityService;
 import dungeonMaster.services.EnvironmentService;
 import dungeonMaster.services.MobService;
@@ -70,7 +70,7 @@ public class EntityImplem extends MobImplem implements EntityService{
 				break;
 		}
 		opt = this.getEnv().cellContent(x,y);
-		if(opt.getOption()==Option.So) {
+		if(opt.getOption()==Opt.So) {
 			if(opt.getElem() instanceof EntityService) {
 				EntityService victim = (EntityService)opt.getElem();
 				if(victim instanceof PlayerService) {

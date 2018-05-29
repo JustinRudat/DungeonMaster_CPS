@@ -2,7 +2,7 @@ package dungeonMaster.contracts;
 
 import dungeonMaster.decorators.MinotaurDecorator;
 import dungeonMaster.enumeration.Dir;
-import dungeonMaster.enumeration.Option;
+import dungeonMaster.enumeration.Opt;
 import dungeonMaster.exceptions.PostConditionException;
 import dungeonMaster.exceptions.PreConditionException;
 import dungeonMaster.services.EnvironmentService;

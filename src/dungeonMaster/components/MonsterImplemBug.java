@@ -6,7 +6,7 @@ import java.util.Random;
 
 import dungeonMaster.enumeration.Cell;
 import dungeonMaster.enumeration.Dir;
-import dungeonMaster.enumeration.Option;
+import dungeonMaster.enumeration.Opt;
 import dungeonMaster.services.EnvironmentService;
 import dungeonMaster.services.MobService;
 import dungeonMaster.services.MonsterService;
@@ -28,7 +28,7 @@ public class MonsterImplemBug extends EntityImplem implements MonsterService {
 				int y = this.getRow()+j;
 				if(x>=0 && x<this.getEnv().getWidth() && y>=0 && y< this.getEnv().getHeight()) {
 					OptionService<MobService> opt = this.getEnv().cellContent(x, y);
-					if(opt.getOption()==Option.So) {
+					if(opt.getOption()==Opt.So) {
 						if(opt.getElem() instanceof PlayerService) {
 							player_at_x=x;
 							player_at_y=y;

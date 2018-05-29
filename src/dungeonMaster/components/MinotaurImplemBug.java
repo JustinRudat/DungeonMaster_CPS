@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import dungeonMaster.enumeration.Cell;
 import dungeonMaster.enumeration.Dir;
-import dungeonMaster.enumeration.Option;
+import dungeonMaster.enumeration.Opt;
 import dungeonMaster.services.EntityService;
 import dungeonMaster.services.EnvironmentService;
 import dungeonMaster.services.MinotaurService;
@@ -49,7 +49,7 @@ public class MinotaurImplemBug extends MonsterImplem  implements MinotaurService
 				break;
 		}
 		opt = this.getEnv().cellContent(x,y);
-		if(opt.getOption()==Option.So) {
+		if(opt.getOption()==Opt.So) {
 			if(opt.getElem() instanceof EntityService) {
 				EntityService victim = (EntityService)opt.getElem();
 				if(victim instanceof PlayerService) {

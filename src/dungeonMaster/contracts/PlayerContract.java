@@ -347,7 +347,19 @@ public class PlayerContract extends PlayerDecorator {
 
 	@Override
 	public boolean addLoot(LootService lt) {
-		return super.addLoot(lt);
+		boolean retour = false;
+		
+		int lootsize = this.getBag().size();
+		retour =  super.addLoot(lt);
+		try {
+			if(lootsize+1 != this.getBag().size()) {
+				throw new PostConditionException("player : addLoot : error while adding loot.");
+			}
+		}catch(PostConditionException e) {
+			e.printStackTrace();
+		}
+		
+		return retour;
 	}
 	
 	@Override
@@ -359,7 +371,19 @@ public class PlayerContract extends PlayerDecorator {
 
 	@Override
 	public boolean addKey(LootService lt) {
-		return super.addKey(lt);
+		boolean retour = false; 
+		int keysize = this.getKeys().size();
+		
+		retour = super.addKey(lt);
+		
+		try {
+			if(keysize+1 != this.getKeys().size()) {
+				throw new PostConditionException("player : addKey : error while adding key.");
+			}
+		}catch(PostConditionException e) {
+			e.printStackTrace();
+		}
+		return retour;
 	}
 
 	@Override
@@ -369,6 +393,16 @@ public class PlayerContract extends PlayerDecorator {
 
 	@Override
 	public Cell isViewable(int col, int row) {
+		try {
+			if(col>1||col<-1) {
+				throw new PreConditionException("Player : getViewable, exeption on x");
+			}
+			if(row>3||row<-1) {
+				throw new PreConditionException("Player : getViewable, exeption on y");
+			}
+		}catch(ConditionException e) {
+			e.printStackTrace();
+		}
 		return super.isViewable(col, row);
 	}
 	

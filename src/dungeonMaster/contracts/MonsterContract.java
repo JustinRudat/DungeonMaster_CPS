@@ -6,7 +6,7 @@ import dungeonMaster.components.Noeud;
 import dungeonMaster.decorators.MonsterDecorator;
 import dungeonMaster.enumeration.Cell;
 import dungeonMaster.enumeration.Dir;
-import dungeonMaster.enumeration.Option;
+import dungeonMaster.enumeration.Opt;
 import dungeonMaster.exceptions.PostConditionException;
 import dungeonMaster.exceptions.PreConditionException;
 import dungeonMaster.services.EnvironmentService;
@@ -147,7 +147,7 @@ public class MonsterContract extends MonsterDecorator {
 		boolean player_def=false;
 		switch(getFace()) {
 		case N:
-			if(getEnv().cellContent(this.getCol(),this.getRow()+1).getOption()!=Option.No) {
+			if(getEnv().cellContent(this.getCol(),this.getRow()+1).getOption()!=Opt.No) {
 				if(mob instanceof PlayerService) {
 					mob = getEnv().cellContent(this.getCol(),this.getRow()+1).getElem();
 					player_hp = ((PlayerService)mob).getHealthPoints();
@@ -157,7 +157,7 @@ public class MonsterContract extends MonsterDecorator {
 			}
 			break;
 		case S:
-			if(getEnv().cellContent(this.getCol(),this.getRow()-1).getOption()!=Option.No) {
+			if(getEnv().cellContent(this.getCol(),this.getRow()-1).getOption()!=Opt.No) {
 				if(mob instanceof PlayerService) {
 					mob = getEnv().cellContent(this.getCol(),this.getRow()-1).getElem();
 					player_hp = ((PlayerService)mob).getHealthPoints();
@@ -167,7 +167,7 @@ public class MonsterContract extends MonsterDecorator {
 			}
 			break;
 		case E:
-			if(getEnv().cellContent(this.getCol()+1,this.getRow()).getOption()!=Option.No) {
+			if(getEnv().cellContent(this.getCol()+1,this.getRow()).getOption()!=Opt.No) {
 				if(mob instanceof PlayerService) {
 					mob = getEnv().cellContent(this.getCol()+1,this.getRow()).getElem();
 					player_hp = ((PlayerService)mob).getHealthPoints();
@@ -177,7 +177,7 @@ public class MonsterContract extends MonsterDecorator {
 			}
 			break;
 		case W:
-			if(getEnv().cellContent(this.getCol()-1,this.getRow()).getOption()!=Option.No) {
+			if(getEnv().cellContent(this.getCol()-1,this.getRow()).getOption()!=Opt.No) {
 				if(mob instanceof PlayerService) {
 					mob = getEnv().cellContent(this.getCol()-1,this.getRow()).getElem();
 					player_hp = ((PlayerService)mob).getHealthPoints();

@@ -2,7 +2,7 @@ package dungeonMaster.components;
 
 import java.util.ArrayList;
 
-import dungeonMaster.enumeration.Option;
+import dungeonMaster.enumeration.Opt;
 import dungeonMaster.services.EngineService;
 import dungeonMaster.services.EntityService;
 import dungeonMaster.services.EnvironmentService;
@@ -58,7 +58,7 @@ public class EngineImplemBug implements EngineService {
 				EntityService entity_tmp = this.getEntities().get(i);
 				if(entity.getHealthPoints()<0) {
 					OptionService<MobService> opt = new OptionImplem<>();
-					opt.init(null, Option.So);
+					opt.init(null, Opt.So);
 					this.getEnv().getContent().set(entity_tmp.getRow()*this.getEnv().getWidth()+entity_tmp.getCol(),opt);
 					entities.remove(entity_tmp);
 					i--;

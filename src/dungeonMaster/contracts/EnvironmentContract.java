@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import dungeonMaster.decorators.EnvironmentDecorator;
 import dungeonMaster.enumeration.Cell;
-import dungeonMaster.enumeration.Option;
+import dungeonMaster.enumeration.Opt;
 import dungeonMaster.exceptions.PostConditionException;
 import dungeonMaster.exceptions.PreConditionException;
 import dungeonMaster.services.EnvironmentService;
@@ -27,7 +27,7 @@ public class EnvironmentContract extends EnvironmentDecorator {
 				throw new PostConditionException("init : environment : content not initialized\n");
 			}
 			for(OptionService<MobService> cell_cont : getContent()) {
-				if(cell_cont.getOption()!=Option.No) {
+				if(cell_cont.getOption()!=Opt.No) {
 					throw new PostConditionException("init : environment : error on initialized content\n");
 				}
 			}
@@ -70,7 +70,7 @@ public class EnvironmentContract extends EnvironmentDecorator {
 		
 		retour = ((EnvironmentService)this.getDelegate()).removeMobOption(mob);
 		try {
-			if(getContent().get(y*this.getWidth()+x).getOption()!=Option.No) {
+			if(getContent().get(y*this.getWidth()+x).getOption()!=Opt.No) {
 				throw new PostConditionException("addmoboption: environment : mob still in content");
 			}
 		}catch(PostConditionException e) {

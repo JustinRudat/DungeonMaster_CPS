@@ -1,6 +1,6 @@
 package dungeonMaster.enumeration;
 
-public enum Option {
+public enum Opt {
     No,
     So;
 }

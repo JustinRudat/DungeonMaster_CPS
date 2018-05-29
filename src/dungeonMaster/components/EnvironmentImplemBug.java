@@ -3,7 +3,7 @@ package dungeonMaster.components;
 import java.util.ArrayList;
 
 import dungeonMaster.enumeration.Dir;
-import dungeonMaster.enumeration.Option;
+import dungeonMaster.enumeration.Opt;
 import dungeonMaster.services.EnvironmentService;
 import dungeonMaster.services.MobService;
 import dungeonMaster.services.OptionService;
@@ -21,7 +21,7 @@ public class EnvironmentImplemBug extends MapImplem implements EnvironmentServic
 		for (int i=0; i < this.getWidth();i++) {
 			for(int j=0;j<this.getHeight();j++) {
 				OptionService<MobService> option = new OptionImplem();
-				option.init(null,Option.No);
+				option.init(null,Opt.No);
 				content.add(option);
 				
 				// indice option d'une case x , y : width * y + x
@@ -42,7 +42,7 @@ public class EnvironmentImplemBug extends MapImplem implements EnvironmentServic
 		int x= mob.getCol();
 		int y = mob.getRow();
 		OptionService<MobService> option = new OptionImplem<>();
-		option.init(mob,Option.So);
+		option.init(mob,Opt.So);
 		content.set(y*this.getWidth()+x,option);
 		return true;
 	}
@@ -52,7 +52,7 @@ public class EnvironmentImplemBug extends MapImplem implements EnvironmentServic
 		int x= mob.getCol();
 		int y = mob.getRow();
 		OptionService<MobService> option = new OptionImplem<>();
-		option.init(null,Option.No);
+		option.init(null,Opt.No);
 		content.set(y*this.getWidth()+x,option);
 		return true;
 	}

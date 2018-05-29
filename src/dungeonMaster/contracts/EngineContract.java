@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import dungeonMaster.decorators.EngineDecorator;
 import dungeonMaster.enumeration.Cell;
 import dungeonMaster.enumeration.LootType;
-import dungeonMaster.enumeration.Option;
+import dungeonMaster.enumeration.Opt;
 import dungeonMaster.exceptions.ConditionException;
 import dungeonMaster.exceptions.EntityInvariantException;
 import dungeonMaster.exceptions.EnvironmentInvariantException;
@@ -241,7 +241,7 @@ public class EngineContract extends EngineDecorator {
 			if(y<0||y>=getEnv().getHeight()) {
 				throw new PreConditionException("addloot : engine : error on y\n");
 			}
-			if(getEnv().cellContent(x, y).getOption()!=Option.No) {
+			if(getEnv().cellContent(x, y).getOption()!=Opt.No) {
 				if(getEnv().cellContent(x, y).getElem() instanceof EntityService) {
 					if(((EntityService)getEnv().cellContent(x, y).getElem()).getHealthPoints()!=0) {
 						throw new PreConditionException("addloot : engine : cell already takne by a live entity\n");
@@ -256,7 +256,7 @@ public class EngineContract extends EngineDecorator {
 		retour = super.addLoot(x, y);
 		checkInvariants();
 		try {
-			if(getEnv().cellContent(x, y).getOption()!=Option.No){
+			if(getEnv().cellContent(x, y).getOption()!=Opt.No){
 				if(!(getEnv().cellContent(x, y).getElem() instanceof LootService)) {
 					throw new PostConditionException("addloot : engine :  not a loot\n");
 				}

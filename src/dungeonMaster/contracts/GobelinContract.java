@@ -2,7 +2,7 @@ package dungeonMaster.contracts;
 
 import dungeonMaster.decorators.GobelinDecorator;
 import dungeonMaster.enumeration.Dir;
-import dungeonMaster.enumeration.Option;
+import dungeonMaster.enumeration.Opt;
 import dungeonMaster.exceptions.PostConditionException;
 import dungeonMaster.services.EnvironmentService;
 import dungeonMaster.services.GobelinService;

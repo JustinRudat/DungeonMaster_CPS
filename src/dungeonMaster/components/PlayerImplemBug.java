@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import dungeonMaster.enumeration.Cell;
 import dungeonMaster.enumeration.Command;
 import dungeonMaster.enumeration.Dir;
-import dungeonMaster.enumeration.Option;
+import dungeonMaster.enumeration.Opt;
 import dungeonMaster.services.EntityService;
 import dungeonMaster.services.EnvironmentService;
 import dungeonMaster.services.LootService;
@@ -81,7 +81,7 @@ public class PlayerImplemBug extends EntityImplem implements PlayerService {
 	@Override
 	public boolean step() {
 		OptionService<Command> commands = this.getLastCommand();
-		if(commands.getOption()!=Option.No) {
+		if(commands.getOption()!=Opt.No) {
 			switch(commands.getElem()) {
 				case FF:
 					this.backward();
@@ -111,7 +111,7 @@ public class PlayerImplemBug extends EntityImplem implements PlayerService {
 				default:
 					break;
 			}
-			commands.setOption(Option.No);
+			commands.setOption(Opt.No);
 			commands.setElem(null);
 		}
 		return true;
@@ -161,40 +161,40 @@ public class PlayerImplemBug extends EntityImplem implements PlayerService {
 		switch(this.getFace()) {
 			case N:
 				opt = this.getEnv().cellContent(this.getCol(), this.getRow()+1);
-				if(opt.getOption()!=Option.No) {
+				if(opt.getOption()!=Opt.No) {
 					if(opt.getElem() instanceof LootService) {
 						this.addLoot((LootService) opt.getElem());
-						opt.setOption(Option.No);
+						opt.setOption(Opt.No);
 						opt.setElem(null);
 					}
 				}
 				break;
 			case S:
 				opt = this.getEnv().cellContent(this.getCol(), this.getRow()-1);
-				if(opt.getOption()!=Option.No) {
+				if(opt.getOption()!=Opt.No) {
 					if(opt.getElem() instanceof LootService) {
 						this.addLoot((LootService) opt.getElem());
-						opt.setOption(Option.No);
+						opt.setOption(Opt.No);
 						opt.setElem(null);
 					}
 				}
 				break;
 			case E:
 				opt = this.getEnv().cellContent(this.getCol()+1, this.getRow());
-				if(opt.getOption()!=Option.No) {
+				if(opt.getOption()!=Opt.No) {
 					if(opt.getElem() instanceof LootService) {
 						this.addLoot((LootService) opt.getElem());
-						opt.setOption(Option.No);
+						opt.setOption(Opt.No);
 						opt.setElem(null);
 					}
 				}
 				break;
 			case W:
 				opt = this.getEnv().cellContent(this.getCol()-1, this.getRow());
-				if(opt.getOption()!=Option.No) {
+				if(opt.getOption()!=Opt.No) {
 					if(opt.getElem() instanceof LootService) {
 						this.addLoot((LootService) opt.getElem());
-						opt.setOption(Option.No);
+						opt.setOption(Opt.No);
 						opt.setElem(null);
 					}
 				}

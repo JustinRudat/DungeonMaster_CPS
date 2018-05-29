@@ -7,7 +7,7 @@ import dungeonMaster.enumeration.Cell;
 import dungeonMaster.enumeration.Command;
 import dungeonMaster.enumeration.Dir;
 import dungeonMaster.enumeration.LootType;
-import dungeonMaster.enumeration.Option;
+import dungeonMaster.enumeration.Opt;
 import dungeonMaster.services.DoorLockService;
 import dungeonMaster.services.EntityService;
 import dungeonMaster.services.EnvironmentService;
@@ -52,7 +52,7 @@ public class PlayerImplem extends EntityImplem implements PlayerService {
 	public boolean init(EnvironmentService env, int x, int y, Dir dir, int hp, int dmg, int armor) {
 		boolean retour = super.init(env, x, y, dir, hp, dmg, armor);
 		OptionImplem<Command> opt = new OptionImplem();
-		opt.init(null,Option.No);
+		opt.init(null,Opt.No);
 		this.lastcommand = opt;
 		this.bag = new ArrayList<>();
 		this.keys=new ArrayList<>();
@@ -253,7 +253,7 @@ public class PlayerImplem extends EntityImplem implements PlayerService {
 			this.defense = false;
 		}
 		OptionService<Command> commands = this.getLastCommand();
-		if(commands.getOption()!=Option.No) {
+		if(commands.getOption()!=Opt.No) {
 			switch(commands.getElem()) {
 				case FF:
 					this.forward();
@@ -288,7 +288,7 @@ public class PlayerImplem extends EntityImplem implements PlayerService {
 				default:
 					break;
 			}
-			commands.setOption(Option.No);
+			commands.setOption(Opt.No);
 			commands.setElem(null);
 		}
 		return true;
@@ -368,14 +368,14 @@ public class PlayerImplem extends EntityImplem implements PlayerService {
 		}
 		nat = this.getEnv().cellNature(x, y);
 		opt = this.getEnv().cellContent(x, y);
-		if(opt.getOption()!=Option.No) {
+		if(opt.getOption()!=Opt.No) {
 			if(opt.getElem() instanceof LootService) {
 				if(((LootService)opt.getElem()).getLootType()==LootType.Key) {
 					this.addKey((LootService) opt.getElem());
 				}else {
 					this.addLoot((LootService) opt.getElem());
 				}
-				opt.setOption(Option.No);
+				opt.setOption(Opt.No);
 				opt.setElem(null);
 			}
 		}else if(nat == Cell.DNC) {
@@ -468,7 +468,7 @@ public class PlayerImplem extends EntityImplem implements PlayerService {
 			default:
 				break;
 		}
-		if(content.getOption()==Option.So) {
+		if(content.getOption()==Opt.So) {
 			if(content.getElem() instanceof MonsterService) {
 				monstre = (MonsterService) content.getElem();
 			}

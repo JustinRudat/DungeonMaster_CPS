@@ -1,7 +1,7 @@
 package dungeonMaster.components;
 
 import dungeonMaster.enumeration.Dir;
-import dungeonMaster.enumeration.Option;
+import dungeonMaster.enumeration.Opt;
 import dungeonMaster.services.EntityService;
 import dungeonMaster.services.EnvironmentService;
 import dungeonMaster.services.MobService;
@@ -48,7 +48,7 @@ public class EntityImplemBug extends MobImplem implements EntityService{
 		switch(this.getFace()) {
 			case S:
 				opt = this.getEnv().cellContent(this.getCol(), this.getRow()+1);
-				if(opt.getOption()==Option.So) {
+				if(opt.getOption()==Opt.So) {
 					if(opt.getElem() instanceof EntityService) {
 						EntityService victim = (EntityService)opt.getElem();
 						victim.setHealthPoints(victim.getHealthPoints()-this.getDegats());
@@ -57,7 +57,7 @@ public class EntityImplemBug extends MobImplem implements EntityService{
 				break;
 			case N:
 				opt = this.getEnv().cellContent(this.getCol(), this.getRow()-1);
-				if(opt.getOption()==Option.So) {
+				if(opt.getOption()==Opt.So) {
 					if(opt.getElem() instanceof EntityService) {
 						EntityService victim = (EntityService)opt.getElem();
 						victim.setHealthPoints(victim.getHealthPoints()-this.getDegats());
@@ -66,7 +66,7 @@ public class EntityImplemBug extends MobImplem implements EntityService{
 				break;
 			case E:
 				opt = this.getEnv().cellContent(this.getCol()-1, this.getRow());
-				if(opt.getOption()==Option.So) {
+				if(opt.getOption()==Opt.So) {
 					if(opt.getElem() instanceof EntityService) {
 						EntityService victim = (EntityService)opt.getElem();
 						victim.setHealthPoints(victim.getHealthPoints()-this.getDegats());
@@ -75,7 +75,7 @@ public class EntityImplemBug extends MobImplem implements EntityService{
 				break;
 			case W:
 				opt = this.getEnv().cellContent(this.getCol()+1, this.getRow());
-				if(opt.getOption()==Option.So) {
+				if(opt.getOption()==Opt.So) {
 					if(opt.getElem() instanceof EntityService) {
 						EntityService victim = (EntityService)opt.getElem();
 						victim.setHealthPoints(victim.getHealthPoints()-this.getDegats());

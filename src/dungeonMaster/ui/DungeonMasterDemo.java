@@ -18,7 +18,7 @@ import dungeonMaster.components.EnvironmentImplem;
 import dungeonMaster.enumeration.Cell;
 import dungeonMaster.enumeration.Command;
 import dungeonMaster.enumeration.LootType;
-import dungeonMaster.enumeration.Option;
+import dungeonMaster.enumeration.Opt;
 import dungeonMaster.services.CowService;
 import dungeonMaster.services.EngineService;
 import dungeonMaster.services.EntityService;
@@ -685,14 +685,14 @@ public class DungeonMasterDemo {
 
 
 
-    public static void main(String[] args) {
+    public void run() {
 
         Thread t = new Thread() {
             public void run() {
                 try {
                     MyPanel display = createAndShowGui();
                     while(!engine.isGameOver()) {
-                        if(player_info.getLastCommand().getOption()!=Option.No) {
+                        if(player_info.getLastCommand().getOption()!=Opt.No) {
                             runStep();
                             drawAsciiPanelFinal(display);
                             display.updateUI();

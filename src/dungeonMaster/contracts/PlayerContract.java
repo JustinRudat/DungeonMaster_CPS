@@ -1,5 +1,7 @@
 package dungeonMaster.contracts;
 
+import java.util.ArrayList;
+
 import dungeonMaster.components.EnvironmentImplem;
 import dungeonMaster.components.PlayerImplem;
 import dungeonMaster.decorators.PlayerDecorator;
@@ -11,6 +13,7 @@ import dungeonMaster.exceptions.InvariantException;
 import dungeonMaster.exceptions.PostConditionException;
 import dungeonMaster.exceptions.PreConditionException;
 import dungeonMaster.services.EnvironmentService;
+import dungeonMaster.services.LootService;
 import dungeonMaster.services.MobService;
 import dungeonMaster.services.OptionService;
 import dungeonMaster.services.PlayerService;
@@ -129,7 +132,6 @@ public class PlayerContract extends PlayerDecorator {
 
 	@Override
 	public OptionService<Command> getLastCommand() {
-		// TODO Auto-generated method stub
 		return super.getLastCommand();
 	}
 
@@ -193,6 +195,31 @@ public class PlayerContract extends PlayerDecorator {
 		env.init(this.getEnv().getWidth(), this.getEnv().getHeight());
 		player_pre.init(env, this.getCol(), this.getRow(), this.getFace(),this.getHealthPoints(),this.getDegats(),this.getArmor());
 		Command c = this.getLastCommand().getElem();
+		int pacif_at_pre  = this.getPacification();
+		OptionService<MobService> mob_at_pre = null;
+		int col = -1;
+		int row = -1;
+		switch (this.getFace()) {
+			case N:
+				col = this.getCol();
+				row = this.getRow()+1;
+				break;
+			case S:
+				col = this.getCol();
+				row = this.getRow()-1;
+				break;
+			case E:
+				col = this.getCol()+1;
+				row = this.getRow();
+				break;
+			case W:
+				col = this.getCol()-1;
+				row = this.getRow();
+				break;
+			default :
+				break;
+		}
+		mob_at_pre = getEnv().cellContent(col, row);
 		
 		boolean retour=  super.step();
 		
@@ -257,9 +284,22 @@ public class PlayerContract extends PlayerDecorator {
 					}
 					break;
 				case AA:
-					//this.attack();
+					//player_pre.attack();
 					break;
-				
+				case DF:
+					if(!this.isDef()) {
+						throw new PostConditionException("step : player : player not on defensive");
+					}
+					break ;
+				case PF :
+					if(pacif_at_pre==this.getPacification()) {
+						
+					}
+					//player_pre.pacify();
+					break;
+				case TK :
+					//player_pre.take();
+					break;
 				default:
 					break;
 				}
@@ -278,81 +318,58 @@ public class PlayerContract extends PlayerDecorator {
 
 	@Override
 	public boolean init(EnvironmentService env, int x, int y, Dir dir, int hp,int degat,int armor) {
-		return super.init(env, x, y, dir, hp,degat,armor);
-	}
-
-	@Override
-	public EnvironmentService getEnv() {
-		return super.getEnv();
-	}
-
-	@Override
-	public int getCol() {
-		return super.getCol();
-	}
-
-	@Override
-	public int getRow() {
-		return super.getRow();
-	}
-
-	@Override
-	public Dir getFace() {
-		return super.getFace();
-	}
-
-	@Override
-	public boolean init(EnvironmentService env, int x, int y, Dir dir) {
-		return super.init(env, x, y, dir);
-
-	}
-
-	@Override
-	public boolean forward() {
-		checkInvariants();
-		boolean retour = super.forward();
-		checkInvariants();
+		boolean retour =false;
+		
+		retour = super.init(env, x, y, dir, hp,degat,armor);
+		
+		try {
+			if(this.getBag()==null) {
+				throw new PostConditionException("init : player : bag not initialized");
+			}
+			if(this.getKeys()==null) {
+				throw new PostConditionException("inti : player : keys not initialized");
+			}
+			if(this.getLastCommand()==null) {
+				throw new PostConditionException("init : player : command not initialized");
+			}
+			if(this.isDef()) {
+				throw new PostConditionException("init : player : should not be on the defensive yet");
+			}
+			if( this.getPacification() != 40 ) {
+				throw new PostConditionException("init : player : pacification should be set at 40");
+			}
+		}catch(PostConditionException e) {
+			e.printStackTrace();
+		}
+		
 		return retour;
 	}
 
 	@Override
-	public boolean backward() {
-		checkInvariants();
-		boolean retour = super.backward();
-		checkInvariants();
-		return retour;
+	public boolean addLoot(LootService lt) {
+		return super.addLoot(lt);
+	}
+	
+	@Override
+	public boolean take() {
+		return super.take();
+	}
+
+	
+
+	@Override
+	public boolean addKey(LootService lt) {
+		return super.addKey(lt);
 	}
 
 	@Override
-	public boolean turnL() {
-		checkInvariants();
-		boolean retour = super.turnL();
-		checkInvariants();
-		return retour;
+	public boolean pacify() {
+		return super.pacify();
 	}
 
 	@Override
-	public boolean turnR() {
-		checkInvariants();
-		boolean retour = super.turnR();
-		checkInvariants();
-		return retour;
+	public Cell isViewable(int col, int row) {
+		return super.isViewable(col, row);
 	}
-
-	@Override
-	public boolean strafeL() {
-		checkInvariants();
-		boolean retour = super.strafeL();
-		checkInvariants();
-		return retour;
-	}
-
-	@Override
-	public boolean strafeR() {
-		checkInvariants();
-		boolean retour = super.strafeR();
-		checkInvariants();
-		return retour;
-	}
-
+	
 }

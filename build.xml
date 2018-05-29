@@ -1,4 +1,4 @@
-<project name="bridge" default="compile" basedir=".">
+<project name="dungeonMaster" default="compile" basedir=".">
     <description>
        Fichier de construction pour l'exemple Bridge
     </description>
@@ -31,7 +31,13 @@
     </java>
   </target>
 
-
+	<target name="test" depends="compile"
+	          description="test the application">
+	    <echo>================ Run Object Main ================</echo>
+	    <java classname="dungeonMaster.tests.TestMain"
+	          classpath="${build}">
+	    </java>
+	  </target>
   <target name="dist" depends="init,clean"
         description="Generer la distribution" >
     <!-- tout mettre dans l'archive -->
@@ -50,4 +56,5 @@
         <echo>================ Removing build directory ================</echo>    
 	<delete dir="${build}"/>
   </target>
+	
 </project>

@@ -48,13 +48,16 @@ public class PlayerDecorator extends EntityDecorator implements PlayerService{
 		return ((PlayerService) this.getDelegate()).getBag();
 	}
 
-	
-
 	@Override
 	public boolean addLoot(LootService lt) {
 		return ((PlayerService) this.getDelegate()).addLoot(lt);
 	}
-
+	
+	@Override
+	public boolean step() {
+		return ((PlayerService) this.getDelegate()).step();
+	}
+	
 	@Override
 	public boolean take() {
 		return ((PlayerService) this.getDelegate()).take();
@@ -62,38 +65,32 @@ public class PlayerDecorator extends EntityDecorator implements PlayerService{
 
 	@Override
 	public ArrayList<LootService> getKeys() {
-		// TODO Auto-generated method stub
-		return null;
+		return ((PlayerService) this.getDelegate()).getKeys();
 	}
 
 	@Override
 	public boolean addKey(LootService lt) {
-		// TODO Auto-generated method stub
-		return false;
+		return ((PlayerService) this.getDelegate()).addKey(lt);
 	}
 
 	@Override
 	public int getPacification() {
-		// TODO Auto-generated method stub
-		return 0;
+		return ((PlayerService) this.getDelegate()).getPacification();
 	}
 
 	@Override
 	public boolean isDef() {
-		// TODO Auto-generated method stub
-		return false;
+		return ((PlayerService) this.getDelegate()).isDef();
 	}
 
 	@Override
 	public boolean pacify() {
-		// TODO Auto-generated method stub
-		return false;
+		return ((PlayerService) this.getDelegate()).pacify();
 	}
 
 	@Override
 	public Cell isViewable(int col, int row) {
-		// TODO Auto-generated method stub
-		return null;
+		return ((PlayerService) this.getDelegate()).isViewable(col, row);
 	}
 	
 

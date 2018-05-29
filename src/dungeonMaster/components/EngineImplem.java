@@ -275,15 +275,15 @@ public class EngineImplem implements EngineService {
 				cell = env_tmp.cellNature(x,y);
 			}
 			EntityService cow = null;
-			if(rand.nextInt(100)<=60) {
+			if(rand.nextInt(100)<=70) {
 				cow = new GobelinImplem();
-				//((GobelinService)cow).init(env_tmp, x, y, Dir.N);
+				((GobelinService)cow).init(env_tmp, x, y, Dir.N);
 			}else {
 				cow = new MinotaurImplem();
-				//((MinotaurService)cow).init(env_tmp, x, y, Dir.N);
+				((MinotaurService)cow).init(env_tmp, x, y, Dir.N);
 			}
 			
-			//addEntity(cow);
+			addEntity(cow);
 		}
 		int nb_item = 4+rand.nextInt(4);
 		for(int i =0; i<nb_item;i++) {

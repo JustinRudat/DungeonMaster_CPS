@@ -30,6 +30,9 @@ public class CowContract extends CowDecorator {
 			if(this.getDegats()!=1) {
 				throw new PostConditionException("cow damage are supposed to be 1");
 			}
+			if(this.getArmor()!=0) {
+				throw new PostConditionException("cow armor are supposed to be 0");
+			}
 		}catch(ConditionException e) {
 			e.printStackTrace();
 			return false;

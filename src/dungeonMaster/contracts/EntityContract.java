@@ -8,6 +8,8 @@ import dungeonMaster.exceptions.PreConditionException;
 import dungeonMaster.services.EntityService;
 import dungeonMaster.services.EnvironmentService;
 import dungeonMaster.services.MobService;
+import dungeonMaster.services.OptionService;
+import dungeonMaster.services.PlayerService;
 
 public class EntityContract extends EntityDecorator {
 
@@ -23,6 +25,12 @@ public class EntityContract extends EntityDecorator {
 		try {
 			if(hp<=0) {
 				throw new PreConditionException("hp initialized to 0 or less");
+			}
+			if(degat<=0) {
+				throw new PreConditionException("damage initialized to 0 or less");
+			}
+			if(armor<0) {
+				throw new PreConditionException("armor initialized to less than zero");
 			}
 		}catch(PreConditionException e) {
 			e.printStackTrace();
@@ -55,6 +63,58 @@ public class EntityContract extends EntityDecorator {
 		
 		retour = super.step();
 		
+		return retour;
+	}
+	
+	@Override
+	public boolean attack() {
+		boolean retour = false;
+		OptionService<MobService> opt = null;
+		int x =-1;
+		int y =-1;
+		switch(this.getFace()) {
+			case N:
+				x = this.getCol();
+				y = this.getRow()+1;
+				break;
+			case S:
+				x = this.getCol();
+				y = this.getRow()-1;
+				break;
+			case W:
+				x = this.getCol()-1;
+				y = this.getRow();
+				break;
+			case E:
+				x = this.getCol()+1;
+				y = this.getRow();
+				break;
+			default: 
+				break;
+		}
+		opt = this.getEnv().cellContent(x,y);
+		MobService mob = opt.getElem();
+		int hp_at_pre =-1;
+		if(mob != null) {
+			hp_at_pre = ((EntityService)mob).getHealthPoints();
+		}
+		
+		retour = super.attack();
+		
+		try {
+			int degat;
+			if(mob instanceof PlayerService) {
+				degat = this.getDegats() - ((EntityService)mob).getArmor() - (((PlayerService)mob).isDef()?1:0);
+			}else {
+				degat = this.getDegats() - ((EntityService)mob).getArmor();
+			}
+			if(hp_at_pre-(degat>0?degat:0)!=((EntityService)mob).getHealthPoints()) {
+				throw new PostConditionException("attack : entity : error on lowering hp");
+			}
+		}catch(PostConditionException e) {
+			e.printStackTrace();
+			retour = false;
+		}
 		return retour;
 	}
 

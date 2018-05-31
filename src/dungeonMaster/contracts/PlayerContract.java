@@ -8,6 +8,7 @@ import dungeonMaster.decorators.PlayerDecorator;
 import dungeonMaster.enumeration.Cell;
 import dungeonMaster.enumeration.Command;
 import dungeonMaster.enumeration.Dir;
+import dungeonMaster.enumeration.LootType;
 import dungeonMaster.exceptions.ConditionException;
 import dungeonMaster.exceptions.InvariantException;
 import dungeonMaster.exceptions.PostConditionException;
@@ -354,7 +355,7 @@ public class PlayerContract extends PlayerDecorator {
 		int lootsize = this.getBag().size();
 		retour =  super.addLoot(lt);
 		try {
-			if(lootsize+1 != this.getBag().size()) {
+			if(lootsize+1 != this.getBag().size() && lt.getLootType()!=LootType.Key) {
 				throw new PostConditionException("player : addLoot : error while adding loot.");
 			}
 			switch(lt.getLootType()) {

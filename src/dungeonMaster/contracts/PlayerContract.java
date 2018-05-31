@@ -13,9 +13,11 @@ import dungeonMaster.exceptions.ConditionException;
 import dungeonMaster.exceptions.InvariantException;
 import dungeonMaster.exceptions.PostConditionException;
 import dungeonMaster.exceptions.PreConditionException;
+import dungeonMaster.services.EntityService;
 import dungeonMaster.services.EnvironmentService;
 import dungeonMaster.services.LootService;
 import dungeonMaster.services.MobService;
+import dungeonMaster.services.MonsterService;
 import dungeonMaster.services.OptionService;
 import dungeonMaster.services.PlayerService;
 
@@ -354,7 +356,9 @@ public class PlayerContract extends PlayerDecorator {
 		int damage_at_pre = getDegats();
 		int lootsize = this.getBag().size();
 		int keysize = this.getKeys().size();
+		
 		retour =  super.addLoot(lt);
+		
 		try {
 			if(lt.getLootType()==LootType.Key) {
 				if(keysize +1 != this.getKeys().size()) {
@@ -417,7 +421,51 @@ public class PlayerContract extends PlayerDecorator {
 
 	@Override
 	public boolean pacify() {
-		return super.pacify();
+		boolean retour = false;
+		OptionService<MobService> opt = null;
+		int x =-1;
+		int y =-1;
+		switch(this.getFace()) {
+			case N:
+				x = this.getCol();
+				y = this.getRow()+1;
+				break;
+			case S:
+				x = this.getCol();
+				y = this.getRow()-1;
+				break;
+			case W:
+				x = this.getCol()-1;
+				y = this.getRow();
+				break;
+			case E:
+				x = this.getCol()+1;
+				y = this.getRow();
+				break;
+			default: 
+				break;
+		}
+		opt = this.getEnv().cellContent(x,y);
+		MobService mob = opt.getElem();
+		int pacif_pre = getPacification();
+		int hp_mob_pre  = ((EntityService)mob).getHealthPoints();
+		int ment_res_pre = ((MonsterService)mob).getMentRes();
+		retour = super.pacify();
+		try {
+			if(((MonsterService)mob).getHealthPoints()!=0) {
+				if(ment_res_pre - 5 != ((MonsterService)mob).getMentRes()) {
+					throw new PostConditionException("Error while pacifying  the monster");
+				}
+				
+			}else {
+				if(this.getPacification()!=pacif_pre+5) {
+					throw new PostConditionException("Error, pacification should be greater");
+				}
+			}
+		}catch(PostConditionException e) {
+			e.printStackTrace();
+		}
+		return retour;
 	}
 
 	@Override

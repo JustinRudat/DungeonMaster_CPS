@@ -368,6 +368,10 @@ public class PlayerContract extends PlayerDecorator {
 			case Armor : if(this.getArmor()!= armor_at_pre+lt.getPuis()) {
 				throw new PostConditionException("armor not increased");
 			}
+			case Treasure : 
+				if(this.getBag().get(0).getLootType()!= LootType.Treasure) {
+					throw new PostConditionException("treasure wasnt added to the inventory");
+				}
 			}
 		}catch(PostConditionException e) {
 			e.printStackTrace();

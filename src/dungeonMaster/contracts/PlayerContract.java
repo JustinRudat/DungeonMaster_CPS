@@ -353,8 +353,14 @@ public class PlayerContract extends PlayerDecorator {
 		int armor_at_pre = getArmor();
 		int damage_at_pre = getDegats();
 		int lootsize = this.getBag().size();
+		int keysize = this.getKeys().size();
 		retour =  super.addLoot(lt);
 		try {
+			if(lt.getLootType()==LootType.Key) {
+				if(keysize +1 != this.getKeys().size()) {
+					throw new PostConditionException("key not added properly");
+				}
+			}
 			if(lootsize+1 != this.getBag().size() && lt.getLootType()!=LootType.Key) {
 				throw new PostConditionException("player : addLoot : error while adding loot.");
 			}
@@ -362,17 +368,22 @@ public class PlayerContract extends PlayerDecorator {
 			case Potion : if(this.getHealthPoints() != hp_at_pre + lt.getPuis()) {
 				throw new PostConditionException("potion not properly taken");
 			}
+			break;
 			case Weapon : if(this.getDegats() != damage_at_pre + lt.getPuis()) {
 				throw new PostConditionException("dammage not increased");
 			}
+			break;
 			case Armor : if(this.getArmor()!= armor_at_pre+lt.getPuis()) {
 				throw new PostConditionException("armor not increased");
 			}
+			break;
 			case Treasure : 
 				if(this.getBag().get(0).getLootType()!= LootType.Treasure) {
 					throw new PostConditionException("treasure wasnt added to the inventory");
 				}
+				break;
 			}
+			
 		}catch(PostConditionException e) {
 			e.printStackTrace();
 		}

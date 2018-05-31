@@ -9,12 +9,15 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 import javax.swing.*;
 
 import dungeonMaster.components.EngineImplem;
 import dungeonMaster.components.EnvironmentImplem;
+import dungeonMaster.components.MapWriter;
 import dungeonMaster.enumeration.Cell;
 import dungeonMaster.enumeration.Command;
 import dungeonMaster.enumeration.LootType;
@@ -198,7 +201,43 @@ public class DungeonMasterDemo {
             }
         });
         panel_button.add(button,c);
+        c.gridx = 6;
+        c.gridy = 3;
+        c.insets = new Insets(10,0,0,0);
+        button = new JButton("LoadMap");
+        button.addActionListener(new ActionListener() {
 
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	JFileChooser dialogue = new JFileChooser();
+                dialogue.showOpenDialog(null);         
+                MapWriter mw = new MapWriter();
+                engine = new EngineImplem();
+                engine.init(mw.loadMap(dialogue.getSelectedFile().getPath()));
+                createAndShowGui();
+
+            }
+        });
+        panel_button.add(button,c);
+        c.gridx = 6;
+        c.gridy = 4;
+        c.insets = new Insets(10,0,0,0);
+        button = new JButton("SaveMap");
+        button.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	Scanner sc = new Scanner(System.in);
+            	MapWriter mw = new MapWriter();
+            	try {
+					mw.saveTheMap(engine.getEnv(), sc.nextLine());
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+            }
+        });
+        //panel_button.add(button,c);
         frame.getContentPane().add(panel_button, BorderLayout.CENTER);
         frame.pack();
         frame.setLocationByPlatform(true);

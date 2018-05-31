@@ -348,12 +348,25 @@ public class PlayerContract extends PlayerDecorator {
 	@Override
 	public boolean addLoot(LootService lt) {
 		boolean retour = false;
-		
+		int hp_at_pre = getHealthPoints();
+		int armor_at_pre = getArmor();
+		int damage_at_pre = getDegats();
 		int lootsize = this.getBag().size();
 		retour =  super.addLoot(lt);
 		try {
 			if(lootsize+1 != this.getBag().size()) {
 				throw new PostConditionException("player : addLoot : error while adding loot.");
+			}
+			switch(lt.getLootType()) {
+			case Potion : if(this.getHealthPoints() != hp_at_pre + lt.getPuis()) {
+				throw new PostConditionException("potion not properly taken");
+			}
+			case Weapon : if(this.getDegats() != damage_at_pre + lt.getPuis()) {
+				throw new PostConditionException("dammage not increased");
+			}
+			case Armor : if(this.getArmor()!= armor_at_pre+lt.getPuis()) {
+				throw new PostConditionException("armor not increased");
+			}
 			}
 		}catch(PostConditionException e) {
 			e.printStackTrace();
